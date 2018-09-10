@@ -34,7 +34,7 @@ public class SpriteAnimation extends Transition {
         this.setInterpolator(Interpolator.LINEAR);
 
         this.spriteImageView.setViewport(
-                new Rectangle2D(offsetX, offsetY, animationFrameHeight, animationFrameWidth)
+                new Rectangle2D(offsetX, offsetY, animationFrameWidth, animationFrameHeight)
         );
     }
 
@@ -56,7 +56,7 @@ public class SpriteAnimation extends Transition {
         final int currentY = offsetY;
 
         this.spriteImageView.setViewport(
-                new Rectangle2D(currentX, currentY, animationFrameHeight, animationFrameWidth)
+                new Rectangle2D(currentX, currentY, animationFrameWidth, animationFrameHeight)
         );
     }
 }

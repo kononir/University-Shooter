@@ -1,3 +1,4 @@
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,21 +7,24 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.HashMap;
+
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
 
         Button newGameButton = new Button("New Game");
         newGameButton.setId("mainMenuButton");
         newGameButton.setOnAction(event -> {
 
-            ComboBox<String> difficultyChangingComboBox = new ComboBox();
+            ComboBox<String> difficultyChangingComboBox = new ComboBox<>();
             ObservableList<String> difficultyList = FXCollections.observableArrayList(
                     "easy", "medium", "hard"
             );
@@ -53,8 +57,18 @@ public class Main extends Application {
 
                 Scene scene = new Scene(startPane);
 
-                PlayersAnimationController playersAnimationController = new PlayersAnimationController(player);
-                playersAnimationController.controllOnScene(scene);
+                HashMap<KeyCode, Boolean> keysMap = new HashMap<>();
+                KeysController keysController = new KeysController(keysMap);
+                keysController.controllOnScene(scene);
+
+                AnimationTimer animTimer = new AnimationTimer() {
+                    @Override
+                    public void handle(long now) {
+                        update(keysMap, player);
+                    }
+                };
+
+                animTimer.start();
 
                 primaryStage.setScene(scene);
                 primaryStage.setResizable(false);
@@ -104,7 +118,41 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    private void update(){
+    private void update(HashMap<KeyCode, Boolean> keysMap, Player player){
+        Pane playersPane = player.getPlayersPane();
 
+        if(isPressed(keysMap, KeyCode.UP)){
+            SpriteAnimation playersSpriteAnimation = player.getSpriteAnimation();
+            playersSpriteAnimation.play();
+
+            int newPaneY = (int)playersPane.getTranslateY() - 3;
+            playersPane.setTranslateY(newPaneY);
+        } else if(isPressed(keysMap, KeyCode.DOWN)){
+            SpriteAnimation playersSpriteAnimation = player.getSpriteAnimation();
+            playersSpriteAnimation.play();
+
+            int newPaneY = (int)playersPane.getTranslateY() + 3;
+            playersPane.setTranslateY(newPaneY);
+        } else if(isPressed(keysMap, KeyCode.LEFT)){
+            SpriteAnimation playersSpriteAnimation = player.getSpriteAnimation();
+            playersSpriteAnimation.play();
+
+            int newPaneX = (int)playersPane.getTranslateX() - 3;
+            playersPane.setTranslateX(newPaneX);
+        } else if(isPressed(keysMap, KeyCode.RIGHT)){
+            SpriteAnimation playersSpriteAnimation = player.getSpriteAnimation();
+            playersSpriteAnimation.play();
+
+            int newPaneX = (int)playersPane.getTranslateX() + 3;
+            playersPane.setTranslateX(newPaneX);
+        }
+        else{
+            SpriteAnimation playersSpriteAnimation = player.getSpriteAnimation();
+            playersSpriteAnimation.stop();
+        }
+    }
+
+    private boolean isPressed(HashMap<KeyCode, Boolean> keysMap, KeyCode keyCode){
+        return keysMap.getOrDefault(keyCode, false);
     }
 }

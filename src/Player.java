@@ -61,12 +61,12 @@ public class Player {
         int countOfAnimationFrames = 20;
         int animationFrameHeight = 55;
         int animationFrameWidth = 70;
-        int offsetX = 10;
+        int offsetX = 0;
         int offsetY = 0;
 
         playersImageView = newPlayersImageView;
 
-        playersImageView.setViewport(new Rectangle2D(offsetX, offsetY, animationFrameHeight, animationFrameWidth));
+        playersImageView.setViewport(new Rectangle2D(offsetX, offsetY, animationFrameWidth, animationFrameHeight));
 
         spriteAnimation = new SpriteAnimation(
                 playersImageView,
@@ -86,8 +86,4 @@ public class Player {
     public final SpriteAnimation getSpriteAnimation(){
         return spriteAnimation;
     }
-
-
-
-
 }
