@@ -5,15 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.util.HashMap;
 
 public class Main extends Application {
 
@@ -48,26 +43,19 @@ public class Main extends Application {
                 int PaneHeight = 400;
                 startPane.setPrefSize(PaneWidth, PaneHeight);
 
-                Image playersImage = new Image(getClass().getResourceAsStream("resourses/student_move_knife.png"));
-                ImageView playersImageView = new ImageView(playersImage);
-                Player player = new Player(playersImageView);
-
-                Pane playersPane = player.getPlayersPane();
-                startPane.getChildren().add(playersPane);
-
                 Scene scene = new Scene(startPane);
 
-                HashMap<KeyCode, Boolean> keysMap = new HashMap<>();
-                KeysController keysController = new KeysController(keysMap);
-                keysController.controllOnScene(scene);
+                PlayerView playerView = new PlayerView(scene);
+
+                Pane playersPane = playerView.getPlayersPane();
+                startPane.getChildren().add(playersPane);
 
                 AnimationTimer animTimer = new AnimationTimer() {
                     @Override
                     public void handle(long now) {
-                        update(keysMap, player);
+                        updateScene(playerView);
                     }
                 };
-
                 animTimer.start();
 
                 primaryStage.setScene(scene);
@@ -118,41 +106,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    private void update(HashMap<KeyCode, Boolean> keysMap, Player player){
-        Pane playersPane = player.getPlayersPane();
-
-        if(isPressed(keysMap, KeyCode.UP)){
-            SpriteAnimation playersSpriteAnimation = player.getSpriteAnimation();
-            playersSpriteAnimation.play();
-
-            int newPaneY = (int)playersPane.getTranslateY() - 3;
-            playersPane.setTranslateY(newPaneY);
-        } else if(isPressed(keysMap, KeyCode.DOWN)){
-            SpriteAnimation playersSpriteAnimation = player.getSpriteAnimation();
-            playersSpriteAnimation.play();
-
-            int newPaneY = (int)playersPane.getTranslateY() + 3;
-            playersPane.setTranslateY(newPaneY);
-        } else if(isPressed(keysMap, KeyCode.LEFT)){
-            SpriteAnimation playersSpriteAnimation = player.getSpriteAnimation();
-            playersSpriteAnimation.play();
-
-            int newPaneX = (int)playersPane.getTranslateX() - 3;
-            playersPane.setTranslateX(newPaneX);
-        } else if(isPressed(keysMap, KeyCode.RIGHT)){
-            SpriteAnimation playersSpriteAnimation = player.getSpriteAnimation();
-            playersSpriteAnimation.play();
-
-            int newPaneX = (int)playersPane.getTranslateX() + 3;
-            playersPane.setTranslateX(newPaneX);
-        }
-        else{
-            SpriteAnimation playersSpriteAnimation = player.getSpriteAnimation();
-            playersSpriteAnimation.stop();
-        }
-    }
-
-    private boolean isPressed(HashMap<KeyCode, Boolean> keysMap, KeyCode keyCode){
-        return keysMap.getOrDefault(keyCode, false);
+    private void updateScene(PlayerView playerView){
+        playerView.updatePlayersView();
     }
 }

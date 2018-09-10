@@ -47,9 +47,9 @@ public class SpriteAnimation extends Transition {
     }
 
     @Override
-    protected void interpolate(double frac) {
+    protected void interpolate(double fraction) {
         final int maxIndex = countOfAnimationFrames - 1;
-        final int computingIndex = (int)Math.floor(countOfAnimationFrames * frac);
+        final int computingIndex = (int)Math.floor(countOfAnimationFrames * fraction);
         final int frameIndex = Math.min(computingIndex, maxIndex);
 
         final int currentX = frameIndex * animationFrameWidth + offsetX;
