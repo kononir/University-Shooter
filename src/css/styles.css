@@ -1,6 +1,13 @@
-#mainMenuButton {
+#mainMenuElement {
     -fx-text-fill: gold;
     -fx-background-color: silver;
     -fx-font-family: "Times New Roman";
-    -fx-font-size: 35px;
+    -fx-font-size: 33px;
+}
+
+#startMenuElement {
+    -fx-text-fill: black;
+    -fx-background-color: silver;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 15px;
 }

@@ -1,5 +1,6 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -16,10 +17,13 @@ public class Main extends Application {
     public void start(Stage primaryStage){
 
         Button newGameButton = new Button("New Game");
-        newGameButton.setId("mainMenuButton");
-        newGameButton.setOnAction(event -> {
+        newGameButton.setId("mainMenuElement");
+        newGameButton.setOnAction(newGameEvent -> {
+            primaryStage.close();
+            Stage newGameStage = new Stage();
 
             ComboBox<String> difficultyChangingComboBox = new ComboBox<>();
+            difficultyChangingComboBox.setId("startMenuElement");
             ObservableList<String> difficultyList = FXCollections.observableArrayList(
                     "easy", "medium", "hard"
             );
@@ -33,11 +37,20 @@ public class Main extends Application {
             double spaceBetweenBorderAndButtons = 30.0;
 
             Button cancelButton = new Button("Cancel");
+            cancelButton.setId("startMenuElement");
+            cancelButton.setOnAction(cancelEvent -> {
+                newGameStage.close();
+                primaryStage.show();
+            });
             AnchorPane.setLeftAnchor(cancelButton, spaceBetweenBorderAndButtons);
             AnchorPane.setBottomAnchor(cancelButton, spaceBetweenBorderAndButtons);
 
             Button startButton = new Button("Start");
+            startButton.setId("startMenuElement");
             startButton.setOnAction(startEvent -> {
+                newGameStage.close();
+                Stage startStage = new Stage();
+
                 AnchorPane startPane = new AnchorPane();
                 int PaneWidth = 600;
                 int PaneHeight = 400;
@@ -58,9 +71,9 @@ public class Main extends Application {
                 };
                 animTimer.start();
 
-                primaryStage.setScene(scene);
-                primaryStage.setResizable(false);
-                primaryStage.show();
+                startStage.setScene(scene);
+                startStage.setResizable(false);
+                startStage.show();
             });
             AnchorPane.setRightAnchor(startButton, spaceBetweenBorderAndButtons);
             AnchorPane.setBottomAnchor(startButton, spaceBetweenBorderAndButtons);
@@ -71,20 +84,29 @@ public class Main extends Application {
             newGamePane.setPrefSize(PaneWidth, PaneHeight);
 
             Scene scene = new Scene(newGamePane);
+            scene.getStylesheets().add("css/styles.css");
 
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
+            newGameStage.setScene(scene);
+            newGameStage.setResizable(false);
+            newGameStage.show();
         });
         Button loadButton = new Button("Load");
-        loadButton.setId("mainMenuButton");
+        loadButton.setId("mainMenuElement");
+
         Button saveButton = new Button("Save");
-        saveButton.setId("mainMenuButton");
+        saveButton.setId("mainMenuElement");
+
+        Button optionsButton = new Button("Options");
+        optionsButton.setId("mainMenuElement");
+
         Button exitButton = new Button("Exit");
-        exitButton.setId("mainMenuButton");
+        exitButton.setId("mainMenuElement");
+        exitButton.setOnAction(exitEvent -> {
+            Platform.exit();
+        });
 
         VBox mainMenuButtons = new VBox();
-        mainMenuButtons.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton);
+        mainMenuButtons.getChildren().addAll(newGameButton, loadButton, saveButton, optionsButton, exitButton);
         double spaceBetweenButtons = 10.0;
         mainMenuButtons.setSpacing(spaceBetweenButtons);
 

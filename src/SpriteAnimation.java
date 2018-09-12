@@ -46,6 +46,14 @@ public class SpriteAnimation extends Transition {
         this.offsetY = offsetY;
     }
 
+    public final int getAnimationFrameHeight(){
+        return animationFrameHeight;
+    }
+
+    public final int getAnimationFrameWidth(){
+        return animationFrameWidth;
+    }
+
     @Override
     protected void interpolate(double fraction) {
         final int maxIndex = countOfAnimationFrames - 1;
