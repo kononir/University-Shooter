@@ -7,15 +7,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-import java.util.HashMap;
-
 public class PlayerView {
     private Pane playersPane;
     private double playersPaneAngle;
     private ImageView playersImageView;
     private SpriteAnimation playersAnimation;
     private ImageViewMap imageViewMap;
-    private HashMap<KeyCode, Boolean> keysMap;
+    private KeysMap keysMap;
 
     public PlayerView(Scene scene){
         imageViewMap = new ImageViewMap();
@@ -28,7 +26,7 @@ public class PlayerView {
         updatePlayersPane();
         updatePlayersAnimation();
 
-        keysMap = new HashMap<>();
+        keysMap = new KeysMap();
         KeysController keysController = new KeysController(keysMap);
         keysController.controllOnScene(scene);
     }
@@ -63,124 +61,108 @@ public class PlayerView {
     }
 
     public final void updatePlayersView(){
-        if(isPressed(KeyCode.UP) && isPressed(KeyCode.LEFT)){
+        if(keysMap.isPressed(KeyCode.UP) && keysMap.isPressed(KeyCode.LEFT)){
             updateCurrentAction("student_move_knife");
 
             playersAnimation.play();
 
             double currentMovementAngle = 225;
-            updateCurrentAngle(currentMovementAngle);
+            updateMovementAngle(currentMovementAngle);
 
-            if(isOpportunityToMoveUp() && isOpportunityToMoveLeft()){
-                int newPaneY = (int)playersPane.getTranslateY() - 3;
-                int newPaneX = (int)playersPane.getTranslateX() - 3;
+            int movementX = 3;
+            int movementY = 3;
 
-                playersPane.setTranslateY(newPaneY);
-                playersPane.setTranslateX(newPaneX);
-            }
-        } else if(isPressed(KeyCode.UP) && isPressed(KeyCode.RIGHT)){
+            moveUp(movementY);
+            moveLeft(movementX);
+        } else if(keysMap.isPressed(KeyCode.UP) && keysMap.isPressed(KeyCode.RIGHT)){
             updateCurrentAction("student_move_knife");
 
             playersAnimation.play();
 
             double currentMovementAngle = 315;
-            updateCurrentAngle(currentMovementAngle);
+            updateMovementAngle(currentMovementAngle);
 
-            if(isOpportunityToMoveUp() && isOpportunityToMoveRight()){
-                int newPaneY = (int)playersPane.getTranslateY() - 3;
-                int newPaneX = (int)playersPane.getTranslateX() + 3;
+            int movementX = 3;
+            int movementY = 3;
 
-                playersPane.setTranslateY(newPaneY);
-                playersPane.setTranslateX(newPaneX);
-            }
-        } else if(isPressed(KeyCode.DOWN) && isPressed(KeyCode.LEFT)){
+            moveUp(movementY);
+            moveRight(movementX);
+        } else if(keysMap.isPressed(KeyCode.DOWN) && keysMap.isPressed(KeyCode.LEFT)){
             updateCurrentAction("student_move_knife");
 
             playersAnimation.play();
 
             double currentMovementAngle = 135;
-            updateCurrentAngle(currentMovementAngle);
+            updateMovementAngle(currentMovementAngle);
 
-            if(isOpportunityToMoveDown() && isOpportunityToMoveLeft()){
-                int newPaneY = (int)playersPane.getTranslateY() + 3;
-                int newPaneX = (int)playersPane.getTranslateX() - 3;
+            int movementX = 3;
+            int movementY = 3;
 
-                playersPane.setTranslateY(newPaneY);
-                playersPane.setTranslateX(newPaneX);
-            }
-        } else if(isPressed(KeyCode.DOWN) && isPressed(KeyCode.RIGHT)){
+            moveDown(movementY);
+            moveLeft(movementX);
+        } else if(keysMap.isPressed(KeyCode.DOWN) && keysMap.isPressed(KeyCode.RIGHT)){
             updateCurrentAction("student_move_knife");
 
             playersAnimation.play();
 
             double currentMovementAngle = 45;
-            updateCurrentAngle(currentMovementAngle);
+            updateMovementAngle(currentMovementAngle);
 
-            if(isOpportunityToMoveDown() && isOpportunityToMoveRight()){
-                int newPaneY = (int)playersPane.getTranslateY() + 3;
-                int newPaneX = (int)playersPane.getTranslateX() + 3;
+            int movementX = 3;
+            int movementY = 3;
 
-                playersPane.setTranslateY(newPaneY);
-                playersPane.setTranslateX(newPaneX);
-            }
-        } else if(isPressed(KeyCode.UP)){
+            moveDown(movementY);
+            moveRight(movementX);
+        } else if(keysMap.isPressed(KeyCode.UP)){
             updateCurrentAction("student_move_knife");
 
             playersAnimation.play();
 
             double currentMovementAngle = 270;
-            updateCurrentAngle(currentMovementAngle);
+            updateMovementAngle(currentMovementAngle);
 
-            if(isOpportunityToMoveUp()){
-                int newPaneY = (int)playersPane.getTranslateY() - 3;
-                playersPane.setTranslateY(newPaneY);
-            }
-        } else if(isPressed(KeyCode.DOWN)){
+            int movementY = 3;
+
+            moveUp(movementY);
+        } else if(keysMap.isPressed(KeyCode.DOWN)){
             updateCurrentAction("student_move_knife");
 
             playersAnimation.play();
 
             double currentMovementAngle = 90;
-            updateCurrentAngle(currentMovementAngle);
+            updateMovementAngle(currentMovementAngle);
 
-            if(isOpportunityToMoveDown()){
-                int newPaneY = (int)playersPane.getTranslateY() + 3;
-                playersPane.setTranslateY(newPaneY);
-            }
-        } else if(isPressed(KeyCode.LEFT)){
+            int movementY = 3;
+
+            moveDown(movementY);
+        } else if(keysMap.isPressed(KeyCode.LEFT)){
             updateCurrentAction("student_move_knife");
 
             playersAnimation.play();
 
             double currentMovementAngle = 180;
-            updateCurrentAngle(currentMovementAngle);
+            updateMovementAngle(currentMovementAngle);
 
-            if(isOpportunityToMoveLeft()){
-                int newPaneX = (int)playersPane.getTranslateX() - 3;
-                playersPane.setTranslateX(newPaneX);
-            }
-        } else if(isPressed(KeyCode.RIGHT)){
+            int movementX = 3;
+
+            moveLeft(movementX);
+        } else if(keysMap.isPressed(KeyCode.RIGHT)){
             updateCurrentAction("student_move_knife");
 
             playersAnimation.play();
 
             double currentMovementAngle = 0;
-            updateCurrentAngle(currentMovementAngle);
+            updateMovementAngle(currentMovementAngle);
 
-            if(isOpportunityToMoveRight()){
-                int newPaneX = (int)playersPane.getTranslateX() + 3;
-                playersPane.setTranslateX(newPaneX);
-            }
+            int movementX = 3;
+
+            moveRight(movementX);
         }
         else{
             updateCurrentAction("student_idle_knife");
 
             playersAnimation.play();
         }
-    }
-
-    private boolean isPressed(KeyCode keyCode){
-        return keysMap.getOrDefault(keyCode, false);
     }
 
     private void updateCurrentAction(String nameOfAction){
@@ -190,6 +172,44 @@ public class PlayerView {
             playersImageView = imageView;
             updatePlayersPane();
             updatePlayersAnimation();
+        }
+    }
+
+    private void updateMovementAngle(double currentMovementAngle){
+        if(playersPaneAngle != currentMovementAngle){
+            RotateTransition rotateTransition = new RotateTransition(Duration.millis(1), playersPane);
+            rotateTransition.setToAngle(currentMovementAngle);
+            rotateTransition.play();
+
+            playersPaneAngle = currentMovementAngle;
+        }
+    }
+
+    private void moveLeft(int movementX){
+        if(isOpportunityToMoveLeft()){
+            int newPaneX = (int)playersPane.getTranslateX() - movementX;
+            playersPane.setTranslateX(newPaneX);
+        }
+    }
+
+    private void moveRight(int movementX){
+        if(isOpportunityToMoveRight()){
+            int newPaneX = (int)playersPane.getTranslateX() + movementX;
+            playersPane.setTranslateX(newPaneX);
+        }
+    }
+
+    private void moveUp(int movementY){
+        if(isOpportunityToMoveUp()){
+            int newPaneY = (int)playersPane.getTranslateY() - movementY;
+            playersPane.setTranslateY(newPaneY);
+        }
+    }
+
+    private void moveDown(int movementY){
+        if(isOpportunityToMoveDown()){
+            int newPaneY = (int)playersPane.getTranslateY() + movementY;
+            playersPane.setTranslateY(newPaneY);
         }
     }
 
@@ -230,15 +250,4 @@ public class PlayerView {
 
         return playerLayoutY < maxPlayerTranslateY;
     }
-
-    private void updateCurrentAngle(double currentMovementAngle){
-        if(playersPaneAngle != currentMovementAngle){
-            RotateTransition rotateTransition = new RotateTransition(Duration.millis(1), playersPane);
-            rotateTransition.setToAngle(currentMovementAngle);
-            rotateTransition.play();
-
-            playersPaneAngle = currentMovementAngle;
-        }
-    }
-
 }

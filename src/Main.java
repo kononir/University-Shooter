@@ -101,9 +101,7 @@ public class Main extends Application {
 
         Button exitButton = new Button("Exit");
         exitButton.setId("mainMenuElement");
-        exitButton.setOnAction(exitEvent -> {
-            Platform.exit();
-        });
+        exitButton.setOnAction(exitEvent -> Platform.exit());
 
         VBox mainMenuButtons = new VBox();
         mainMenuButtons.getChildren().addAll(newGameButton, loadButton, saveButton, optionsButton, exitButton);

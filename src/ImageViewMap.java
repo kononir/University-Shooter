@@ -7,6 +7,7 @@ public class ImageViewMap extends HashMap<String, ImageView> {
     public void fillImageViewMap(){
         addNewImageView("student_idle_knife");
         addNewImageView("student_move_knife");
+        addNewImageView("student_meleeattack_knife");
     }
 
     private void addNewImageView(String imageName){
