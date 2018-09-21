@@ -1,3 +1,5 @@
+package bsuir.vlad.universityshooter.application;
+
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
@@ -21,7 +23,7 @@ public class SpriteAnimation extends Transition {
             int animationFrameWidth,
             int offsetX,
             int offsetY
-    ){
+    ) {
         this.spriteImageView = spriteImageView;
         this.countOfAnimationFrames = countOfAnimationFrames;
         this.animationFrameHeight = animationFrameHeight;
@@ -38,26 +40,26 @@ public class SpriteAnimation extends Transition {
         );
     }
 
-    public final void setOffsetX(int offsetX){
+    public final void setOffsetX(int offsetX) {
         this.offsetX = offsetX;
     }
 
-    public final void setOffsetY(int offsetY){
+    public final void setOffsetY(int offsetY) {
         this.offsetY = offsetY;
     }
 
-    public final int getAnimationFrameHeight(){
+    public final int getAnimationFrameHeight() {
         return animationFrameHeight;
     }
 
-    public final int getAnimationFrameWidth(){
+    public final int getAnimationFrameWidth() {
         return animationFrameWidth;
     }
 
     @Override
     protected void interpolate(double fraction) {
         final int maxIndex = countOfAnimationFrames - 1;
-        final int computingIndex = (int)Math.floor(countOfAnimationFrames * fraction);
+        final int computingIndex = (int) Math.floor(countOfAnimationFrames * fraction);
         final int frameIndex = Math.min(computingIndex, maxIndex);
 
         final int currentX = frameIndex * animationFrameWidth + offsetX;

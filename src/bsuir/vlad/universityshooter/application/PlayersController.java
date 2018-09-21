@@ -1,0 +1,17 @@
+package bsuir.vlad.universityshooter.application;
+
+public class PlayersController {
+    Player player;
+
+    public PlayersController(Player player) {
+        this.player = player;
+    }
+
+    public final boolean controlChangingWeapon(String weaponType) {
+        return player.changeWeapon(weaponType);
+    }
+
+    public final String controlTypeOfWeaponInHands(){
+        return player.getTypeOfWeaponInHands();
+    }
+}

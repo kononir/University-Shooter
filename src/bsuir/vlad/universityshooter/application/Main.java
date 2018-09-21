@@ -1,3 +1,5 @@
+package bsuir.vlad.universityshooter.application;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -6,6 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -14,13 +18,29 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) {
 
         Button newGameButton = new Button("New Game");
         newGameButton.setId("mainMenuElement");
         newGameButton.setOnAction(newGameEvent -> {
             primaryStage.close();
             Stage newGameStage = new Stage();
+
+            Label creatingProfileLabel = new Label("Creating profile");
+            creatingProfileLabel.setId("startMenuElement");
+
+            double spaceBetweenTopBorderAndCreatingProfileLabel = 30.0;
+            double spaceBetweenLeftBorderAndCreatingProfileLabel = 265.0;
+            AnchorPane.setLeftAnchor(creatingProfileLabel, spaceBetweenLeftBorderAndCreatingProfileLabel);
+            AnchorPane.setTopAnchor(creatingProfileLabel, spaceBetweenTopBorderAndCreatingProfileLabel);
+
+            TextField profileNameTextField = new TextField("Player");
+            profileNameTextField.setId("startMenuElement");
+
+            double spaceBetweenTopBorderAndProfileNameTextField = 200.0;
+            double spaceBetweenLeftBorderAndProfileNameTextField = 225.0;
+            AnchorPane.setLeftAnchor(profileNameTextField, spaceBetweenLeftBorderAndProfileNameTextField);
+            AnchorPane.setTopAnchor(profileNameTextField, spaceBetweenTopBorderAndProfileNameTextField);
 
             ComboBox<String> difficultyChangingComboBox = new ComboBox<>();
             difficultyChangingComboBox.setId("startMenuElement");
@@ -51,6 +71,11 @@ public class Main extends Application {
                 newGameStage.close();
                 Stage startStage = new Stage();
 
+                String difficulty = difficultyChangingComboBox.getValue();
+                String name = profileNameTextField.getText();
+
+                Profile newProfile = new Profile(name, difficulty);
+
                 AnchorPane startPane = new AnchorPane();
                 int PaneWidth = 600;
                 int PaneHeight = 400;
@@ -58,15 +83,16 @@ public class Main extends Application {
 
                 Scene scene = new Scene(startPane);
 
-                PlayerView playerView = new PlayerView(scene);
+                Player player = newProfile.getProfilePlayer();
+                PlayersView playersView = new PlayersView(player, scene);
 
-                Pane playersPane = playerView.getPlayersPane();
+                Pane playersPane = playersView.getPlayersPane();
                 startPane.getChildren().add(playersPane);
 
                 AnimationTimer animTimer = new AnimationTimer() {
                     @Override
                     public void handle(long now) {
-                        updateScene(playerView);
+                        updateScene(playersView);
                     }
                 };
                 animTimer.start();
@@ -78,7 +104,13 @@ public class Main extends Application {
             AnchorPane.setRightAnchor(startButton, spaceBetweenBorderAndButtons);
             AnchorPane.setBottomAnchor(startButton, spaceBetweenBorderAndButtons);
 
-            AnchorPane newGamePane = new AnchorPane(difficultyChangingComboBox, cancelButton, startButton);
+            AnchorPane newGamePane = new AnchorPane(
+                    creatingProfileLabel,
+                    profileNameTextField,
+                    difficultyChangingComboBox,
+                    cancelButton,
+                    startButton
+            );
             int PaneWidth = 600;
             int PaneHeight = 400;
             newGamePane.setPrefSize(PaneWidth, PaneHeight);
@@ -126,7 +158,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    private void updateScene(PlayerView playerView){
-        playerView.updatePlayersView();
+    private void updateScene(PlayersView playersView) {
+        playersView.updatePlayersView();
     }
 }

@@ -1,3 +1,5 @@
+package bsuir.vlad.universityshooter.application;
+
 import javafx.scene.input.KeyCode;
 
 import java.util.HashMap;
