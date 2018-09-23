@@ -16,6 +16,7 @@ public class SpriteAnimation extends Transition {
     private final int animationFrameWidth;
     private int offsetX;
     private int offsetY;
+    private boolean lockFlag;
 
     public SpriteAnimation(
             ImageView spriteImageView,
@@ -56,24 +57,27 @@ public class SpriteAnimation extends Transition {
         return animationFrameWidth;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SpriteAnimation that = (SpriteAnimation) o;
-        return countOfAnimationFrames == that.countOfAnimationFrames &&
-                animationFrameHeight == that.animationFrameHeight &&
-                animationFrameWidth == that.animationFrameWidth &&
-                Objects.equals(spriteImageView, that.spriteImageView);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(spriteImageView, countOfAnimationFrames, animationFrameHeight, animationFrameWidth);
-    }
-
-    public ImageView getSpriteImageView() {
+    public final ImageView getSpriteImageView() {
         return spriteImageView;
+    }
+
+    public final boolean isLock() {
+        return lockFlag;
+    }
+
+    public final void lock() {
+        this.lockFlag = true;
+
+        int animationCycleCount = 1;
+        this.setCycleCount(animationCycleCount);
+
+        this.setOnFinished(event -> {
+            unlock();
+        });
+    }
+
+    public final void unlock() {
+        this.lockFlag = false;
     }
 
     @Override

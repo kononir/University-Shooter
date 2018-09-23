@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<weapons>
+    <weapon>
+        <type>knife</type>
+        <damage>35</damage>
+        <distance>0</distance>
+        <maxAmmo>0</maxAmmo>
+    </weapon>
+    <weapon>
+        <type>handgun</type>
+        <damage>25</damage>
+        <distance>100</distance>
+        <maxAmmo>7</maxAmmo>
+    </weapon>
+    <weapon>
+        <type>rifle</type>
+        <damage>15</damage>
+        <distance>300</distance>
+        <maxAmmo>30</maxAmmo>
+    </weapon>
+    <weapon>
+        <type>shotgun</type>
+        <damage>40</damage>
+        <distance>50</distance>
+        <maxAmmo>5</maxAmmo>
+    </weapon>
+</weapons>

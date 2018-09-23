@@ -20,6 +20,7 @@ public class Player {
 
         currentWeaponsList = new ArrayList<>(allWeaponsList.size());
         addNewWeapon("knife");
+        addNewWeapon("handgun");
     }
 
     public final void increaseHealth(int newHealth) {
