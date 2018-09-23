@@ -1,7 +1,6 @@
 package bsuir.vlad.universityshooter.application;
 
 import javafx.animation.RotateTransition;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -9,56 +8,44 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
+import java.util.HashMap;
+
 public class PlayersView {
     private Player player;
     private Pane playersPane;
     private double playersPaneAngle;
     private ImageView playersImageView;
     private SpriteAnimation playersAnimation;
-    private ImageViewMap imageViewMap;
+    private HashMap<String, SpriteAnimation> allAnimationsMap;
     private KeysMap keysMap;
 
     public PlayersView(Player player, Scene scene) {
         this.player = player;
 
-        imageViewMap = new ImageViewMap();
-        imageViewMap.fillImageViewMap();
+        String playersAnimationsFilePath
+                = "src/bsuir/vlad/universityshooter/application/resources/players_animation_characteristics.xml";
+        allAnimationsMap = new SpriteAnimationFile(playersAnimationsFilePath).loadAnimations();
 
         playersPane = new Pane();
         playersPaneAngle = 0;
 
-        playersImageView = imageViewMap.get("student_idle_knife");
-        updatePlayersPane();
-        updatePlayersAnimation();
+        updatePlayersAnimation("student_idle_knife");
 
         keysMap = new KeysMap();
         KeysController keysController = new KeysController(keysMap);
         keysController.controllOnScene(scene);
     }
 
-    private void updatePlayersPane() {
-        playersPane.getChildren().clear();
-        playersPane.getChildren().add(playersImageView);
-    }
+    private void updatePlayersAnimation(String animationName) {
+        SpriteAnimation updatingAnimation = allAnimationsMap.get(animationName);
 
-    private void updatePlayersAnimation() {
-        int countOfAnimationFrames = 20;
-        int animationFrameHeight = 55;
-        int animationFrameWidth = 70;
-        int offsetX = 0;
-        int offsetY = 0;
+        if (!updatingAnimation.equals(playersAnimation) || playersAnimation == null) {
+            playersAnimation = updatingAnimation;
 
-        playersImageView.setViewport(new Rectangle2D(offsetX, offsetY, animationFrameWidth, animationFrameHeight));
-
-        playersAnimation = new SpriteAnimation(
-                playersImageView,
-                Duration.millis(800.0),
-                countOfAnimationFrames,
-                animationFrameHeight,
-                animationFrameWidth,
-                offsetX,
-                offsetY
-        );
+            playersImageView = updatingAnimation.getSpriteImageView();
+            playersPane.getChildren().clear();
+            playersPane.getChildren().add(playersImageView);
+        }
     }
 
     public final Pane getPlayersPane() {
@@ -84,7 +71,7 @@ public class PlayersView {
         String typeOfWeaponInHands = controller.controlTypeOfWeaponInHands();
 
         if (keysMap.isPressed(KeyCode.UP) && keysMap.isPressed(KeyCode.LEFT)) {
-            updateCurrentAction("student_move_" + typeOfWeaponInHands);
+            updatePlayersAnimation("student_move_" + typeOfWeaponInHands);
 
             playersAnimation.play();
 
@@ -97,7 +84,7 @@ public class PlayersView {
             moveUp(movementY);
             moveLeft(movementX);
         } else if (keysMap.isPressed(KeyCode.UP) && keysMap.isPressed(KeyCode.RIGHT)) {
-            updateCurrentAction("student_move_" + typeOfWeaponInHands);
+            updatePlayersAnimation("student_move_" + typeOfWeaponInHands);
 
             playersAnimation.play();
 
@@ -110,7 +97,7 @@ public class PlayersView {
             moveUp(movementY);
             moveRight(movementX);
         } else if (keysMap.isPressed(KeyCode.DOWN) && keysMap.isPressed(KeyCode.LEFT)) {
-            updateCurrentAction("student_move_" + typeOfWeaponInHands);
+            updatePlayersAnimation("student_move_" + typeOfWeaponInHands);
 
             playersAnimation.play();
 
@@ -123,7 +110,7 @@ public class PlayersView {
             moveDown(movementY);
             moveLeft(movementX);
         } else if (keysMap.isPressed(KeyCode.DOWN) && keysMap.isPressed(KeyCode.RIGHT)) {
-            updateCurrentAction("student_move_" + typeOfWeaponInHands);
+            updatePlayersAnimation("student_move_" + typeOfWeaponInHands);
 
             playersAnimation.play();
 
@@ -136,7 +123,7 @@ public class PlayersView {
             moveDown(movementY);
             moveRight(movementX);
         } else if (keysMap.isPressed(KeyCode.UP)) {
-            updateCurrentAction("student_move_" + typeOfWeaponInHands);
+            updatePlayersAnimation("student_move_" + typeOfWeaponInHands);
 
             playersAnimation.play();
 
@@ -147,7 +134,7 @@ public class PlayersView {
 
             moveUp(movementY);
         } else if (keysMap.isPressed(KeyCode.DOWN)) {
-            updateCurrentAction("student_move_" + typeOfWeaponInHands);
+            updatePlayersAnimation("student_move_" + typeOfWeaponInHands);
 
             playersAnimation.play();
 
@@ -158,7 +145,7 @@ public class PlayersView {
 
             moveDown(movementY);
         } else if (keysMap.isPressed(KeyCode.LEFT)) {
-            updateCurrentAction("student_move_" + typeOfWeaponInHands);
+            updatePlayersAnimation("student_move_" + typeOfWeaponInHands);
 
             playersAnimation.play();
 
@@ -169,7 +156,7 @@ public class PlayersView {
 
             moveLeft(movementX);
         } else if (keysMap.isPressed(KeyCode.RIGHT)) {
-            updateCurrentAction("student_move_" + typeOfWeaponInHands);
+            updatePlayersAnimation("student_move_" + typeOfWeaponInHands);
 
             playersAnimation.play();
 
@@ -180,7 +167,7 @@ public class PlayersView {
 
             moveRight(movementX);
         } else {
-            updateCurrentAction("student_idle_" + typeOfWeaponInHands);
+            updatePlayersAnimation("student_idle_" + typeOfWeaponInHands);
 
             playersAnimation.play();
         }
@@ -191,17 +178,7 @@ public class PlayersView {
         boolean weaponExisting = playersController.controlChangingWeapon(weaponType);
 
         if (weaponExisting) {
-            updateCurrentAction("student_idle_" + weaponType);
-        }
-    }
-
-    private void updateCurrentAction(String nameOfAction) {
-        ImageView imageView = imageViewMap.get(nameOfAction);
-
-        if (!playersImageView.equals(imageView)) {
-            playersImageView = imageView;
-            updatePlayersPane();
-            updatePlayersAnimation();
+            updatePlayersAnimation("student_idle_" + weaponType);
         }
     }
 

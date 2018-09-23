@@ -1,5 +1,8 @@
 package bsuir.vlad.universityshooter.application;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -7,35 +10,33 @@ import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class WeaponsFile {
+public class SpriteAnimationFile {
     private String filePath;
-    private List<Weapon> weaponsList;
+    private HashMap<String, SpriteAnimation> spriteAnimationMap;
 
-    WeaponsFile(String filePath) {
+    SpriteAnimationFile(String filePath) {
         this.filePath = filePath;
     }
 
-    public final List<Weapon> loadWeapons() {
+    public final HashMap<String, SpriteAnimation> loadAnimations() {
         DefaultHandler handler = new DefaultHandler() {
             String tagName;
 
-            String type;
-            int damage;
-            int distance;
-            int maxAmmo;
+            String animationName;
+            int cycleDuration;
+            int countOfAnimationFrames;
+            int animationFrameHeight;
+            int animationFrameWidth;
 
             @Override
             public void startDocument() {
-                System.out.println("Start analysis file with weapons characteristics");
-                weaponsList = new ArrayList<>();
+                System.out.println("Start analysis file with sprite animations characteristics");
+                spriteAnimationMap = new HashMap<String, SpriteAnimation>();
             }
 
             @Override
@@ -57,17 +58,20 @@ public class WeaponsFile {
 
                 if(!firstSymbol.equals("\n")) {
                     switch (tagName) {
-                        case "type":
-                            type = completeString;
+                        case "animationName":
+                            animationName = completeString;
                             break;
-                        case "damage":
-                            damage = new Integer(completeString);
+                        case "cycleDuration":
+                            cycleDuration = new Integer(completeString);
                             break;
-                        case "distance":
-                            distance = new Integer(completeString);
+                        case "countOfAnimationFrames":
+                            countOfAnimationFrames = new Integer(completeString);
                             break;
-                        case "maxAmmo":
-                            maxAmmo = new Integer(completeString);
+                        case "animationFrameHeight":
+                            animationFrameHeight = new Integer(completeString);
+                            break;
+                        case "animationFrameWidth":
+                            animationFrameWidth = new Integer(completeString);
                             break;
                         default:
                             break;
@@ -77,9 +81,17 @@ public class WeaponsFile {
 
             @Override
             public void endElement(String uri, String localName, String qName) throws SAXException {
-                if (qName.equals("weapon")) {
-                    Weapon weapon = new Weapon(type, damage, distance, maxAmmo);
-                    weaponsList.add(weapon);
+                if (qName.equals("animation")) {
+                    Image playersImage = new Image(getClass().getResourceAsStream("resources/" + animationName + ".png"));
+                    ImageView playersImageView = new ImageView(playersImage);
+                    SpriteAnimation spriteAnimation = new SpriteAnimation(
+                            playersImageView,
+                            Duration.millis(cycleDuration),
+                            countOfAnimationFrames,
+                            animationFrameHeight,
+                            animationFrameWidth
+                    );
+                    spriteAnimationMap.put(animationName, spriteAnimation);
                 }
             }
 
@@ -99,7 +111,6 @@ public class WeaponsFile {
             e.printStackTrace();
         }
 
-        return weaponsList;
+        return spriteAnimationMap;
     }
-
 }

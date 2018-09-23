@@ -7,6 +7,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+import java.util.Objects;
+
 public class SpriteAnimation extends Transition {
     private final ImageView spriteImageView;
     private final int countOfAnimationFrames;
@@ -20,16 +22,14 @@ public class SpriteAnimation extends Transition {
             Duration cycleDuration,
             int countOfAnimationFrames,
             int animationFrameHeight,
-            int animationFrameWidth,
-            int offsetX,
-            int offsetY
+            int animationFrameWidth
     ) {
         this.spriteImageView = spriteImageView;
         this.countOfAnimationFrames = countOfAnimationFrames;
         this.animationFrameHeight = animationFrameHeight;
         this.animationFrameWidth = animationFrameWidth;
-        this.offsetX = offsetX;
-        this.offsetY = offsetY;
+        this.offsetX = 0;
+        this.offsetY = 0;
 
         this.setCycleDuration(cycleDuration);
         this.setCycleCount(Animation.INDEFINITE);
@@ -54,6 +54,26 @@ public class SpriteAnimation extends Transition {
 
     public final int getAnimationFrameWidth() {
         return animationFrameWidth;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SpriteAnimation that = (SpriteAnimation) o;
+        return countOfAnimationFrames == that.countOfAnimationFrames &&
+                animationFrameHeight == that.animationFrameHeight &&
+                animationFrameWidth == that.animationFrameWidth &&
+                Objects.equals(spriteImageView, that.spriteImageView);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(spriteImageView, countOfAnimationFrames, animationFrameHeight, animationFrameWidth);
+    }
+
+    public ImageView getSpriteImageView() {
+        return spriteImageView;
     }
 
     @Override

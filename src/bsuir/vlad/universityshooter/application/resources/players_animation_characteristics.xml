@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<weapons>
-    <weapon>
-        <type>knife</type>
-        <damage>35</damage>
-        <distance>0</distance>
-        <maxAmmo>0</maxAmmo>
-    </weapon>
-    <weapon>
-        <type>handgun</type>
-        <damage>25</damage>
-        <distance>100</distance>
-        <maxAmmo>7</maxAmmo>
-    </weapon>
-    <weapon>
-        <type>rifle</type>
-        <damage>15</damage>
-        <distance>300</distance>
-        <maxAmmo>30</maxAmmo>
-    </weapon>
-    <weapon>
-        <type>shotgun</type>
-        <damage>40</damage>
-        <distance>50</distance>
-        <maxAmmo>5</maxAmmo>
-    </weapon>
-</weapons>
+<animations>
+    <animation>
+        <animationName>student_idle_knife</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>20</countOfAnimationFrames>
+        <animationFrameHeight>55</animationFrameHeight>
+        <animationFrameWidth>70</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>student_move_knife</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>20</countOfAnimationFrames>
+        <animationFrameHeight>55</animationFrameHeight>
+        <animationFrameWidth>70</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>student_meleeattack_knife</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>15</countOfAnimationFrames>
+        <animationFrameHeight>78</animationFrameHeight>
+        <animationFrameWidth>85</animationFrameWidth>
+    </animation>
+</animations>

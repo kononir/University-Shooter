@@ -15,7 +15,8 @@ public class Player {
         health = 100;
         defence = 0;
 
-        allWeaponsList = new WeaponsFile("src/bsuir/vlad/universityshooter/application/resources/weapons_characteristics.xml").loadWeapons();
+        String weaponsFilePath = "src/bsuir/vlad/universityshooter/application/resources/weapons_characteristics.xml";
+        allWeaponsList = new WeaponsFile(weaponsFilePath).loadWeapons();
 
         currentWeaponsList = new ArrayList<>(allWeaponsList.size());
         addNewWeapon("knife");
