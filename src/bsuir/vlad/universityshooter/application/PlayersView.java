@@ -4,7 +4,6 @@ import javafx.animation.RotateTransition;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
@@ -32,7 +31,7 @@ public class PlayersView implements Movable {
 
         keysMap = new KeysMap();
         KeysController keysController = new KeysController(keysMap);
-        keysController.controllOnScene(scene);
+        keysController.controlOnScene(scene);
     }
 
     private void updatePlayersAnimation(String animationName) {
@@ -69,6 +68,9 @@ public class PlayersView implements Movable {
         PlayersController controller = new PlayersController(player);
         String typeOfWeaponInHands = controller.controlTypeOfWeaponInHands();
 
+        int movementX = 3;
+        int movementY = 3;
+
         if (keysMap.isPressed(KeyCode.UP) && keysMap.isPressed(KeyCode.LEFT)) {
             if (!playersAnimation.isLock()) {
                 updatePlayersAnimation("student_move_" + typeOfWeaponInHands);
@@ -78,9 +80,6 @@ public class PlayersView implements Movable {
 
             double currentMovementAngle = 225;
             updateMovementAngle(currentMovementAngle);
-
-            int movementX = 3;
-            int movementY = 3;
 
             moveUp(movementY);
             moveLeft(movementX);
@@ -94,9 +93,6 @@ public class PlayersView implements Movable {
             double currentMovementAngle = 315;
             updateMovementAngle(currentMovementAngle);
 
-            int movementX = 3;
-            int movementY = 3;
-
             moveUp(movementY);
             moveRight(movementX);
         } else if (keysMap.isPressed(KeyCode.DOWN) && keysMap.isPressed(KeyCode.LEFT)) {
@@ -108,9 +104,6 @@ public class PlayersView implements Movable {
 
             double currentMovementAngle = 135;
             updateMovementAngle(currentMovementAngle);
-
-            int movementX = 3;
-            int movementY = 3;
 
             moveDown(movementY);
             moveLeft(movementX);
@@ -124,9 +117,6 @@ public class PlayersView implements Movable {
             double currentMovementAngle = 45;
             updateMovementAngle(currentMovementAngle);
 
-            int movementX = 3;
-            int movementY = 3;
-
             moveDown(movementY);
             moveRight(movementX);
         } else if (keysMap.isPressed(KeyCode.UP)) {
@@ -139,8 +129,6 @@ public class PlayersView implements Movable {
             double currentMovementAngle = 270;
             updateMovementAngle(currentMovementAngle);
 
-            int movementY = 3;
-
             moveUp(movementY);
         } else if (keysMap.isPressed(KeyCode.DOWN)) {
             if (!playersAnimation.isLock()) {
@@ -151,8 +139,6 @@ public class PlayersView implements Movable {
 
             double currentMovementAngle = 90;
             updateMovementAngle(currentMovementAngle);
-
-            int movementY = 3;
 
             moveDown(movementY);
         } else if (keysMap.isPressed(KeyCode.LEFT)) {
@@ -165,8 +151,6 @@ public class PlayersView implements Movable {
             double currentMovementAngle = 180;
             updateMovementAngle(currentMovementAngle);
 
-            int movementX = 3;
-
             moveLeft(movementX);
         } else if (keysMap.isPressed(KeyCode.RIGHT)) {
             if (!playersAnimation.isLock()) {
@@ -177,8 +161,6 @@ public class PlayersView implements Movable {
 
             double currentMovementAngle = 0;
             updateMovementAngle(currentMovementAngle);
-
-            int movementX = 3;
 
             moveRight(movementX);
         } else if (!playersAnimation.isLock()) {
@@ -192,6 +174,12 @@ public class PlayersView implements Movable {
 
             playersAnimation.lock();
             playersAnimation.play();
+
+            if(!typeOfWeaponInHands.equals("knife")) {
+                Bullet bullet = controller.controlShooting();
+                double bulletsPaneAngle = playersPaneAngle;
+                GameSpace.addNewBullet(bullet, bulletsPaneAngle);
+            }
         }
     }
 
@@ -204,7 +192,6 @@ public class PlayersView implements Movable {
         }
     }
 
-    @Override
     public void updateMovementAngle(double currentMovementAngle) {
         if (playersPaneAngle != currentMovementAngle) {
             RotateTransition rotateTransition = new RotateTransition(Duration.millis(1), playersPane);
@@ -257,7 +244,7 @@ public class PlayersView implements Movable {
     private boolean isOpportunityToMoveRight() {
         double playerTranslateX = playersPane.getTranslateX();
 
-        AnchorPane pane = (AnchorPane) playersPane.getParent();
+        Pane pane = (Pane) playersPane.getParent();
         double maxPaneX = pane.getPrefWidth();
         double animationFrameWidth = (double) playersAnimation.getAnimationFrameWidth();
 
@@ -276,7 +263,7 @@ public class PlayersView implements Movable {
     private boolean isOpportunityToMoveDown() {
         double playerLayoutY = playersPane.getTranslateY();
 
-        AnchorPane pane = (AnchorPane) playersPane.getParent();
+        Pane pane = (Pane) playersPane.getParent();
         double maxPaneY = pane.getPrefHeight();
         double animationFrameHeight = (double) playersAnimation.getAnimationFrameHeight();
 

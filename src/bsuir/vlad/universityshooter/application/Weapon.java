@@ -7,16 +7,24 @@ public class Weapon {
     private final int maxAmmo;
     private int ammo;
 
+    public String getType() {
+        return type;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
     public Weapon(String type, int damage, int distance, int maxAmmo) {
         this.type = type;
         this.damage = damage;
         this.distance = distance;
         this.maxAmmo = maxAmmo;
         this.ammo = maxAmmo;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public void reduceDamage() {

@@ -1,6 +1,5 @@
 package bsuir.vlad.universityshooter.application;
 
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -11,7 +10,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -76,28 +74,11 @@ public class Main extends Application {
 
                 Profile newProfile = new Profile(name, difficulty);
 
-                AnchorPane startPane = new AnchorPane();
-                int PaneWidth = 600;
-                int PaneHeight = 400;
-                startPane.setPrefSize(PaneWidth, PaneHeight);
+                GameSpace gameSpace = new GameSpace(newProfile);
 
-                Scene scene = new Scene(startPane);
+                Scene gameSpaceScene = gameSpace.getScene();
 
-                Player player = newProfile.getProfilePlayer();
-                PlayersView playersView = new PlayersView(player, scene);
-
-                Pane playersPane = playersView.getPlayersPane();
-                startPane.getChildren().add(playersPane);
-
-                AnimationTimer animTimer = new AnimationTimer() {
-                    @Override
-                    public void handle(long now) {
-                        updateScene(playersView);
-                    }
-                };
-                animTimer.start();
-
-                startStage.setScene(scene);
+                startStage.setScene(gameSpaceScene);
                 startStage.setResizable(false);
                 startStage.show();
             });
@@ -156,9 +137,5 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
-    }
-
-    private void updateScene(PlayersView playersView) {
-        playersView.updatePlayersView();
     }
 }

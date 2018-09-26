@@ -14,4 +14,8 @@ public class PlayersController {
     public final String controlTypeOfWeaponInHands(){
         return player.getTypeOfWeaponInHands();
     }
+
+    public final Bullet controlShooting() {
+        return player.getWeaponBullet();
+    }
 }

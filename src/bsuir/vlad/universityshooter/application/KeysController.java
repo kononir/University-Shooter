@@ -12,7 +12,7 @@ public class KeysController {
         this.keysMap = keysMap;
     }
 
-    public final void controllOnScene(Scene scene) {
+    public final void controlOnScene(Scene scene) {
         KeysAction keysAction = new KeysAction(scene);
         keysAction.fillMap(keysMap);
     }

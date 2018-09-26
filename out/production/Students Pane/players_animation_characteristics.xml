@@ -4,14 +4,14 @@
         <animationName>student_idle_knife</animationName>
         <cycleDuration>800</cycleDuration>
         <countOfAnimationFrames>20</countOfAnimationFrames>
-        <animationFrameHeight>55</animationFrameHeight>
-        <animationFrameWidth>70</animationFrameWidth>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>81</animationFrameWidth>
     </animation>
     <animation>
         <animationName>student_move_knife</animationName>
         <cycleDuration>800</cycleDuration>
         <countOfAnimationFrames>20</countOfAnimationFrames>
-        <animationFrameHeight>54</animationFrameHeight>
+        <animationFrameHeight>74</animationFrameHeight>
         <animationFrameWidth>69</animationFrameWidth>
     </animation>
     <animation>

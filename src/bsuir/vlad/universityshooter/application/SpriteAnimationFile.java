@@ -82,7 +82,9 @@ public class SpriteAnimationFile {
             @Override
             public void endElement(String uri, String localName, String qName) throws SAXException {
                 if (qName.equals("animation")) {
-                    Image playersImage = new Image(getClass().getResourceAsStream("resources/" + animationName + ".png"));
+                    Image playersImage = new Image(getClass().getResourceAsStream(
+                            "resources/" + animationName + ".png"
+                    ));
                     ImageView playersImageView = new ImageView(playersImage);
                     SpriteAnimation spriteAnimation = new SpriteAnimation(
                             playersImageView,

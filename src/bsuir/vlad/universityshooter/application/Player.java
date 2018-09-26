@@ -79,4 +79,12 @@ public class Player {
     public final String getTypeOfWeaponInHands(){
         return weaponInHands.getType();
     }
+
+    public final Bullet getWeaponBullet() {
+        int bulletDamage = weaponInHands.getDamage();
+        int distanceDamage = weaponInHands.getDistance();
+
+        Bullet bullet = new Bullet(bulletDamage, distanceDamage);
+        return bullet;
+    }
 }
