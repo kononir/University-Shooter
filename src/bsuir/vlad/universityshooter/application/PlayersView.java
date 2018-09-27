@@ -170,16 +170,41 @@ public class PlayersView implements Movable {
         }
 
         if (keysMap.isPressed(KeyCode.E) && !playersAnimation.isLock()) {
-            updatePlayersAnimation("student_use_" + typeOfWeaponInHands);
+            if(typeOfWeaponInHands.equals("knife")) {
+                updatePlayersAnimation("student_use_" + typeOfWeaponInHands);
+
+                playersAnimation.lock();
+                playersAnimation.play();
+            }
+            else {
+                Bullet bullet = controller.controlShooting();
+
+                if(bullet != null) {
+                    updatePlayersAnimation("student_use_" + typeOfWeaponInHands);
+
+                    playersAnimation.lock();
+                    playersAnimation.play();
+
+                    double bulletsPaneAngle = playersPaneAngle;
+                    GameSpace.addNewBullet(bullet, bulletsPaneAngle);
+                }
+
+                else {
+
+                }
+            }
+        }
+
+        if (keysMap.isPressed(KeyCode.R)
+                && !playersAnimation.isLock()
+                && !typeOfWeaponInHands.equals("knife")
+        ) {
+            controller.controlReloading();
+
+            updatePlayersAnimation("student_reload_" + typeOfWeaponInHands);
 
             playersAnimation.lock();
             playersAnimation.play();
-
-            if(!typeOfWeaponInHands.equals("knife")) {
-                Bullet bullet = controller.controlShooting();
-                double bulletsPaneAngle = playersPaneAngle;
-                GameSpace.addNewBullet(bullet, bulletsPaneAngle);
-            }
         }
     }
 

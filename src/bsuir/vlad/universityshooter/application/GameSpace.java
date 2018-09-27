@@ -53,18 +53,7 @@ public class GameSpace {
         pane.getChildren().add(bulletsPane);
 
         Pane playersPane = playersView.getPlayersPane();
-
-        double playersPaneX = playersPane.getTranslateX();
-        double playersPaneY = playersPane.getTranslateY();
-
-        double playersWidth = playersPane.getWidth();
-        double playersHeight = playersPane.getHeight();
-
-        double bulletsPaneX = playersPaneX + (playersWidth / 1.6);
-        double bulletsPaneY = playersPaneY + (playersHeight / 1.3);
-
-        bulletsPane.setLayoutX(bulletsPaneX);
-        bulletsPane.setLayoutY(bulletsPaneY);
+        bulletsView.setRelativeLocation(playersPane);
     }
 
     private void updateScene() {

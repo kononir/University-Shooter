@@ -4,8 +4,10 @@ public class Weapon {
     private final String type;
     private final int damage;
     private final int distance;
-    private final int maxAmmo;
-    private int ammo;
+    private final int maxHoldersNumber;
+    private int holdersNumber;
+    private final int maxHoldersAmmo;
+    private int holdersAmmo;
 
     public String getType() {
         return type;
@@ -19,15 +21,29 @@ public class Weapon {
         return distance;
     }
 
-    public Weapon(String type, int damage, int distance, int maxAmmo) {
+    public Weapon(String type, int damage, int distance, int maxHoldersNumber, int maxHoldersAmmo) {
         this.type = type;
         this.damage = damage;
         this.distance = distance;
-        this.maxAmmo = maxAmmo;
-        this.ammo = maxAmmo;
+        this.maxHoldersNumber = maxHoldersNumber;
+        this.holdersNumber = maxHoldersNumber;
+        this.maxHoldersAmmo = maxHoldersAmmo;
+        this.holdersAmmo = maxHoldersAmmo;
     }
 
     public void reduceDamage() {
         int difficultyCoefficient = 1; //находим в файле необходимые данные по типу оружия
+    }
+
+    public void reduceHoldersAmmo() {
+        --holdersAmmo;
+    }
+
+    public void increaseHoldersAmmo() {
+        holdersAmmo = maxHoldersAmmo;
+    }
+
+    public final boolean isHolderEmpty() {
+        return holdersAmmo == 0;
     }
 }

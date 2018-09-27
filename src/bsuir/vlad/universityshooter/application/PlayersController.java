@@ -16,6 +16,10 @@ public class PlayersController {
     }
 
     public final Bullet controlShooting() {
-        return player.getWeaponBullet();
+        return player.shootFromWeapon();
+    }
+
+    public final void controlReloading() {
+        player.reloadWeapon();
     }
 }

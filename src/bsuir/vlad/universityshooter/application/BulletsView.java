@@ -1,10 +1,10 @@
 package bsuir.vlad.universityshooter.application;
 
+import javafx.animation.RotateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-
-import java.io.File;
+import javafx.util.Duration;
 
 public class BulletsView implements Movable {
     private Bullet bullet;
@@ -24,6 +24,50 @@ public class BulletsView implements Movable {
 
         bulletsPane = new Pane();
         bulletsPane.getChildren().add(bulletsImageView);
+
+        RotateTransition rotateTransition = new RotateTransition(Duration.millis(1), bulletsPane);
+        rotateTransition.setToAngle(bulletsPaneAngle);
+        rotateTransition.play();
+    }
+
+    public void setRelativeLocation(Pane pane) {
+        double paneX = pane.getTranslateX();
+        double paneY = pane.getTranslateY();
+
+        double paneWidth = pane.getWidth();
+        double paneHeight = pane.getHeight();
+
+        double bulletsPaneX = 0;
+        double bulletsPaneY = 0;
+
+        if (bulletsPaneAngle == 225.0) {
+            bulletsPaneX = paneX + (paneWidth / 2);
+            bulletsPaneY = paneY + (paneHeight / 2);
+        } else if (bulletsPaneAngle == 315.0) {
+            bulletsPaneX = paneX + (paneWidth / 2);
+            bulletsPaneY = paneY + (paneHeight / 2);
+        } else if (bulletsPaneAngle == 135.0) {
+            bulletsPaneX = paneX;
+            bulletsPaneY = paneY + (paneHeight / 2);
+        } else if (bulletsPaneAngle == 45.0) {
+            bulletsPaneX = paneX + (paneWidth / 2);
+            bulletsPaneY = paneY + (paneHeight);
+        } else if (bulletsPaneAngle == 270.0) {
+            bulletsPaneX = paneX + (paneWidth / 2);
+            bulletsPaneY = paneY + (paneHeight / 2);
+        } else if (bulletsPaneAngle == 90.0) {
+            bulletsPaneX = paneX + (paneWidth / 2);
+            bulletsPaneY = paneY + (paneHeight / 2);
+        } else if (bulletsPaneAngle == 180.0) {
+            bulletsPaneX = paneX + (paneWidth / 2);
+            bulletsPaneY = paneY + (paneHeight / 2);
+        } else if (bulletsPaneAngle == 0.0) {
+            bulletsPaneX = paneX + (paneWidth / 2);
+            bulletsPaneY = paneY + (paneHeight / 2);
+        }
+
+        bulletsPane.setLayoutX(bulletsPaneX);
+        bulletsPane.setLayoutY(bulletsPaneY);
     }
 
     public void updateBulletsView() {

@@ -11,6 +11,10 @@ public class Player {
     private List<Weapon> currentWeaponsList;
     private List<Weapon> allWeaponsList;
 
+    public Weapon getWeaponInHands() {
+        return weaponInHands;
+    }
+
     public Player() {
         health = 100;
         defence = 0;
@@ -21,6 +25,8 @@ public class Player {
         currentWeaponsList = new ArrayList<>(allWeaponsList.size());
         addNewWeapon("knife");
         addNewWeapon("handgun");
+        addNewWeapon("rifle");
+        addNewWeapon("shotgun");
     }
 
     public final void increaseHealth(int newHealth) {
@@ -80,11 +86,22 @@ public class Player {
         return weaponInHands.getType();
     }
 
-    public final Bullet getWeaponBullet() {
-        int bulletDamage = weaponInHands.getDamage();
-        int distanceDamage = weaponInHands.getDistance();
+    public final Bullet shootFromWeapon() {
+        Bullet bullet = null;
 
-        Bullet bullet = new Bullet(bulletDamage, distanceDamage);
+        if(!weaponInHands.isHolderEmpty()) {
+            int bulletDamage = weaponInHands.getDamage();
+            int distanceDamage = weaponInHands.getDistance();
+
+            bullet = new Bullet(bulletDamage, distanceDamage);
+
+            weaponInHands.reduceHoldersAmmo();
+        }
+
         return bullet;
+    }
+
+    public final void reloadWeapon() {
+        weaponInHands.increaseHoldersAmmo();
     }
 }

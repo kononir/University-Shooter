@@ -30,7 +30,8 @@ public class WeaponsFile {
             String type;
             int damage;
             int distance;
-            int maxAmmo;
+            int maxHoldersNumber;
+            int maxHoldersAmmo;
 
             @Override
             public void startDocument() {
@@ -66,8 +67,11 @@ public class WeaponsFile {
                         case "distance":
                             distance = new Integer(completeString);
                             break;
-                        case "maxAmmo":
-                            maxAmmo = new Integer(completeString);
+                        case "maxHoldersNumber":
+                            maxHoldersNumber = new Integer(completeString);
+                            break;
+                        case "maxHoldersAmmo":
+                            maxHoldersAmmo = new Integer(completeString);
                             break;
                         default:
                             break;
@@ -78,7 +82,7 @@ public class WeaponsFile {
             @Override
             public void endElement(String uri, String localName, String qName) throws SAXException {
                 if (qName.equals("weapon")) {
-                    Weapon weapon = new Weapon(type, damage, distance, maxAmmo);
+                    Weapon weapon = new Weapon(type, damage, distance, maxHoldersNumber, maxHoldersAmmo);
                     weaponsList.add(weapon);
                 }
             }

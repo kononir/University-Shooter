@@ -4,15 +4,15 @@
         <animationName>student_idle_knife</animationName>
         <cycleDuration>800</cycleDuration>
         <countOfAnimationFrames>20</countOfAnimationFrames>
-        <animationFrameHeight>55</animationFrameHeight>
-        <animationFrameWidth>70</animationFrameWidth>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>81</animationFrameWidth>
     </animation>
     <animation>
         <animationName>student_move_knife</animationName>
         <cycleDuration>800</cycleDuration>
         <countOfAnimationFrames>20</countOfAnimationFrames>
-        <animationFrameHeight>54</animationFrameHeight>
-        <animationFrameWidth>69</animationFrameWidth>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>81</animationFrameWidth>
     </animation>
     <animation>
         <animationName>student_use_knife</animationName>
@@ -25,21 +25,84 @@
         <animationName>student_idle_handgun</animationName>
         <cycleDuration>800</cycleDuration>
         <countOfAnimationFrames>20</countOfAnimationFrames>
-        <animationFrameHeight>55</animationFrameHeight>
+        <animationFrameHeight>74</animationFrameHeight>
         <animationFrameWidth>65</animationFrameWidth>
     </animation>
     <animation>
         <animationName>student_move_handgun</animationName>
         <cycleDuration>800</cycleDuration>
         <countOfAnimationFrames>20</countOfAnimationFrames>
-        <animationFrameHeight>55</animationFrameHeight>
+        <animationFrameHeight>74</animationFrameHeight>
         <animationFrameWidth>65</animationFrameWidth>
     </animation>
     <animation>
         <animationName>student_use_handgun</animationName>
         <cycleDuration>250</cycleDuration>
         <countOfAnimationFrames>3</countOfAnimationFrames>
-        <animationFrameHeight>55</animationFrameHeight>
+        <animationFrameHeight>74</animationFrameHeight>
         <animationFrameWidth>65</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>student_reload_handgun</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>15</countOfAnimationFrames>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>65</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>student_idle_rifle</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>20</countOfAnimationFrames>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>83</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>student_move_rifle</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>20</countOfAnimationFrames>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>84</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>student_use_rifle</animationName>
+        <cycleDuration>250</cycleDuration>
+        <countOfAnimationFrames>3</countOfAnimationFrames>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>83</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>student_reload_rifle</animationName>
+        <cycleDuration>1300</cycleDuration>
+        <countOfAnimationFrames>20</countOfAnimationFrames>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>83</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>student_idle_shotgun</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>20</countOfAnimationFrames>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>83</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>student_move_shotgun</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>20</countOfAnimationFrames>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>84</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>student_use_shotgun</animationName>
+        <cycleDuration>250</cycleDuration>
+        <countOfAnimationFrames>3</countOfAnimationFrames>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>83</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>student_reload_shotgun</animationName>
+        <cycleDuration>1300</cycleDuration>
+        <countOfAnimationFrames>20</countOfAnimationFrames>
+        <animationFrameHeight>74</animationFrameHeight>
+        <animationFrameWidth>83</animationFrameWidth>
     </animation>
 </animations>
