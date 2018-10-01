@@ -1,5 +1,8 @@
 package bsuir.vlad.universityshooter;
 
+import bsuir.vlad.universityshooter.game.GameSpace;
+import bsuir.vlad.universityshooter.game.Level;
+import bsuir.vlad.universityshooter.game.Profile;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -70,12 +73,15 @@ public class Main extends Application {
                 Stage startStage = new Stage();
 
                 String difficulty = difficultyChangingComboBox.getValue();
-                String name = profileNameTextField.getText();
+                String profileName = profileNameTextField.getText();
 
-                Profile newProfile = new Profile(name, difficulty);
+                Profile profile = new Profile(profileName, difficulty);
 
-                GameSpace gameSpace = new GameSpace(newProfile);
+                String levelName = "classroom";
 
+                Level level = new Level(levelName, profile);
+
+                GameSpace gameSpace = level.getGameSpace();
                 Scene gameSpaceScene = gameSpace.getScene();
 
                 startStage.setScene(gameSpaceScene);

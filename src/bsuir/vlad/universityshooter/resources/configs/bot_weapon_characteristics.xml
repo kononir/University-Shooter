@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<weapons>
+    <weapon>
+        <type>zombie_teacher_claws</type>
+        <damage>20</damage>
+        <maxHoldersNumber>0</maxHoldersNumber>
+        <maxHoldersAmmo>0</maxHoldersAmmo>
+    </weapon>
+</weapons>
