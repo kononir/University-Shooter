@@ -1,4 +1,4 @@
-package bsuir.vlad.universityshooter.characters;
+package bsuir.vlad.universityshooter.activeobjects.characters;
 
 import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.game.Level;
@@ -72,8 +72,15 @@ public class Player extends Character {
             String gunslingerName = "player";
             int bulletDamage = weaponInHands.getDamage();
             int distanceDamage = weaponInHands.getDistance();
+            String bulletsType;
 
-            bullet = new Bullet(gunslingerName, bulletDamage, distanceDamage);
+            if (weaponInHands.getType().equals("shotgun")) {
+                bulletsType = "buckshot";
+            } else {
+                bulletsType = "bullet";
+            }
+
+            bullet = new Bullet(bulletsType, gunslingerName, bulletDamage, distanceDamage);
 
             weaponInHands.reduceHoldersAmmo();
         }

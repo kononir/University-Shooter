@@ -1,4 +1,4 @@
-package bsuir.vlad.universityshooter.characters;
+package bsuir.vlad.universityshooter.activeobjects.characters;
 
 import bsuir.vlad.universityshooter.weapons.Weapon;
 

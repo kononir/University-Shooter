@@ -1,7 +1,7 @@
 package bsuir.vlad.universityshooter.game;
 
-import bsuir.vlad.universityshooter.characters.Bot;
-import bsuir.vlad.universityshooter.characters.Player;
+import bsuir.vlad.universityshooter.activeobjects.characters.Bot;
+import bsuir.vlad.universityshooter.activeobjects.characters.Player;
 import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 import bsuir.vlad.universityshooter.weapons.WeaponsFile;
@@ -40,6 +40,8 @@ public class Level {
 
         String botWeaponsFilePath = "src/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml";
         botWeaponList = new WeaponsFile(botWeaponsFilePath).loadWeapons();
+
+
 
         botList = new ArrayList<>();
         bulletList = new ArrayList<>();

@@ -1,4 +1,4 @@
-package bsuir.vlad.universityshooter.characters;
+package bsuir.vlad.universityshooter.activeobjects.characters;
 
 public class BotsController {
     Bot bot;

@@ -1,9 +1,14 @@
 package bsuir.vlad.universityshooter.weapons;
 
 public class Bullet {
+    private final String type;
     private final String gunslingerName;
     private final int damage;
     private int distance;
+
+    public String getType() {
+        return type;
+    }
 
     public int getDamage() {
         return damage;
@@ -13,7 +18,8 @@ public class Bullet {
         return gunslingerName;
     }
 
-    public Bullet(String gunslingerName, int damage, int distance) {
+    public Bullet(String type, String gunslingerName, int damage, int distance) {
+        this.type = type;
         this.gunslingerName = gunslingerName;
         this.damage = damage;
         this.distance = distance;

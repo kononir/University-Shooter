@@ -20,4 +20,8 @@ public class BulletsController {
     public final int controlGettingDamage() {
         return bullet.getDamage();
     }
+
+    public final String controlGettingType() {
+        return bullet.getType();
+    }
 }

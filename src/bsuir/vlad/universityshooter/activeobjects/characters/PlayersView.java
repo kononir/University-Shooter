@@ -1,20 +1,17 @@
-package bsuir.vlad.universityshooter.characters;
+package bsuir.vlad.universityshooter.activeobjects.characters;
 
-import bsuir.vlad.universityshooter.activeobjects.Gunslinger;
-import bsuir.vlad.universityshooter.activeobjects.Militant;
 import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.game.keyboard.KeysController;
 import bsuir.vlad.universityshooter.game.keyboard.KeysMap;
 import bsuir.vlad.universityshooter.game.Level;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
 
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class PlayersView extends CharacterView implements Militant, Gunslinger {
+public class PlayersView extends CharacterView {
     private Player player;
     private KeysMap keysMap;
     private List<BotsView> botsViewList;
@@ -249,8 +246,7 @@ public class PlayersView extends CharacterView implements Militant, Gunslinger {
         }
     }
 
-    @Override
-    public void reload() {
+    private void reload() {
         PlayersController controller = new PlayersController(player);
 
         String typeOfWeaponInHands = controller.controlWeaponInHandsType();

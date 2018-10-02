@@ -1,5 +1,6 @@
-package bsuir.vlad.universityshooter.characters;
+package bsuir.vlad.universityshooter.activeobjects.characters;
 
+import bsuir.vlad.universityshooter.activeobjects.Gunslinger;
 import bsuir.vlad.universityshooter.activeobjects.Militant;
 import bsuir.vlad.universityshooter.animations.Animated;
 import bsuir.vlad.universityshooter.activeobjects.Movable;
@@ -13,7 +14,7 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
-public abstract class CharacterView implements Movable, Rotatable, Animated {
+public abstract class CharacterView implements Movable, Rotatable, Animated, Militant, Gunslinger {
     protected String characterName;
     protected Pane characterPane;
     protected double characterPaneAngle;

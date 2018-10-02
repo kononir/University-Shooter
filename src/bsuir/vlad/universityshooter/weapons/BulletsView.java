@@ -1,7 +1,7 @@
 package bsuir.vlad.universityshooter.weapons;
 
 import bsuir.vlad.universityshooter.activeobjects.Movable;
-import bsuir.vlad.universityshooter.characters.*;
+import bsuir.vlad.universityshooter.activeobjects.characters.*;
 import javafx.animation.RotateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,7 +27,12 @@ public class BulletsView implements Movable {
         this.playersView = playersView;
         this.botsViewList = botsViewList;
 
-        Image bulletsImage = new Image(getClass().getResourceAsStream("../resources/textures/bullet.png"));
+        BulletsController controller = new BulletsController(bullet);
+        String bulletsType = controller.controlGettingType();
+
+        Image bulletsImage = new Image(getClass().getResourceAsStream(
+                "../resources/textures/" + bulletsType + ".png"
+        ));
         ImageView bulletsImageView = new ImageView(bulletsImage);
 
         bulletsPane = new Pane();

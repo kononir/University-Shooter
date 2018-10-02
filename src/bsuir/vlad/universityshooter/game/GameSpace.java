@@ -1,6 +1,6 @@
 package bsuir.vlad.universityshooter.game;
 
-import bsuir.vlad.universityshooter.characters.*;
+import bsuir.vlad.universityshooter.activeobjects.characters.*;
 import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.weapons.BulletsView;
 import javafx.animation.AnimationTimer;
