@@ -1,40 +1,35 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
-import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
-import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.*;
+
+import static java.lang.Thread.sleep;
 
 public class BotsView extends CharacterView {
     private Bot bot;
     private PlayersView playersView;
-    private boolean isMovable = true;
-    private String attackType = "meleeAttack";
 
     public Bot getBot() {
         return bot;
     }
 
-    public BotsView(Bot bot, String type, PlayersView playersView) {
-        super(type);
+    public BotsView(Bot bot, double botX, double botY, String type, PlayersView playersView) {
+        super(type, botX, botY);
         this.bot = bot;
         this.playersView = playersView;
-
-        updateAnimation(type + "_idle");
-    }
-
-    public BotsView(Bot bot, String type, PlayersView playersView, boolean isMovable) {
-        super(type);
-        this.bot = bot;
-        this.playersView = playersView;
-        this.isMovable = isMovable;
 
         updateAnimation(type + "_idle");
     }
 
     public void updateBotsView() {
+        BotsController controller = new BotsController(bot);
+
         Pane playersPane = playersView.getCharacterPane();
+
+        String attackType = controller.controlGettingAttackType();
+        boolean movable = controller.controlGettingMovable();
 
         if (!currentAnimation.isLock()) {
             if (characterPane.getBoundsInParent().intersects(playersPane.getBoundsInParent())
@@ -48,10 +43,10 @@ public class BotsView extends CharacterView {
 
         if (!currentAnimation.isLock()) {
             if (!characterPane.getBoundsInParent().intersects(playersPane.getBoundsInParent())
-                    && isMovable
+                    && movable
             ) {
                 move();
-            } else if (!isMovable) {
+            } else if (!movable) {
                 updateAnimation(characterName + "_idle");
 
                 currentAnimation.play();
@@ -70,8 +65,11 @@ public class BotsView extends CharacterView {
 
         int cycleDuration = (int) currentAnimation.getCycleDuration().toMillis();
 
-        Timer damageTimer = new Timer();
-        damageTimer.schedule(new TimerTask() {
+        int corePoolSize = 0;
+
+        ScheduledThreadPoolExecutor service = new ScheduledThreadPoolExecutor(corePoolSize);
+
+        service.schedule(new TimerTask() {
             @Override
             public void run() {
                 if (characterPane.getBoundsInParent().intersects(playersPane.getBoundsInParent())) {
@@ -83,11 +81,11 @@ public class BotsView extends CharacterView {
                     PlayersController playersController = new PlayersController(player);
 
                     playersController.controlStatusReducing(receivedDamage);
-
-                    damageTimer.cancel();
                 }
+
+
             }
-        }, cycleDuration);
+        }, cycleDuration, TimeUnit.MILLISECONDS);
     }
 
     @Override
@@ -167,8 +165,5 @@ public class BotsView extends CharacterView {
         }
     }
 
-    public final void setLocation(double x, double y) {
-        characterPane.setTranslateX(x);
-        characterPane.setTranslateY(y);
-    }
+
 }

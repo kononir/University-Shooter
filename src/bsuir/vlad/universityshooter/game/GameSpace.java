@@ -22,6 +22,10 @@ public class GameSpace {
         return scene;
     }
 
+    public Pane getPane() {
+        return pane;
+    }
+
     public GameSpace() {
         pane = new Pane();
         int PaneWidth = 600;
@@ -46,8 +50,8 @@ public class GameSpace {
         hud = new HUD(player, pane);
     }
 
-    public void addPlayersView(Player player) {
-        playersView = new PlayersView(player, scene, botsViewList);
+    public void addPlayersView(Player player, double playerX, double playerY) {
+        playersView = new PlayersView(player, playerX, playerY, scene, botsViewList);
 
         Pane playersPane = playersView.getCharacterPane();
         pane.getChildren().add(playersPane);
@@ -66,11 +70,11 @@ public class GameSpace {
         bulletsView.setRelativeLocation(playersPane);
     }
 
-    public void addBotsView(Bot bot) {
+    public void addBotsView(Bot bot, double botX, double botY) {
         BotsController controller = new BotsController(bot);
         String botType = controller.controlBotType();
 
-        BotsView botsView = new BotsView(bot, botType, playersView);
+        BotsView botsView = new BotsView(bot, botX, botY, botType, playersView);
         botsViewList.add(botsView);
 
         Pane botsPane = botsView.getCharacterPane();
@@ -82,7 +86,8 @@ public class GameSpace {
         double x = paneWidth / 2;
         double y = paneHeight / 2;
 
-        botsView.setLocation(x, y);
+        botsPane.setTranslateX(botX);
+        botsPane.setTranslateY(botY);
     }
 
     private void updateScene() {

@@ -8,13 +8,25 @@ import java.util.stream.Collectors;
 
 public class Bot extends Character {
     private String type;
+    private boolean movable;
+    private String attackType;
+
+    public boolean isMovable() {
+        return movable;
+    }
+
+    public String getAttackType() {
+        return attackType;
+    }
 
     public String getType() {
         return type;
     }
 
-    public Bot(String type) {
+    public Bot(String type, boolean movable, String attackType) {
         this.type = type;
+        this.movable = movable;
+        this.attackType = attackType;
 
         weaponInHands = findMatchWeapon();
 

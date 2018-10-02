@@ -10,6 +10,8 @@ import javafx.scene.input.KeyCode;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class PlayersView extends CharacterView {
     private Player player;
@@ -20,8 +22,8 @@ public class PlayersView extends CharacterView {
         return player;
     }
 
-    public PlayersView(Player player, Scene scene, List<BotsView> botsViewList) {
-        super("student");
+    public PlayersView(Player player, double playerX, double playerY, Scene scene, List<BotsView> botsViewList) {
+        super("student", playerX, playerY);
 
         this.player = player;
         this.botsViewList = botsViewList;
@@ -190,8 +192,10 @@ public class PlayersView extends CharacterView {
 
         int cycleDuration = (int) currentAnimation.getCycleDuration().toMillis();
 
-        Timer damageTimer = new Timer();
-        damageTimer.schedule(new TimerTask() {
+        int corePoolSize = 0;
+
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(corePoolSize);
+        executor.schedule(new TimerTask() {
             @Override
             public void run() {
                 int listSize = botsViewList.size();
@@ -219,10 +223,8 @@ public class PlayersView extends CharacterView {
                         }
                     }
                 }
-
-                damageTimer.cancel();
             }
-        }, cycleDuration);
+        }, cycleDuration, TimeUnit.MILLISECONDS);
     }
 
     @Override

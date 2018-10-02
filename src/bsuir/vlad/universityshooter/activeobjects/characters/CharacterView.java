@@ -25,10 +25,13 @@ public abstract class CharacterView implements Movable, Rotatable, Animated, Mil
         return characterPane;
     }
 
-    public CharacterView(String characterName) {
+    public CharacterView(String characterName, double characterX, double characterY) {
         this.characterName = characterName;
 
         characterPane = new Pane();
+        characterPane.setTranslateX(characterX);
+        characterPane.setTranslateY(characterY);
+
         characterPaneAngle = 0;
 
         String animationsFilePath = "src/bsuir/vlad/universityshooter/resources/configs/"

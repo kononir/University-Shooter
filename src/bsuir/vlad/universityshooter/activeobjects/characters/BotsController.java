@@ -18,4 +18,12 @@ public class BotsController {
     public final boolean controlStatusReducing(int receivedDamage) {
         return bot.reduceStatus(receivedDamage);
     }
+
+    public final boolean controlGettingMovable() {
+        return bot.isMovable();
+    }
+
+    public final String controlGettingAttackType() {
+        return bot.getAttackType();
+    }
 }

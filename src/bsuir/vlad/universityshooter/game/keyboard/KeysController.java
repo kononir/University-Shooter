@@ -1,6 +1,5 @@
 package bsuir.vlad.universityshooter.game.keyboard;
 
-import bsuir.vlad.universityshooter.game.keyboard.KeysAction;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
