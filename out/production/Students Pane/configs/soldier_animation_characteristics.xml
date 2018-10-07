@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<animations>
+    <animation>
+        <animationName>soldier_idle</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>8</countOfAnimationFrames>
+        <animationFrameHeight>50</animationFrameHeight>
+        <animationFrameWidth>65</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>soldier_move</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>8</countOfAnimationFrames>
+        <animationFrameHeight>50</animationFrameHeight>
+        <animationFrameWidth>65</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>soldier_attack</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>8</countOfAnimationFrames>
+        <animationFrameHeight>50</animationFrameHeight>
+        <animationFrameWidth>65</animationFrameWidth>
+    </animation>
+</animations>

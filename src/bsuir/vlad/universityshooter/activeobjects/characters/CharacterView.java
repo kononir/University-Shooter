@@ -1,7 +1,5 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
-import bsuir.vlad.universityshooter.activeobjects.Gunslinger;
-import bsuir.vlad.universityshooter.activeobjects.Militant;
 import bsuir.vlad.universityshooter.animations.Animated;
 import bsuir.vlad.universityshooter.activeobjects.Movable;
 import bsuir.vlad.universityshooter.activeobjects.Rotatable;
@@ -14,7 +12,7 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
-public abstract class CharacterView implements Movable, Rotatable, Animated, Militant, Gunslinger {
+public abstract class CharacterView implements Movable, Rotatable, Animated {
     protected String characterName;
     protected Pane characterPane;
     protected double characterPaneAngle;
@@ -23,6 +21,10 @@ public abstract class CharacterView implements Movable, Rotatable, Animated, Mil
 
     public Pane getCharacterPane() {
         return characterPane;
+    }
+
+    public double getCharacterPaneAngle() {
+        return characterPaneAngle;
     }
 
     public CharacterView(String characterName, double characterX, double characterY) {
@@ -59,7 +61,7 @@ public abstract class CharacterView implements Movable, Rotatable, Animated, Mil
     }
 
     @Override
-    public void updateMovementAngle(double currentMovementAngle) {
+    public void rotate(double currentMovementAngle) {
         if (characterPaneAngle != currentMovementAngle) {
             RotateTransition rotateTransition = new RotateTransition(Duration.millis(1), characterPane);
             rotateTransition.setToAngle(currentMovementAngle);

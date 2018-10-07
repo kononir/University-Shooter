@@ -1,6 +1,7 @@
 package bsuir.vlad.universityshooter.game;
 
 import bsuir.vlad.universityshooter.activeobjects.characters.*;
+import bsuir.vlad.universityshooter.game.keyboard.Keyboard;
 import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.weapons.BulletsView;
 import javafx.animation.AnimationTimer;
@@ -8,11 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class GameSpace {
     private Pane pane;
     private Scene scene;
+    private Keyboard keyboard;
     private HUD hud;
     private PlayersView playersView;
     private List<BulletsView> bulletsViewList;
@@ -50,8 +53,14 @@ public class GameSpace {
         hud = new HUD(player, pane);
     }
 
+    public void addKeyboard() {
+        keyboard = new Keyboard(scene, playersView);
+    }
+
     public void addPlayersView(Player player, double playerX, double playerY) {
         playersView = new PlayersView(player, playerX, playerY, scene, botsViewList);
+
+        addKeyboard();
 
         Pane playersPane = playersView.getCharacterPane();
         pane.getChildren().add(playersPane);
@@ -59,15 +68,12 @@ public class GameSpace {
         playersPane.setLayoutY(0);
     }
 
-    public void addBulletsView(Bullet bullet, double bulletsPaneAngle) {
-        BulletsView bulletsView = new BulletsView(bullet, bulletsPaneAngle, playersView, botsViewList);
+    public void addBulletsView(Bullet bullet, CharacterView gunslingerView) {
+        BulletsView bulletsView = new BulletsView(bullet, gunslingerView, playersView, botsViewList);
         bulletsViewList.add(bulletsView);
 
         Pane bulletsPane = bulletsView.getBulletsPane();
         pane.getChildren().add(bulletsPane);
-
-        Pane playersPane = playersView.getCharacterPane();
-        bulletsView.setRelativeLocation(playersPane);
     }
 
     public void addBotsView(Bot bot, double botX, double botY) {
@@ -93,22 +99,30 @@ public class GameSpace {
     private void updateScene() {
         hud.updateHUD();
 
-        playersView.updatePlayersView();
+        keyboard.updateKeyboard();
 
-        int listSize = bulletsViewList.size();
+        Iterator<BulletsView> bulletsViewIterator = bulletsViewList.iterator();
 
-        for (int index = 0; index < listSize; index++) {
-            BulletsView bulletsView = bulletsViewList.get(index);
+        while (bulletsViewIterator.hasNext()) {
+            BulletsView bulletsView = bulletsViewIterator.next();
 
-            bulletsView.updateBulletsView();
             if (!bulletsView.getBulletsPane().isVisible()) {
-                bulletsViewList.remove(bulletsView);
-
-                index--;
-                listSize--;
+                bulletsViewIterator.remove();
+            } else {
+                bulletsView.updateBulletsView();
             }
         }
 
-        botsViewList.forEach(BotsView::updateBotsView);
+        Iterator<BotsView> botsViewIterator = botsViewList.iterator();
+
+        while (botsViewIterator.hasNext()) {
+            BotsView botsView = botsViewIterator.next();
+
+            if (!botsView.getCharacterPane().isVisible()) {
+                botsViewIterator.remove();
+            } else {
+                botsView.updateBotsView();
+            }
+        }
     }
 }

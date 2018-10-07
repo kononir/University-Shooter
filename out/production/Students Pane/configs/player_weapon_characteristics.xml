@@ -10,21 +10,21 @@
     <weapon>
         <type>handgun</type>
         <damage>25</damage>
-        <distance>100</distance>
+        <distance>200</distance>
         <maxHoldersNumber>4</maxHoldersNumber>
         <maxHoldersAmmo>7</maxHoldersAmmo>
     </weapon>
     <weapon>
         <type>rifle</type>
         <damage>15</damage>
-        <distance>300</distance>
+        <distance>400</distance>
         <maxHoldersNumber>3</maxHoldersNumber>
         <maxHoldersAmmo>30</maxHoldersAmmo>
     </weapon>
     <weapon>
         <type>shotgun</type>
         <damage>40</damage>
-        <distance>50</distance>
+        <distance>100</distance>
         <maxHoldersNumber>2</maxHoldersNumber>
         <maxHoldersAmmo>5</maxHoldersAmmo>
     </weapon>

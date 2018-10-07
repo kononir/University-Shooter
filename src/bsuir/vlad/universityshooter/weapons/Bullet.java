@@ -25,21 +25,15 @@ public class Bullet {
         this.distance = distance;
     }
 
-    public boolean isDistancePassed(int movementX, int movementY) {
+    public boolean isDistancePassed() {
         boolean distancePassed;
 
-        if (distance == 0) {
-            distancePassed = true;
-        }
-        else {
-            reduceDistance(movementX, movementY);
-            distancePassed = false;
-        }
+        distancePassed = (distance <= 0);
 
         return distancePassed;
     }
 
-    private void reduceDistance(int movementX, int movementY) {
+    public final void reduceDistance(int movementX, int movementY) {
         int powMovementX = (int) Math.pow(movementX, 2);
         int powMovementY = (int) Math.pow(movementY, 2);
         int delta = (int) Math.sqrt(powMovementX + powMovementY);

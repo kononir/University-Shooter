@@ -1,5 +1,7 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
+import bsuir.vlad.universityshooter.weapons.Bullet;
+
 public class BotsController {
     Bot bot;
 
@@ -13,6 +15,10 @@ public class BotsController {
 
     public final int controlMelee() {
         return bot.getWeaponInHands().getDamage();
+    }
+
+    public final Bullet controlShooting() {
+        return bot.shootFromWeapon();
     }
 
     public final boolean controlStatusReducing(int receivedDamage) {

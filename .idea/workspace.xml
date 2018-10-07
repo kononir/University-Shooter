@@ -2,8 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d48bfe1b-2a72-4184-9a1b-3e8505117387" name="Default Changelist" comment="Worked with SpriteAnimationFile class: wrote analysing; delete PlayerViewMap; rewrote all connected with updatePlayersAnimation">
+      <change afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/Keyboard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/animations/bomber/bomber_idle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/animations/bomber/bomber_move.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/animations/soldier/soldier_attack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/animations/soldier/soldier_move.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bot_characteristics.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/level_characteristics.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/soldier_animation_characteristics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/Gunslinger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/Militant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/characters/BotsView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/characters/BotsView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/characters/BotsView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/characters/BotsView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/characters/CharacterView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/characters/CharacterView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/characters/PlayersView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/characters/PlayersView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/characters/PlayersView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/activeobjects/characters/PlayersView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/GameSpace$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/GameSpace$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/GameSpace.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/GameSpace.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/Level.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/Profile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/Profile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/keyboard/KeysAction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/keyboard/KeysController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/keyboard/KeysMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/game/keyboard/KeysMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/resources/configs/player_weapon_characteristics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/resources/configs/player_weapon_characteristics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/weapons/Bullet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/weapons/Bullet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/weapons/BulletsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/weapons/BulletsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/weapons/BulletsView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/bsuir/vlad/universityshooter/weapons/BulletsView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/configs/bot_weapon_characteristics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/configs/bot_weapon_characteristics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Students Pane/configs/player_weapon_characteristics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Students Pane/configs/player_weapon_characteristics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Gunslinger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Militant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Rotatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Rotatable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/Bot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsView.java" afterDir="false" />
@@ -11,7 +42,15 @@
       <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/PlayersView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/PlayersView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/GameSpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/GameSpace.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/player_weapon_characteristics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/player_weapon_characteristics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,7 +81,7 @@
     <session id="420497454">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="21" />
+          <entry key="project.closed" value="23" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.26" value="1" />
@@ -51,7 +90,7 @@
           <entry key="project.open.time.30" value="2" />
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.32" value="4" />
-          <entry key="project.open.time.34" value="3" />
+          <entry key="project.open.time.34" value="4" />
           <entry key="project.open.time.35" value="2" />
           <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.37" value="1" />
@@ -60,7 +99,7 @@
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.45" value="1" />
           <entry key="project.open.time.52" value="1" />
-          <entry key="project.opened" value="24" />
+          <entry key="project.opened" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -68,12 +107,12 @@
           <entry key="Moveable" value="1" />
           <entry key="css" value="2" />
           <entry key="iml" value="2" />
-          <entry key="java" value="327" />
+          <entry key="java" value="372" />
           <entry key="png" value="4" />
           <entry key="sql" value="4" />
           <entry key="tld" value="1" />
           <entry key="weapons" value="1" />
-          <entry key="xml" value="28" />
+          <entry key="xml" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -82,26 +121,26 @@
           <entry key="Database Element" value="1" />
           <entry key="IDEA_MODULE" value="2" />
           <entry key="Image" value="4" />
-          <entry key="JAVA" value="328" />
+          <entry key="JAVA" value="373" />
           <entry key="Scratch" value="4" />
-          <entry key="XML" value="29" />
+          <entry key="XML" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="153" />
-          <entry key="dummy" value="27" />
-          <entry key="java" value="27244" />
+          <entry key="dummy" value="40" />
+          <entry key="java" value="31364" />
           <entry key="txt" value="488" />
-          <entry key="xml" value="595" />
+          <entry key="xml" value="1091" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="153" />
-          <entry key="JAVA" value="27244" />
-          <entry key="PLAIN_TEXT" value="515" />
-          <entry key="XML" value="595" />
+          <entry key="JAVA" value="31364" />
+          <entry key="PLAIN_TEXT" value="528" />
+          <entry key="XML" value="1091" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.mvc.usages" />
@@ -112,42 +151,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/PlayersView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+            <state relative-caret-position="153">
+              <caret line="104" column="30" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="139" column="139" selection-start-line="139" selection-start-column="139" selection-end-line="139" selection-end-column="139" />
               <folding>
-                <element signature="e#6612#7788#0" expanded="true" />
-                <element signature="e#7787#7788#0" expanded="true" />
+                <element signature="e#2169#2982#0" expanded="true" />
+                <element signature="e#2981#2982#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysController.java">
+        <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Level.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="7" column="23" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysMap.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="113">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,6 +194,7 @@
         <option value="Tag Library Descriptor" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -169,6 +203,9 @@
       <find>start</find>
       <find>play</find>
     </findStrings>
+    <dirStrings>
+      <dir>C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\animations\bomber</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -176,16 +213,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/player_weapon_characteristics.xml" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/Weapon.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/WeaponsFile.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/BotController.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/Bot.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/PlayersView.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/Level.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/Character.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/BotsController.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/Bullet.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/PlayersController.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/BulletsController.java" />
@@ -203,7 +230,6 @@
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/zombie_teacher_animation_characteristics.xml" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/HUD.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/characters/Player.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/Weapon.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/characters/PlayersController.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/Militant.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Militant.java" />
@@ -211,22 +237,33 @@
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Gunslinger.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/characters/PlayersView.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/characters/BotsView.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/Bullet.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsController.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsView.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/Player.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsCharacteristicsFile.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsFile.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/animations/MovementAngle.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeyboardView.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysController.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysMap.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/Keyboard.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/level_characteristics.xml" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/Bullet.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/player_weapon_characteristics.xml" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bot_characteristics.xml" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Profile.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bomberman_animation_characteristics.xml" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/soldier_animation_characteristics.xml" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bomber_animation_characteristics.xml" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsController.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsController.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/Bot.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsView.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/CharacterView.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsView.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/GameSpace.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Level.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysController.java" />
-        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/Keyboard.java" />
         <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/PlayersView.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/Weapon.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsView.java" />
+        <option value="$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Level.java" />
       </list>
     </option>
   </component>
@@ -242,7 +279,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1346" />
@@ -299,22 +336,21 @@
               <item name="Students Pane" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="universityshooter" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="keyboard" type="462c0819:PsiDirectoryNode" />
+              <item name="weapons" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="oracle&#10;mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538480775712" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538947779165" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -324,22 +360,22 @@
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\configs" />
-      <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\textures" />
-      <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\animations\zombie_teacher" />
-      <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\animations" />
-      <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\application\resources" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="bsuir.vlad.universityshooter.activeobjects.characters" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\animations\zombie_teacher" />
       <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\animations\student" />
       <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\application\resources\config" />
       <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\application\resources\textures" />
       <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\application\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="bsuir.vlad.universityshooter.activeobjects.characters" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\animations\soldier" />
+      <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\configs" />
+      <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\animations\bomberman" />
+      <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\textures" />
+      <recent name="C:\Users\Vlad\IdeaProjects\Students Pane\src\bsuir\vlad\universityshooter\resources\animations\zombie_teacher" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -404,6 +440,7 @@
       <workItem from="1538123118618" duration="6896000" />
       <workItem from="1538166267692" duration="2512000" />
       <workItem from="1538225133404" duration="59417000" />
+      <workItem from="1538638922082" duration="35911000" />
     </task>
     <task id="LOCAL-00001" summary="Wrote controller for movement keys; resolved problems with cutting of animation">
       <created>1536571348966</created>
@@ -444,7 +481,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="284208000" />
+    <option name="totallyTimeSpent" value="329621000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -457,9 +494,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.34795764" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.35325265" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -490,7 +526,7 @@
       <window_info anchor="right" id="Maven Projects" order="8" weight="0.3290469" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.34266263" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.35325265" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -499,8 +535,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" weight="0.2990196" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39869282" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49848714" visible="true" weight="0.2990196" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32843137" />
@@ -539,10 +575,16 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/GameSpace.java</url>
-          <line>104</line>
+          <url>file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsView.java</url>
+          <line>54</line>
           <properties />
-          <option name="timeStamp" value="17" />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsView.java</url>
+          <line>111</line>
+          <properties />
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -552,42 +594,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/lang/NumberFormatException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="64" selection-start-line="64" selection-end-line="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="747" selection-start-line="747" selection-end-line="747" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/application/SpriteAnimationMap.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/animation/Animation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12758">
-          <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/animation/Transition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="80" column="45" selection-start-line="80" selection-start-column="45" selection-end-line="80" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/animation/AnimationTimer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/application/Moveable" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/scene/Scene.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -603,48 +609,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="417" selection-start-line="417" selection-end-line="417" />
-          <folding>
-            <element signature="e#15459#15460#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/CharacterController.java" />
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/player_weapon_characteristics.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/WeaponsFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Rotatable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Profile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/animations/Animated.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -673,13 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/student_animation_characteristics.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/animations/SpriteAnimationFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -690,82 +651,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/Weapon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="58" column="36" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
-          <folding>
-            <element signature="e#515#516#0" expanded="true" />
-            <element signature="e#551#552#0" expanded="true" />
-            <element signature="e#586#587#0" expanded="true" />
-            <element signature="e#620#621#0" expanded="true" />
-            <element signature="e#1242#1243#0" expanded="true" />
-            <element signature="e#1270#1271#0" expanded="true" />
-            <element signature="e#1221#1222#0" expanded="true" />
-            <element signature="e#1260#1261#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/PlayersController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="32" column="15" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
-          <folding>
-            <element signature="e#627#628#0" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-            <element signature="e#792#793#0" expanded="true" />
-            <element signature="e#600#601#0" expanded="true" />
-            <element signature="e#637#638#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Militant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="51" selection-start-column="51" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/characters/MeleeBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Gunslinger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/Bullet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-          <folding>
-            <element signature="e#253#254#0" expanded="true" />
-            <element signature="e#194#195#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
-          <folding>
-            <element signature="e#611#612#0" expanded="true" />
-            <element signature="e#634#635#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/characters/MeleeBot.java" />
     <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Movable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -780,54 +666,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsCharacteristicsFile.java">
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsCharacteristicsFile.java" />
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsFile.java" />
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Gunslinger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="51">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsView.java">
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/animations/MovementAngle.java" />
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysController.java" />
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2364">
-          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="187">
+          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/Keyboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="77" column="34" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#changeWeapon#0;class#Player#0" />
-            <element signature="method#findWeapon#0;class#Player#0" />
-            <element signature="method#addNewWeapon#0;class#Player#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1231">
-          <caret line="92" column="72" selection-start-line="92" selection-start-column="72" selection-end-line="92" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bot_characteristics.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+        <state relative-caret-position="153">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
+        <state relative-caret-position="144">
           <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/student_animation_characteristics.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/Bullet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="30" column="41" lean-forward="true" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+          <folding>
+            <element signature="e#226#227#0" expanded="true" />
+            <element signature="e#253#254#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/io/FileInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="198" column="64" selection-start-line="198" selection-start-column="64" selection-end-line="198" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/level_characteristics.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/soldier_animation_characteristics.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="2" column="15" lean-forward="true" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bomber_animation_characteristics.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/stage/Stage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="1181" selection-start-line="1181" selection-end-line="1181" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/animation/AnimationTimer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Militant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bot_characteristics.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -838,104 +786,146 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/Rotatable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/PlayersController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="21" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3">
+          <caret line="67" column="4" lean-forward="true" selection-start-line="67" selection-start-column="4" selection-end-line="88" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#changeWeapon#0;class#Player#0" />
+            <element signature="method#findWeapon#0;class#Player#0" />
+            <element signature="method#addNewWeapon#0;class#Player#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/Bot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        <state relative-caret-position="239">
+          <caret line="55" column="85" selection-start-line="55" selection-start-column="85" selection-end-line="55" selection-end-column="85" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/GameSpace.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-            <element signature="e#702#703#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#528#529#0" expanded="true" />
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#624#625#0" expanded="true" />
-            <element signature="e#662#663#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/CharacterView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2720">
-          <caret line="167" selection-start-line="167" selection-end-line="167" />
+        <state relative-caret-position="119">
+          <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
           <folding>
-            <element signature="e#2189#2784#0" expanded="true" />
-            <element signature="e#2783#2784#0" expanded="true" />
+            <element signature="e#961#962#0" expanded="true" />
+            <element signature="e#1002#1003#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysMap.java">
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="221">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysAction.java">
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/GameSpace.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="23" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="23" />
+        <state relative-caret-position="213">
+          <caret line="71" column="72" selection-start-line="71" selection-start-column="72" selection-end-line="71" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/Keyboard.java">
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/player_weapon_characteristics.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        <state relative-caret-position="37">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/keyboard/KeysController.java">
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="46" />
+        <state relative-caret-position="102">
+          <caret line="6" column="46" lean-forward="true" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/WeaponsFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="81" column="40" selection-start-line="81" selection-start-column="40" selection-end-line="81" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/BulletsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="61" column="45" selection-start-line="61" selection-start-column="45" selection-end-line="61" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/weapons/Weapon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#515#516#0" expanded="true" />
+            <element signature="e#551#552#0" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/PlayersView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+        <state relative-caret-position="153">
+          <caret line="104" column="30" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/game/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
           <folding>
-            <element signature="e#6612#7788#0" expanded="true" />
-            <element signature="e#7787#7788#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bsuir/vlad/universityshooter/activeobjects/characters/BotsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="139" column="139" selection-start-line="139" selection-start-column="139" selection-end-line="139" selection-end-column="139" />
+          <folding>
+            <element signature="e#2169#2982#0" expanded="true" />
+            <element signature="e#2981#2982#0" expanded="true" />
           </folding>
         </state>
       </provider>

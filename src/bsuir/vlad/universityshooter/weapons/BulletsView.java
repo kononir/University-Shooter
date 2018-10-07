@@ -21,9 +21,13 @@ public class BulletsView implements Movable {
         return bulletsPane;
     }
 
-    public BulletsView(Bullet bullet, double bulletsPaneAngle, PlayersView playersView, List<BotsView> botsViewList) {
+    public BulletsView(
+            Bullet bullet,
+            CharacterView gunslingerView,
+            PlayersView playersView,
+            List<BotsView> botsViewList
+    ) {
         this.bullet = bullet;
-        this.bulletsPaneAngle = bulletsPaneAngle;
         this.playersView = playersView;
         this.botsViewList = botsViewList;
 
@@ -38,96 +42,38 @@ public class BulletsView implements Movable {
         bulletsPane = new Pane();
         bulletsPane.getChildren().add(bulletsImageView);
 
-        RotateTransition rotateTransition = new RotateTransition(Duration.millis(1), bulletsPane);
-        rotateTransition.setToAngle(bulletsPaneAngle);
-        rotateTransition.play();
+        setRelativeLocation(gunslingerView);
+        setRelativeAngle(gunslingerView);
     }
 
-    public void setRelativeLocation(Pane pane) {
-        double paneX = pane.getTranslateX();
-        double paneY = pane.getTranslateY();
+    private void setRelativeLocation(CharacterView gunslingerView) {
+        Pane gunslingerPane = gunslingerView.getCharacterPane();
 
-        double paneWidth = pane.getWidth();
-        double paneHeight = pane.getHeight();
+        double paneX = gunslingerPane.getTranslateX();
+        double paneY = gunslingerPane.getTranslateY();
 
-        double bulletsPaneX = 0;
-        double bulletsPaneY = 0;
+        double paneWidth = gunslingerPane.getWidth();
+        double paneHeight = gunslingerPane.getHeight();
 
-        if (bulletsPaneAngle == 225.0) {
-            bulletsPaneX = paneX + (paneWidth / 2);
-            bulletsPaneY = paneY + (paneHeight / 2);
-        } else if (bulletsPaneAngle == 315.0) {
-            bulletsPaneX = paneX + (paneWidth / 2);
-            bulletsPaneY = paneY + (paneHeight / 2);
-        } else if (bulletsPaneAngle == 135.0) {
-            bulletsPaneX = paneX;
-            bulletsPaneY = paneY + (paneHeight / 2);
-        } else if (bulletsPaneAngle == 45.0) {
-            bulletsPaneX = paneX + (paneWidth / 2);
-            bulletsPaneY = paneY + (paneHeight);
-        } else if (bulletsPaneAngle == 270.0) {
-            bulletsPaneX = paneX + (paneWidth / 2);
-            bulletsPaneY = paneY + (paneHeight / 2);
-        } else if (bulletsPaneAngle == 90.0) {
-            bulletsPaneX = paneX + (paneWidth / 2);
-            bulletsPaneY = paneY + (paneHeight / 2);
-        } else if (bulletsPaneAngle == 180.0) {
-            bulletsPaneX = paneX + (paneWidth / 2);
-            bulletsPaneY = paneY + (paneHeight / 2);
-        } else if (bulletsPaneAngle == 0.0) {
-            bulletsPaneX = paneX + (paneWidth / 2);
-            bulletsPaneY = paneY + (paneHeight / 2);
-        }
+        double bulletsPaneX = paneX + (paneWidth / 2);
+        double bulletsPaneY = paneY + (paneHeight / 2);
 
         bulletsPane.setLayoutX(bulletsPaneX);
         bulletsPane.setLayoutY(bulletsPaneY);
     }
 
+    private void setRelativeAngle(CharacterView gunslingerView) {
+        bulletsPaneAngle = gunslingerView.getCharacterPaneAngle();
+
+        RotateTransition rotateTransition = new RotateTransition(Duration.millis(1), bulletsPane);
+        rotateTransition.setToAngle(bulletsPaneAngle);
+        rotateTransition.play();
+    }
+
     public final void updateBulletsView() {
+        updateMoving();
+
         BulletsController bulletsController = new BulletsController(bullet);
-
-        int maxMovementX = 6;
-        int minMovementX = 0;
-        int maxMovementY = 6;
-        int minMovementY = 0;
-
-        if (bulletsPaneAngle == 225.0) {
-            bulletsController.controlDistance(maxMovementX, maxMovementY);
-
-            moveUp(maxMovementY);
-            moveLeft(maxMovementX);
-        } else if (bulletsPaneAngle == 315.0) {
-            bulletsController.controlDistance(maxMovementX, maxMovementY);
-
-            moveUp(maxMovementY);
-            moveRight(maxMovementX);
-        } else if (bulletsPaneAngle == 135.0) {
-            bulletsController.controlDistance(maxMovementX, maxMovementY);
-
-            moveDown(maxMovementY);
-            moveLeft(maxMovementX);
-        } else if (bulletsPaneAngle == 45.0) {
-            bulletsController.controlDistance(maxMovementX, maxMovementY);
-
-            moveDown(maxMovementY);
-            moveRight(maxMovementX);
-        } else if (bulletsPaneAngle == 270.0) {
-            bulletsController.controlDistance(minMovementX, maxMovementY);
-
-            moveUp(maxMovementY);
-        } else if (bulletsPaneAngle == 90.0) {
-            bulletsController.controlDistance(minMovementX, maxMovementY);
-
-            moveDown(maxMovementY);
-        } else if (bulletsPaneAngle == 180.0) {
-            bulletsController.controlDistance(maxMovementX, minMovementY);
-
-            moveLeft(maxMovementX);
-        } else if (bulletsPaneAngle == 0.0) {
-            bulletsController.controlDistance(maxMovementX, minMovementY);
-
-            moveRight(maxMovementX);
-        }
 
         int bulletsDamage = bulletsController.controlGettingDamage();
 
@@ -173,6 +119,80 @@ public class BulletsView implements Movable {
                 bulletsPane.setVisible(false);
             }
         }
+    }
+
+    private void updateMoving() {
+        BulletsController bulletsController = new BulletsController(bullet);
+
+        int maxMovementX = 6;
+        int minMovementX = 0;
+        int maxMovementY = 6;
+        int minMovementY = 0;
+
+        boolean distancePassed = bulletsController.controlDistancePassing();
+
+        if (!distancePassed) {
+            int bulletsPaneAngleInt = (int) bulletsPaneAngle;
+
+            switch(bulletsPaneAngleInt) {
+                case 225:
+                    bulletsController.controlReducingDistance(maxMovementX, maxMovementY);
+
+                    moveUp(maxMovementY);
+                    moveLeft(maxMovementX);
+
+                    break;
+                case 315:
+                    bulletsController.controlReducingDistance(maxMovementX, maxMovementY);
+
+                    moveUp(maxMovementY);
+                    moveRight(maxMovementX);
+
+                    break;
+                case 135:
+                    bulletsController.controlReducingDistance(maxMovementX, maxMovementY);
+
+                    moveDown(maxMovementY);
+                    moveLeft(maxMovementX);
+
+                    break;
+                case 45:
+                    bulletsController.controlReducingDistance(maxMovementX, maxMovementY);
+
+                    moveDown(maxMovementY);
+                    moveRight(maxMovementX);
+
+                    break;
+                case 270:
+                    bulletsController.controlReducingDistance(minMovementX, maxMovementY);
+
+                    moveUp(maxMovementY);
+
+                    break;
+                case 90:
+                    bulletsController.controlReducingDistance(minMovementX, maxMovementY);
+
+                    moveDown(maxMovementY);
+
+                    break;
+                case 180:
+                    bulletsController.controlReducingDistance(maxMovementX, minMovementY);
+
+                    moveLeft(maxMovementX);
+
+                    break;
+                case 0:
+                    bulletsController.controlReducingDistance(maxMovementX, minMovementY);
+
+                    moveRight(maxMovementX);
+
+                    break;
+            }
+        } else {
+            bulletsPane.setVisible(false);
+        }
+
+
     }
 
     @Override

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<animations>
+    <animation>
+        <animationName>bomber_idle</animationName>
+        <cycleDuration>1000</cycleDuration>
+        <countOfAnimationFrames>4</countOfAnimationFrames>
+        <animationFrameHeight>98</animationFrameHeight>
+        <animationFrameWidth>90</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>bomber_move</animationName>
+        <cycleDuration>1000</cycleDuration>
+        <countOfAnimationFrames>6</countOfAnimationFrames>
+        <animationFrameHeight>98</animationFrameHeight>
+        <animationFrameWidth>90</animationFrameWidth>
+    </animation>
+    <animation>
+        <animationName>bomber_attack</animationName>
+        <cycleDuration>800</cycleDuration>
+        <countOfAnimationFrames>13</countOfAnimationFrames>
+        <animationFrameHeight>98</animationFrameHeight>
+        <animationFrameWidth>101</animationFrameWidth>
+    </animation>
+</animations>

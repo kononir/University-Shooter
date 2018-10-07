@@ -3,6 +3,21 @@
     <weapon>
         <type>zombie_teacher_claws</type>
         <damage>20</damage>
+        <distance>0</distance>
+        <maxHoldersNumber>0</maxHoldersNumber>
+        <maxHoldersAmmo>0</maxHoldersAmmo>
+    </weapon>
+    <weapon>
+        <type>bomber_explosive</type>
+        <damage>50</damage>
+        <distance>0</distance>
+        <maxHoldersNumber>0</maxHoldersNumber>
+        <maxHoldersAmmo>0</maxHoldersAmmo>
+    </weapon>
+    <weapon>
+        <type>soldier_rifle</type>
+        <damage>15</damage>
+        <distance>500</distance>
         <maxHoldersNumber>0</maxHoldersNumber>
         <maxHoldersAmmo>0</maxHoldersAmmo>
     </weapon>

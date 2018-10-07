@@ -1,7 +1,10 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
+import bsuir.vlad.universityshooter.game.Level;
+import bsuir.vlad.universityshooter.weapons.Bullet;
 import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.util.TimerTask;
 import java.util.concurrent.*;
 
@@ -24,146 +27,260 @@ public class BotsView extends CharacterView {
     }
 
     public void updateBotsView() {
-        BotsController controller = new BotsController(bot);
+        updateRotationAngle();
 
-        Pane playersPane = playersView.getCharacterPane();
+        BotsController controller = new BotsController(bot);
 
         String attackType = controller.controlGettingAttackType();
         boolean movable = controller.controlGettingMovable();
 
         if (!currentAnimation.isLock()) {
-            if (characterPane.getBoundsInParent().intersects(playersPane.getBoundsInParent())
-                    && attackType.equals("meleeAttack")
-            ) {
-                meleeAttack();
-            } else if (attackType.equals("shoot")) {
-                shoot();
+            switch (attackType) {
+                case "clawStrike":
+                case "explode":
+                    meleeAttack(attackType);
+                    break;
+                case "shoot":
+                    shoot();
+                    break;
             }
         }
+
+        boolean gunslinger = attackType.equals("shoot");
 
         if (!currentAnimation.isLock()) {
-            if (!characterPane.getBoundsInParent().intersects(playersPane.getBoundsInParent())
-                    && movable
-            ) {
-                move();
+            if (movable && !gunslinger) {
+                moveToPlayer();
+            } else if (movable && gunslinger) {
+                moveToFireLine();
             } else if (!movable) {
-                updateAnimation(characterName + "_idle");
-
-                currentAnimation.play();
+                idle();
             }
         }
     }
 
-    @Override
-    public final void meleeAttack() {
+    private void meleeAttack(String attackType) {
+        if (isBoundsIntersect()) {
+            updateAnimation(characterName + "_attack");
+
+            currentAnimation.lock();
+            currentAnimation.play();
+
+            double coefficient = 0.75;
+            double animationDuration = currentAnimation.getCycleDuration().toMillis();
+            int cycleDuration = (int) (animationDuration * coefficient);
+
+            int corePoolSize = 1;
+
+            ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(corePoolSize);
+
+            executor.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    if (isBoundsIntersect()) {
+                        BotsController botsController = new BotsController(bot);
+
+                        int receivedDamage = botsController.controlMelee();
+
+                        Player player = playersView.getPlayer();
+                        PlayersController playersController = new PlayersController(player);
+
+                        playersController.controlStatusReducing(receivedDamage);
+                    }
+
+                    boolean botExploded = attackType.equals("explode");
+
+                    if (botExploded) {
+                        characterPane.setVisible(false);
+                    }
+
+                    executor.shutdown();
+                }
+            }, cycleDuration, TimeUnit.MILLISECONDS);
+        }
+    }
+
+    private boolean isBoundsIntersect() {
         Pane playersPane = playersView.getCharacterPane();
 
-        updateAnimation(characterName + "_attack");
-
-        currentAnimation.lock();
-        currentAnimation.play();
-
-        int cycleDuration = (int) currentAnimation.getCycleDuration().toMillis();
-
-        int corePoolSize = 0;
-
-        ScheduledThreadPoolExecutor service = new ScheduledThreadPoolExecutor(corePoolSize);
-
-        service.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (characterPane.getBoundsInParent().intersects(playersPane.getBoundsInParent())) {
-                    BotsController botsController = new BotsController(bot);
-
-                    int receivedDamage = botsController.controlMelee();
-
-                    Player player = playersView.getPlayer();
-                    PlayersController playersController = new PlayersController(player);
-
-                    playersController.controlStatusReducing(receivedDamage);
-                }
-
-
-            }
-        }, cycleDuration, TimeUnit.MILLISECONDS);
+        return characterPane.getBoundsInParent().intersects(
+                playersPane.getBoundsInParent()
+        );
     }
 
-    @Override
-    public final void shoot() {
-
-    }
-
-    public final void move() {
-        updateAnimation(characterName + "_move");
-
-        currentAnimation.play();
-
+    private boolean isStandOfFireLine() {
         double botsPainX = characterPane.getTranslateX();
         double botsPainY = characterPane.getTranslateY();
+
+        double botsPainWidth = characterPane.getWidth();
+        double botsPainHeight = characterPane.getHeight();
+
+        double botsPainXMiddle = botsPainX + botsPainWidth / 2;
+        double botsPainYMiddle = botsPainY + botsPainHeight / 2;
 
         Pane playersPane = playersView.getCharacterPane();
 
         double playerPainX = playersPane.getTranslateX();
         double playerPainY = playersPane.getTranslateY();
 
+        double playerPainWidth = playersPane.getWidth();
+        double playerPainHeight = playersPane.getHeight();
+        double playerPainDiagonal = Math.sqrt(Math.pow(playerPainWidth, 2) + Math.pow(playerPainHeight, 2));
+
+        double playerPainXBorder = playerPainX + playerPainWidth;
+        double playerPainYBorder = playerPainY + playerPainHeight;
+
+        boolean botStandsHorizontal
+                = (botsPainYMiddle >=  playerPainY) && (botsPainYMiddle <= playerPainYBorder);
+        boolean botStandsVertical
+                = (botsPainXMiddle >= playerPainX) && (botsPainXMiddle <= playerPainXBorder);
+
+        double squareYSide = Math.abs(botsPainY - playerPainY);
+        double squareXSide = Math.abs(botsPainX - playerPainX);
+        boolean botStandsDiagonal = (Math.abs(squareXSide - squareYSide)) > 0 && (Math.abs(squareXSide - squareYSide)) < playerPainDiagonal;
+
+        return botStandsHorizontal || botStandsVertical || botStandsDiagonal;
+    }
+
+    private void shoot() {
+        if (isStandOfFireLine()) {
+
+            BotsController controller = new BotsController(bot);
+
+            Bullet bullet = controller.controlShooting();
+            String botsType = controller.controlBotType();
+
+            updateAnimation(botsType + "_attack");
+
+            currentAnimation.lock();
+            currentAnimation.play();
+
+            Level.addBullet(bullet, this);
+        }
+    }
+
+    private void moveToPlayer() {
+        if (!isBoundsIntersect()) {
+            move();
+        }
+    }
+
+    private void moveToFireLine() {
+        if (!isStandOfFireLine()) {
+            move();
+        }
+    }
+
+    private void move() {
+        updateAnimation(characterName + "_move");
+
+        currentAnimation.play();
+
         int movementX = 1;
         int movementY = 1;
 
-        boolean botStandsHorizontal = (botsPainY == playerPainY);
-        boolean botStandsVertical = (botsPainX == playerPainX);
+        double currentMovementAngle = updateRotationAngle();
+        int currentMovementAngleInt = (int) currentMovementAngle;
+
+        switch (currentMovementAngleInt) {
+            case 0:
+                moveRight(movementX);
+                break;
+            case 180:
+                moveLeft(movementX);
+                break;
+            case 270:
+                moveUp(movementY);
+                break;
+            case 90:
+                moveDown(movementY);
+                break;
+            case 225:
+                moveUp(movementY);
+                moveLeft(movementX);
+                break;
+            case 315:
+                moveUp(movementY);
+                moveRight(movementX);
+                break;
+            case 135:
+                moveDown(movementY);
+                moveLeft(movementX);
+                break;
+            case 45:
+                moveDown(movementY);
+                moveRight(movementX);
+                break;
+        }
+    }
+
+    private double updateRotationAngle() {
+        double botsPainX = characterPane.getTranslateX();
+        double botsPainY = characterPane.getTranslateY();
+
+        double botsPainWidth = characterPane.getWidth();
+        double botsPainHeight = characterPane.getHeight();
+
+        double botsPainXMiddle = botsPainX + botsPainWidth / 2;
+        double botsPainYMiddle = botsPainY + botsPainHeight / 2;
+
+        Pane playersPane = playersView.getCharacterPane();
+
+        double playerPainX = playersPane.getTranslateX();
+        double playerPainY = playersPane.getTranslateY();
+
+        double playerPainWidth = playersPane.getWidth();
+        double playerPainHeight = playersPane.getHeight();
+
+        double playerPainXBorder = playerPainX + playerPainWidth;
+        double playerPainYBorder = playerPainY + playerPainHeight;
+
+        boolean botStandsHorizontal
+                = (botsPainYMiddle >=  playerPainY) && (botsPainYMiddle <= playerPainYBorder);
+        boolean botStandsVertical
+                = (botsPainXMiddle >= playerPainX) && (botsPainXMiddle <= playerPainXBorder);
+
         boolean botStandsBelow = (botsPainY - playerPainY) > 0;
         boolean botStandsRight = (botsPainX - playerPainX) > 0;
         boolean botStandsAbove = (playerPainY - botsPainY) > 0;
         boolean botStandsLeft = (playerPainX - botsPainX) > 0;
 
+        double rotationAngle;
+
         if (botStandsHorizontal && botStandsLeft) {
-            double currentMovementAngle = 0;
-            updateMovementAngle(currentMovementAngle);
-
-            moveRight(movementX);
+            rotationAngle = 0;
         } else if (botStandsHorizontal && botStandsRight) {
-            double currentMovementAngle = 180;
-            updateMovementAngle(currentMovementAngle);
-
-            moveLeft(movementX);
+            rotationAngle = 180;
         } else if (botStandsVertical && botStandsBelow) {
-            double currentMovementAngle = 270;
-            updateMovementAngle(currentMovementAngle);
-
-            moveUp(movementY);
+            rotationAngle = 270;
         } else if (botStandsVertical && botStandsAbove) {
-            double currentMovementAngle = 90;
-            updateMovementAngle(currentMovementAngle);
-
-            moveDown(movementY);
-        }
-
-        if (botStandsBelow && botStandsRight) {
-            double currentMovementAngle = 225;
-            updateMovementAngle(currentMovementAngle);
-
-            moveUp(movementY);
-            moveLeft(movementX);
+            rotationAngle = 90;
+        } else if (botStandsBelow && botStandsRight) {
+            rotationAngle = 225;
         } else if (botStandsBelow && botStandsLeft) {
-            double currentMovementAngle = 315;
-            updateMovementAngle(currentMovementAngle);
-
-            moveUp(movementY);
-            moveRight(movementX);
+            rotationAngle = 315;
         } else if (botStandsAbove && botStandsRight) {
-            double currentMovementAngle = 135;
-            updateMovementAngle(currentMovementAngle);
-
-            moveDown(movementY);
-            moveLeft(movementX);
+            rotationAngle = 135;
         } else if (botStandsAbove && botStandsLeft) {
-            double currentMovementAngle = 45;
-            updateMovementAngle(currentMovementAngle);
-
-            moveDown(movementY);
-            moveRight(movementX);
+            rotationAngle = 45;
+        } else {
+            try {
+                throw new IOException("Bot Angle Exception");
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                rotationAngle = -1;
+            }
         }
+
+        rotate(rotationAngle);
+
+        return rotationAngle;
     }
 
+    private void idle() {
+        updateAnimation(characterName + "_idle");
 
+        currentAnimation.play();
+    }
 }

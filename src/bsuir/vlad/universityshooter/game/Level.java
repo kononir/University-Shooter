@@ -1,6 +1,7 @@
 package bsuir.vlad.universityshooter.game;
 
 import bsuir.vlad.universityshooter.activeobjects.characters.Bot;
+import bsuir.vlad.universityshooter.activeobjects.characters.CharacterView;
 import bsuir.vlad.universityshooter.activeobjects.characters.Player;
 import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.weapons.Weapon;
@@ -42,8 +43,6 @@ public class Level {
         String botWeaponsFilePath = "src/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml";
         botWeaponList = new WeaponsFile(botWeaponsFilePath).loadWeapons();
 
-
-
         botList = new ArrayList<>();
         bulletList = new ArrayList<>();
 
@@ -58,9 +57,10 @@ public class Level {
         double paneHeight = pane.getPrefHeight();
 
         addPlayerWithHUD(0, 0);
-        addBot("zombie_teacher", 300, 200, true, "meleeAttack");
-        addBot("zombie_teacher", 400, 100, true, "meleeAttack");
-        addBot("zombie_teacher", 600, 400, true, "meleeAttack");
+        addBot("zombie_teacher", 300, 200, true, "clawStrike");
+        addBot("zombie_teacher", 400, 100, true, "clawStrike");
+        addBot("bomber", 500, 300, false, "explode");
+        addBot("soldier", 300, 300, true, "shoot");
     }
 
     private void addPlayerWithHUD(double playerX, double playerY) {
@@ -76,8 +76,8 @@ public class Level {
         gameSpace.addBotsView(bot, botX, botY);
     }
 
-    public static void addBullet(Bullet bullet, double bulletsPaneAngle) {
+    public static void addBullet(Bullet bullet, CharacterView gunslingerView) {
         bulletList.add(bullet);
-        gameSpace.addBulletsView(bullet, bulletsPaneAngle);
+        gameSpace.addBulletsView(bullet, gunslingerView);
     }
 }

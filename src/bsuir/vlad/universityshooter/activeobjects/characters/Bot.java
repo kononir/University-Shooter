@@ -1,6 +1,7 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
 import bsuir.vlad.universityshooter.game.Level;
+import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 
 import java.util.List;
@@ -41,8 +42,17 @@ public class Bot extends Character {
 
         List<Weapon> findingWeaponsList
                 = weaponList.stream().filter(weapon -> weapon.getType().startsWith(type))
-                .collect(Collectors.toList());
+                            .collect(Collectors.toList());
 
         return findingWeaponsList.get(first);
+    }
+
+    public final Bullet shootFromWeapon() {
+        String gunslingerName = "bot";
+        int bulletDamage = weaponInHands.getDamage();
+        int distanceDamage = weaponInHands.getDistance();
+        String bulletsType = "bullet";
+
+        return new Bullet(bulletsType, gunslingerName, bulletDamage, distanceDamage);
     }
 }
