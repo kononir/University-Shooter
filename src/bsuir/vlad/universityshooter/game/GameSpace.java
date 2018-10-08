@@ -58,14 +58,12 @@ public class GameSpace {
     }
 
     public void addPlayersView(Player player, double playerX, double playerY) {
-        playersView = new PlayersView(player, playerX, playerY, scene, botsViewList);
+        playersView = new PlayersView(player, playerX, playerY, botsViewList);
 
         addKeyboard();
 
         Pane playersPane = playersView.getCharacterPane();
         pane.getChildren().add(playersPane);
-        playersPane.setLayoutX(0);
-        playersPane.setLayoutY(0);
     }
 
     public void addBulletsView(Bullet bullet, CharacterView gunslingerView) {
@@ -78,7 +76,7 @@ public class GameSpace {
 
     public void addBotsView(Bot bot, double botX, double botY) {
         BotsController controller = new BotsController(bot);
-        String botType = controller.controlBotType();
+        String botType = controller.controlGettingBotType();
 
         BotsView botsView = new BotsView(bot, botX, botY, botType, playersView);
         botsViewList.add(botsView);

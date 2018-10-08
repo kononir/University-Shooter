@@ -2,6 +2,7 @@ package bsuir.vlad.universityshooter.weapons;
 
 public class Weapon {
     private final String type;
+    private final String attackType;
     private final int damage;
     private final int distance;
     private final int maxHoldersNumber;
@@ -11,6 +12,10 @@ public class Weapon {
 
     public String getType() {
         return type;
+    }
+
+    public String getAttackType() {
+        return attackType;
     }
 
     public int getDamage() {
@@ -29,8 +34,9 @@ public class Weapon {
         return holdersAmmo;
     }
 
-    public Weapon(String type, int damage, int distance, int maxHoldersNumber, int maxHoldersAmmo) {
+    public Weapon(String type, String attackType, int damage, int distance, int maxHoldersNumber, int maxHoldersAmmo) {
         this.type = type;
+        this.attackType = attackType;
         this.damage = damage;
         this.distance = distance;
         this.maxHoldersNumber = maxHoldersNumber;

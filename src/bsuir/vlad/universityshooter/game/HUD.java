@@ -73,13 +73,17 @@ public class HUD {
     }
 
     public void updateHUD() {
+        updateStatusBars();
+        updateScoreLabel();
+        updateAmmoLabel();
+    }
+
+    private void updateStatusBars() {
         statusBarsVBox.toFront();
-        scoreLabel.toFront();
-        ammoLabel.toFront();
 
         PlayersController controller = new PlayersController(player);
 
-        int health = controller.controlHealthLevel();
+        int health = controller.controlGettingHealthLevel();
 
         Rectangle healthBar = (Rectangle) statusBarsVBox.getChildren().get(0);
         int displayedHealth = (int) healthBar.getWidth();
@@ -88,7 +92,7 @@ public class HUD {
             healthBar.setWidth(health);
         }
 
-        int defence = controller.controlDefenceLevel();
+        int defence = controller.controlGettingDefenceLevel();
 
         Rectangle defenceBar = (Rectangle) statusBarsVBox.getChildren().get(1);
         int displayedDefence = (int) defenceBar.getWidth();
@@ -96,6 +100,24 @@ public class HUD {
         if(defence != displayedDefence) {
             defenceBar.setWidth(defence);
         }
+    }
+
+    private void updateScoreLabel() {
+        scoreLabel.toFront();
+
+        PlayersController playersController = new PlayersController(player);
+        Profile profile = playersController.controlGettingProfile();
+
+        ProfileController profileController = new ProfileController(profile);
+        long score = profileController.controlGettingScore();
+
+        scoreLabel.setText(String.valueOf(score));
+    }
+
+    private void updateAmmoLabel() {
+        ammoLabel.toFront();
+
+        PlayersController controller = new PlayersController(player);
 
         int holdersNumber = controller.controlGettingWeaponInHandsHoldersNumber();
         int holdersAmmo = controller.controlGettingWeaponInHandsHoldersAmmo();

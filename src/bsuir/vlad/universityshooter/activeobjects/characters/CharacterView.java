@@ -54,6 +54,9 @@ public abstract class CharacterView implements Movable, Rotatable, Animated {
         if (!updatingAnimation.equals(currentAnimation)) {
             currentAnimation = updatingAnimation;
 
+            characterPane.setPrefHeight(currentAnimation.getAnimationFrameHeight());
+            characterPane.setPrefWidth(currentAnimation.getAnimationFrameWidth());
+
             ImageView playersImageView = updatingAnimation.getSpriteImageView();
             characterPane.getChildren().clear();
             characterPane.getChildren().add(playersImageView);

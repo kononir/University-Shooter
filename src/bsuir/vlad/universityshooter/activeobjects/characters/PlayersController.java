@@ -1,6 +1,8 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
+import bsuir.vlad.universityshooter.game.Profile;
 import bsuir.vlad.universityshooter.weapons.Bullet;
+import bsuir.vlad.universityshooter.weapons.Weapon;
 
 public class PlayersController {
     Player player;
@@ -13,8 +15,8 @@ public class PlayersController {
         return player.changeWeapon(weaponType);
     }
 
-    public final String controlWeaponInHandsType(){
-        return player.getWeaponInHands().getType();
+    public final Weapon controlGettingWeaponInHands() {
+        return player.getWeaponInHands();
     }
 
     public final Bullet controlShooting() {
@@ -33,11 +35,11 @@ public class PlayersController {
         return player.reloadWeapon();
     }
 
-    public final int controlHealthLevel() {
+    public final int controlGettingHealthLevel() {
         return player.getHealth();
     }
 
-    public final int controlDefenceLevel() {
+    public final int controlGettingDefenceLevel() {
         return player.getDefence();
     }
 
@@ -47,5 +49,9 @@ public class PlayersController {
 
     public final int controlMelee() {
         return player.getWeaponInHands().getDamage();
+    }
+
+    public final Profile controlGettingProfile() {
+        return player.getProfile();
     }
 }

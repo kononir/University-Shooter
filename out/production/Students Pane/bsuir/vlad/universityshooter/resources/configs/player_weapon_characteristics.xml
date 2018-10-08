@@ -2,6 +2,7 @@
 <weapons>
     <weapon>
         <type>knife</type>
+        <attackType>punch</attackType>
         <damage>35</damage>
         <distance>0</distance>
         <maxHoldersNumber>0</maxHoldersNumber>
@@ -9,6 +10,7 @@
     </weapon>
     <weapon>
         <type>handgun</type>
+        <attackType>shoot</attackType>
         <damage>25</damage>
         <distance>200</distance>
         <maxHoldersNumber>4</maxHoldersNumber>
@@ -16,6 +18,7 @@
     </weapon>
     <weapon>
         <type>rifle</type>
+        <attackType>shoot</attackType>
         <damage>15</damage>
         <distance>400</distance>
         <maxHoldersNumber>3</maxHoldersNumber>
@@ -23,6 +26,7 @@
     </weapon>
     <weapon>
         <type>shotgun</type>
+        <attackType>shoot</attackType>
         <damage>40</damage>
         <distance>100</distance>
         <maxHoldersNumber>2</maxHoldersNumber>

@@ -1,5 +1,6 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
+import bsuir.vlad.universityshooter.game.Profile;
 import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.game.Level;
 import bsuir.vlad.universityshooter.weapons.Weapon;
@@ -10,8 +11,15 @@ import java.util.stream.Collectors;
 
 public class Player extends Character {
     private List<Weapon> currentWeaponsList;
+    private Profile profile;
 
-    public Player() {
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public Player(Profile profile) {
+        this.profile = profile;
+
         health = 100;
         defence = 100;
 

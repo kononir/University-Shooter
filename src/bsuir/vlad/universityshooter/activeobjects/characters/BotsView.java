@@ -2,6 +2,8 @@ package bsuir.vlad.universityshooter.activeobjects.characters;
 
 import bsuir.vlad.universityshooter.game.Level;
 import bsuir.vlad.universityshooter.weapons.Bullet;
+import bsuir.vlad.universityshooter.weapons.Weapon;
+import bsuir.vlad.universityshooter.weapons.WeaponsController;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -29,14 +31,16 @@ public class BotsView extends CharacterView {
     public void updateBotsView() {
         updateRotationAngle();
 
-        BotsController controller = new BotsController(bot);
+        BotsController botsController = new BotsController(bot);
+        boolean movable = botsController.controlGettingMovable();
+        Weapon weaponInHands = botsController.controlGettingWeaponInHands();
 
-        String attackType = controller.controlGettingAttackType();
-        boolean movable = controller.controlGettingMovable();
+        WeaponsController weaponsController = new WeaponsController(weaponInHands);
+        String attackType = weaponsController.controlGettingWeaponAttackType();
 
         if (!currentAnimation.isLock()) {
             switch (attackType) {
-                case "clawStrike":
+                case "punch":
                 case "explode":
                     meleeAttack(attackType);
                     break;
@@ -148,7 +152,7 @@ public class BotsView extends CharacterView {
             BotsController controller = new BotsController(bot);
 
             Bullet bullet = controller.controlShooting();
-            String botsType = controller.controlBotType();
+            String botsType = controller.controlGettingBotType();
 
             updateAnimation(botsType + "_attack");
 

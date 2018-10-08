@@ -1,23 +1,24 @@
 package bsuir.vlad.universityshooter.game;
 
-import bsuir.vlad.universityshooter.activeobjects.characters.Bot;
-import bsuir.vlad.universityshooter.activeobjects.characters.CharacterView;
-import bsuir.vlad.universityshooter.activeobjects.characters.Player;
+import bsuir.vlad.universityshooter.activeobjects.characters.*;
 import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 import bsuir.vlad.universityshooter.weapons.WeaponsFile;
-import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class Level {
     private String name;
     private Player player;
     private Profile profile;
     private List<Bot> botList;
+    private HashMap<String, Integer> scoreMap;
     private static List<Weapon> playerWeaponList;
-    private static List<Weapon> botWeaponList;
+    private List<Weapon> botWeaponList;
     private static List<Bullet> bulletList;
     private static GameSpace gameSpace;
 
@@ -27,10 +28,6 @@ public class Level {
 
     public static List<Weapon> getPlayerWeaponList() {
         return playerWeaponList;
-    }
-
-    public static List<Weapon> getBotWeaponList() {
-        return botWeaponList;
     }
 
     public Level(String name, Profile profile) {
@@ -43,6 +40,9 @@ public class Level {
         String botWeaponsFilePath = "src/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml";
         botWeaponList = new WeaponsFile(botWeaponsFilePath).loadWeapons();
 
+        String botScoreFilePath = "src/bsuir/vlad/universityshooter/resources/configs/bot_score.xml";
+        scoreMap = new BotScoreFile(botScoreFilePath).loadBotsScore();
+
         botList = new ArrayList<>();
         bulletList = new ArrayList<>();
 
@@ -52,26 +52,34 @@ public class Level {
     }
 
     private void initialize() {
-        Pane pane = gameSpace.getPane();
-        double paneWidth = pane.getPrefWidth();
-        double paneHeight = pane.getPrefHeight();
+        double playerX = 0;
+        double playerY = 0;
 
-        addPlayerWithHUD(0, 0);
-        addBot("zombie_teacher", 300, 200, true, "clawStrike");
-        addBot("zombie_teacher", 400, 100, true, "clawStrike");
-        addBot("bomber", 500, 300, false, "explode");
-        addBot("soldier", 300, 300, true, "shoot");
+        addPlayerWithHUD(playerX, playerY);
+
+        long generationSpeed = 5;
+
+        BotsGenerator botsGenerator = new BotsGenerator(this);
+        botsGenerator.start(generationSpeed, TimeUnit.SECONDS);
+
+        addBot("zombie_teacher", 300, 200, true);
+        //addBot("zombie_teacher", 400, 100, true);
+        //addBot("bomber", 500, 300, true);
+        //addBot("soldier", 300, 300, true);
     }
 
     private void addPlayerWithHUD(double playerX, double playerY) {
-        player = new Player();
+        player = new Player(profile);
 
         gameSpace.addPlayersView(player, playerX, playerY);
         gameSpace.addHUD(player);
     }
 
-    private void addBot(String type, double botX, double botY, boolean movable, String attackType) {
-        Bot bot = new Bot(type, movable, attackType);
+    public final void addBot(String type, double botX, double botY, boolean movable) {
+        Weapon weaponInHands = findMatchWeapon(type);
+        int score = findMatchScore(type);
+
+        Bot bot = new Bot(type, weaponInHands, score, movable);
 
         gameSpace.addBotsView(bot, botX, botY);
     }
@@ -79,5 +87,19 @@ public class Level {
     public static void addBullet(Bullet bullet, CharacterView gunslingerView) {
         bulletList.add(bullet);
         gameSpace.addBulletsView(bullet, gunslingerView);
+    }
+
+    private Weapon findMatchWeapon(String type) {
+        int first = 0;
+
+        List<Weapon> findingWeaponsList
+                = botWeaponList.stream().filter(weapon -> weapon.getType().startsWith(type))
+                .collect(Collectors.toList());
+
+        return findingWeaponsList.get(first);
+    }
+
+    private int findMatchScore(String type) {
+        return scoreMap.get(type);
     }
 }

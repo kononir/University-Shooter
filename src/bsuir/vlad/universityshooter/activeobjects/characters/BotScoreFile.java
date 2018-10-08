@@ -1,4 +1,4 @@
-package bsuir.vlad.universityshooter.weapons;
+package bsuir.vlad.universityshooter.activeobjects.characters;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -8,32 +8,27 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
-public class WeaponsFile {
+public class BotScoreFile {
     private String filePath;
-    private List<Weapon> weaponsList;
+    private HashMap<String, Integer> scoreMap;
 
-    public WeaponsFile(String filePath) {
+    public BotScoreFile(String filePath) {
         this.filePath = filePath;
     }
 
-    public final List<Weapon> loadWeapons() {
+    public final HashMap<String, Integer> loadBotsScore() {
         DefaultHandler handler = new DefaultHandler() {
             String tagName;
 
             String type;
-            String attackType;
-            int damage;
-            int distance;
-            int maxHoldersNumber;
-            int maxHoldersAmmo;
+            int score;
 
             @Override
             public void startDocument() {
-                System.out.println("Start analysis file with weapons characteristics");
-                weaponsList = new ArrayList<>();
+                System.out.println("Start analysis file with bots score");
+                scoreMap = new HashMap<>();
             }
 
             @Override
@@ -58,20 +53,8 @@ public class WeaponsFile {
                         case "type":
                             type = completeString;
                             break;
-                        case "attackType":
-                            attackType = completeString;
-                            break;
-                        case "damage":
-                            damage = new Integer(completeString);
-                            break;
-                        case "distance":
-                            distance = new Integer(completeString);
-                            break;
-                        case "maxHoldersNumber":
-                            maxHoldersNumber = new Integer(completeString);
-                            break;
-                        case "maxHoldersAmmo":
-                            maxHoldersAmmo = new Integer(completeString);
+                        case "score":
+                            score = new Integer(completeString);
                             break;
                         default:
                             break;
@@ -81,9 +64,8 @@ public class WeaponsFile {
 
             @Override
             public void endElement(String uri, String localName, String qName) {
-                if (qName.equals("weapon")) {
-                    Weapon weapon = new Weapon(type, attackType, damage, distance, maxHoldersNumber, maxHoldersAmmo);
-                    weaponsList.add(weapon);
+                if (qName.equals("bot")) {
+                    scoreMap.put(type, score);
                 }
             }
 
@@ -101,7 +83,7 @@ public class WeaponsFile {
             e.printStackTrace();
         }
 
-        return weaponsList;
+        return scoreMap;
     }
 
 }

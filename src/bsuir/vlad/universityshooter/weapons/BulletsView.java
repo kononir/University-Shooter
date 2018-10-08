@@ -2,12 +2,15 @@ package bsuir.vlad.universityshooter.weapons;
 
 import bsuir.vlad.universityshooter.activeobjects.Movable;
 import bsuir.vlad.universityshooter.activeobjects.characters.*;
+import bsuir.vlad.universityshooter.game.Profile;
+import bsuir.vlad.universityshooter.game.ProfileController;
 import javafx.animation.RotateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class BulletsView implements Movable {
@@ -80,10 +83,10 @@ public class BulletsView implements Movable {
         String gunslingerName = bulletsController.controlGunslinger();
 
         if (gunslingerName.equals("player")) {
-            int listSize = botsViewList.size();
+            Iterator<BotsView> botsViewIterator = botsViewList.iterator();
 
-            for (int index = 0; index < listSize; index++) {
-                BotsView botsView = botsViewList.get(index);
+            while(botsViewIterator.hasNext()) {
+                BotsView botsView = botsViewIterator.next();
 
                 if (botsView.getCharacterPane().getBoundsInParent().intersects(
                         bulletsPane.getBoundsInParent()
@@ -95,7 +98,15 @@ public class BulletsView implements Movable {
 
                     if (botIsDead) {
                         botsView.getCharacterPane().setVisible(false);
-                        botsViewList.remove(botsView);
+                        botsViewIterator.remove();
+
+                        PlayersController playersController = new PlayersController(playersView.getPlayer());
+                        Profile profile = playersController.controlGettingProfile();
+
+                        int newScore = botsController.controlGettingScore();
+
+                        ProfileController profileController = new ProfileController(profile);
+                        profileController.controlIncreasingScore(newScore);
                     }
 
                     bulletsPane.setVisible(false);

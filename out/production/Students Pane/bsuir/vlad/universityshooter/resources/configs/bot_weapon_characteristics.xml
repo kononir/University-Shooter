@@ -2,6 +2,7 @@
 <weapons>
     <weapon>
         <type>zombie_teacher_claws</type>
+        <attackType>punch</attackType>
         <damage>20</damage>
         <distance>0</distance>
         <maxHoldersNumber>0</maxHoldersNumber>
@@ -9,6 +10,7 @@
     </weapon>
     <weapon>
         <type>bomber_explosive</type>
+        <attackType>explode</attackType>
         <damage>50</damage>
         <distance>0</distance>
         <maxHoldersNumber>0</maxHoldersNumber>
@@ -16,6 +18,7 @@
     </weapon>
     <weapon>
         <type>soldier_rifle</type>
+        <attackType>shoot</attackType>
         <damage>15</damage>
         <distance>500</distance>
         <maxHoldersNumber>0</maxHoldersNumber>

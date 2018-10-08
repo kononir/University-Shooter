@@ -1,6 +1,7 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
 import bsuir.vlad.universityshooter.weapons.Bullet;
+import bsuir.vlad.universityshooter.weapons.Weapon;
 
 public class BotsController {
     Bot bot;
@@ -9,7 +10,7 @@ public class BotsController {
         this.bot = bot;
     }
 
-    public final String controlBotType() {
+    public final String controlGettingBotType() {
         return bot.getType();
     }
 
@@ -29,7 +30,11 @@ public class BotsController {
         return bot.isMovable();
     }
 
-    public final String controlGettingAttackType() {
-        return bot.getAttackType();
+    public final Weapon controlGettingWeaponInHands() {
+        return bot.getWeaponInHands();
+    }
+
+    public final int controlGettingScore() {
+        return bot.getScore();
     }
 }

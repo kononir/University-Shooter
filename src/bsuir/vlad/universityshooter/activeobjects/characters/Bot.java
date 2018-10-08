@@ -1,50 +1,33 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
-import bsuir.vlad.universityshooter.game.Level;
 import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.weapons.Weapon;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Bot extends Character {
     private String type;
     private boolean movable;
-    private String attackType;
+    private int score;
 
     public boolean isMovable() {
         return movable;
-    }
-
-    public String getAttackType() {
-        return attackType;
     }
 
     public String getType() {
         return type;
     }
 
-    public Bot(String type, boolean movable, String attackType) {
-        this.type = type;
-        this.movable = movable;
-        this.attackType = attackType;
+    public int getScore() {
+        return score;
+    }
 
-        weaponInHands = findMatchWeapon();
+    public Bot(String type, Weapon weaponInHands, int score, boolean movable) {
+        this.type = type;
+        this.score = score;
+        this.movable = movable;
+        this.weaponInHands = weaponInHands;
 
         health = 100;
         defence = 0;
-    }
-
-    private Weapon findMatchWeapon() {
-        int first = 0;
-
-        List<Weapon> weaponList = Level.getBotWeaponList();
-
-        List<Weapon> findingWeaponsList
-                = weaponList.stream().filter(weapon -> weapon.getType().startsWith(type))
-                            .collect(Collectors.toList());
-
-        return findingWeaponsList.get(first);
     }
 
     public final Bullet shootFromWeapon() {
