@@ -6,9 +6,14 @@ public abstract class Character {
     protected int health;
     protected int defence;
     protected Weapon weaponInHands;
+    protected boolean dead;
 
     public Weapon getWeaponInHands() {
         return weaponInHands;
+    }
+
+    public boolean isDead() {
+        return dead;
     }
 
     public int getHealth() {
@@ -19,9 +24,7 @@ public abstract class Character {
         return defence;
     }
 
-    public final boolean reduceStatus(int receivedDamage) {
-        boolean isDead;
-
+    public final void reduceStatus(int receivedDamage) {
         if (defence < receivedDamage) {
             defence = 0;
             health += defence - receivedDamage;
@@ -29,12 +32,6 @@ public abstract class Character {
             defence -= receivedDamage;
         }
 
-        if (health <= 0) {
-            isDead = true;
-        } else {
-            isDead = false;
-        }
-
-        return isDead;
+        dead = (health <= 0);
     }
 }

@@ -69,9 +69,7 @@ public class SpriteAnimation extends Transition {
         int animationCycleCount = 1;
         this.setCycleCount(animationCycleCount);
 
-        this.setOnFinished(event -> {
-            unlock();
-        });
+        this.setOnFinished(event -> unlock());
     }
 
     private void unlock() {

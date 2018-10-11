@@ -3,6 +3,7 @@ package bsuir.vlad.universityshooter.activeobjects.characters;
 import bsuir.vlad.universityshooter.game.Profile;
 import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.game.Level;
+import bsuir.vlad.universityshooter.weapons.Gunslinger;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 
 import java.util.ArrayList;
@@ -43,11 +44,10 @@ public class Player extends Character {
 
         Weapon findingWeapon = findWeapon(weaponsType, currentWeaponsList);
 
-        if(findingWeapon != null){
+        if (findingWeapon != null) {
             weaponInHands = findingWeapon;
             weaponsExisting = true;
-        }
-        else {
+        } else {
             weaponsExisting = false;
         }
 
@@ -64,7 +64,7 @@ public class Player extends Character {
         return findingWeaponsList.get(first);
     }
 
-    public final void addNewWeapon(String weaponsType){
+    public final void addNewWeapon(String weaponsType) {
         List<Weapon> allWeaponsList = Level.getPlayerWeaponList();
 
         Weapon newWeapon = findWeapon(weaponsType, allWeaponsList);
@@ -74,10 +74,10 @@ public class Player extends Character {
     }
 
     public final Bullet shootFromWeapon() {
-        Bullet bullet = null;
+        Bullet bullet;
 
-        if(!weaponInHands.isHolderEmpty()) {
-            String gunslingerName = "player";
+        if (!weaponInHands.isHolderEmpty()) {
+            Gunslinger gunslingerName = Gunslinger.PLAYER;
             int bulletDamage = weaponInHands.getDamage();
             int distanceDamage = weaponInHands.getDistance();
             String bulletsType;
@@ -91,12 +91,10 @@ public class Player extends Character {
             bullet = new Bullet(bulletsType, gunslingerName, bulletDamage, distanceDamage);
 
             weaponInHands.reduceHoldersAmmo();
+        } else {
+            bullet = null;
         }
 
         return bullet;
-    }
-
-    public final boolean reloadWeapon() {
-        return weaponInHands.reload();
     }
 }

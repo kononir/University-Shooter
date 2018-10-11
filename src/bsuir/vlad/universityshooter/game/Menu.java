@@ -1,5 +1,6 @@
 package bsuir.vlad.universityshooter.game;
 
+import bsuir.vlad.universityshooter.activeobjects.characters.PlayersView;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -40,18 +41,19 @@ public class Menu {
 
         VBox mainMenuButtons = new VBox();
         mainMenuButtons.getChildren().addAll(newGameButton, leadersTableButton, exitButton);
-        double spaceBetweenButtons = 10.0;
+        double spaceBetweenButtons = 10;
         mainMenuButtons.setSpacing(spaceBetweenButtons);
 
         AnchorPane mainMenu = new AnchorPane(mainMenuButtons);
 
-        int mainMenuWidth = 600;
-        int mainMenuHeight = 400;
+        int mainMenuWidth = 280;
+        int mainMenuHeight = 200;
         mainMenu.setPrefSize(mainMenuWidth, mainMenuHeight);
 
-        double spaceBetweenBorderAndButtons = 30.0;
-        AnchorPane.setTopAnchor(mainMenuButtons, spaceBetweenBorderAndButtons);
-        AnchorPane.setLeftAnchor(mainMenuButtons, spaceBetweenBorderAndButtons);
+        double buttonsLeft = 30;
+        double buttonsTop = 10;
+        AnchorPane.setTopAnchor(mainMenuButtons, buttonsTop);
+        AnchorPane.setLeftAnchor(mainMenuButtons, buttonsLeft);
 
         Scene scene = new Scene(mainMenu);
         scene.getStylesheets().add("css/styles.css");
@@ -128,13 +130,20 @@ public class Menu {
         primaryStage.show();
     }
 
-    private void startNewGame(String difficulty, String profileName) {
+    private void startNewGame(String difficultyString, String profileName) {
+        Difficulty difficulty = Difficulty.valueOf(difficultyString.toUpperCase());
         Profile profile = new Profile(profileName, difficulty);
 
         Level level = new Level(this, profile);
 
         GameSpace gameSpace = level.getGameSpace();
         Scene gameSpaceScene = gameSpace.getScene();
+
+        primaryStage.setOnCloseRequest(closeEvent -> {
+            PlayersView playersView = gameSpace.getPlayersView();
+            Pane playersPane = playersView.getCharacterPane();
+            playersPane.setVisible(false);
+        });
 
         primaryStage.setScene(gameSpaceScene);
         primaryStage.show();
@@ -222,12 +231,12 @@ public class Menu {
         TableView<Profile> scoreTable = new TableView<>();
 
         TableColumn<Profile, String> name = new TableColumn<>("Profile name");
-        TableColumn<Profile, String> difficulty = new TableColumn<>("Difficulty");
+        TableColumn<Profile, Difficulty> difficulty = new TableColumn<>("Difficulty");
         TableColumn<Profile, Long> score = new TableColumn<>("Score");
 
         scoreTable.getColumns().addAll(name, difficulty, score);
 
-        for (TableColumn tc: scoreTable.getColumns()) {
+        for (TableColumn tc : scoreTable.getColumns()) {
             double minWidth = 200;
             tc.setMinWidth(minWidth);
         }
@@ -248,9 +257,7 @@ public class Menu {
         AnchorPane.setBottomAnchor(scoreTable, tableBottom);
 
         Button cancelButton = new Button("Cancel");
-        cancelButton.setOnAction(cancelEvent -> {
-            createMainMenu();
-        });
+        cancelButton.setOnAction(cancelEvent -> createMainMenu());
 
         double buttonRight = 260;
         double buttonBottom = 10;

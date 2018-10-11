@@ -5,7 +5,7 @@ import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 
 public class PlayersController {
-    Player player;
+    private Player player;
 
     public PlayersController(Player player) {
         this.player = player;
@@ -23,18 +23,6 @@ public class PlayersController {
         return player.shootFromWeapon();
     }
 
-    public final int controlGettingWeaponInHandsHoldersNumber() {
-        return player.getWeaponInHands().getHoldersNumber();
-    }
-
-    public final int controlGettingWeaponInHandsHoldersAmmo() {
-        return  player.getWeaponInHands().getHoldersAmmo();
-    }
-
-    public final boolean controlReloading() {
-        return player.reloadWeapon();
-    }
-
     public final int controlGettingHealthLevel() {
         return player.getHealth();
     }
@@ -43,8 +31,12 @@ public class PlayersController {
         return player.getDefence();
     }
 
-    public final boolean controlStatusReducing(int receivedDamage) {
-        return player.reduceStatus(receivedDamage);
+    public final void controlStatusReducing(int receivedDamage) {
+        player.reduceStatus(receivedDamage);
+    }
+
+    public final boolean controlIsDead() {
+        return player.isDead();
     }
 
     public final int controlMelee() {

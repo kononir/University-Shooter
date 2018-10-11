@@ -2,11 +2,8 @@ package bsuir.vlad.universityshooter.weapons;
 
 import bsuir.vlad.universityshooter.activeobjects.Movable;
 import bsuir.vlad.universityshooter.activeobjects.characters.*;
-import bsuir.vlad.universityshooter.game.GameSpace;
-import bsuir.vlad.universityshooter.game.Menu;
 import bsuir.vlad.universityshooter.game.Profile;
 import bsuir.vlad.universityshooter.game.ProfileController;
-import javafx.animation.AnimationTimer;
 import javafx.animation.RotateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -84,21 +81,22 @@ public class BulletsView implements Movable {
 
         int bulletsDamage = bulletsController.controlGettingDamage();
 
-        String gunslingerName = bulletsController.controlGunslinger();
+        Gunslinger gunslingerName = bulletsController.controlGunslinger();
 
-        if (gunslingerName.equals("player")) {
+        if (gunslingerName == Gunslinger.PLAYER) {
             Iterator<BotsView> botsViewIterator = botsViewList.iterator();
 
-            while(botsViewIterator.hasNext()) {
+            while (botsViewIterator.hasNext()) {
                 BotsView botsView = botsViewIterator.next();
 
                 if (botsView.getCharacterPane().getBoundsInParent().intersects(
                         bulletsPane.getBoundsInParent()
                 )) {
                     Bot bot = botsView.getBot();
-                    BotsController botsController = new BotsController(bot);
 
-                    boolean botIsDead = botsController.controlStatusReducing(bulletsDamage);
+                    BotsController botsController = new BotsController(bot);
+                    botsController.controlStatusReducing(bulletsDamage);
+                    boolean botIsDead = botsController.controlIsDead();
 
                     if (botIsDead) {
                         botsView.getCharacterPane().setVisible(false);
@@ -123,9 +121,10 @@ public class BulletsView implements Movable {
                     bulletsPane.getBoundsInParent()
             )) {
                 Player player = playersView.getPlayer();
-                PlayersController playersController = new PlayersController(player);
 
-                boolean playerIsDead = playersController.controlStatusReducing(bulletsDamage);
+                PlayersController playersController = new PlayersController(player);
+                playersController.controlStatusReducing(bulletsDamage);
+                boolean playerIsDead = playersController.controlIsDead();
 
                 if (playerIsDead) {
                     playersView.getCharacterPane().setVisible(false);
@@ -149,7 +148,7 @@ public class BulletsView implements Movable {
         if (!distancePassed) {
             int bulletsPaneAngleInt = (int) bulletsPaneAngle;
 
-            switch(bulletsPaneAngleInt) {
+            switch (bulletsPaneAngleInt) {
                 case 225:
                     bulletsController.controlReducingDistance(maxMovementX, maxMovementY);
 

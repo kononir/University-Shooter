@@ -4,7 +4,6 @@ import bsuir.vlad.universityshooter.game.*;
 import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 import bsuir.vlad.universityshooter.weapons.WeaponsController;
-import javafx.animation.AnimationTimer;
 
 import java.util.Iterator;
 import java.util.List;
@@ -43,7 +42,7 @@ public class PlayersView extends CharacterView {
         Weapon weaponInHands = playersController.controlGettingWeaponInHands();
 
         WeaponsController weaponsController = new WeaponsController(weaponInHands);
-        String typeOfWeaponInHands = weaponsController.controlGettingWeaponType();
+        String typeOfWeaponInHands = weaponsController.controlGettingType();
 
         boolean animationIsNotLock = !currentAnimation.isLock();
 
@@ -60,7 +59,7 @@ public class PlayersView extends CharacterView {
 
         int currentMovementAngleInt = (int) currentMovementAngle;
 
-        switch(currentMovementAngleInt) {
+        switch (currentMovementAngleInt) {
             case 225:
                 moveUp(movementY);
                 moveLeft(movementX);
@@ -100,7 +99,7 @@ public class PlayersView extends CharacterView {
             Weapon weaponInHands = playersController.controlGettingWeaponInHands();
 
             WeaponsController weaponsController = new WeaponsController(weaponInHands);
-            String typeOfWeaponInHands = weaponsController.controlGettingWeaponType();
+            String typeOfWeaponInHands = weaponsController.controlGettingType();
 
             updateAnimation("student_idle_" + typeOfWeaponInHands);
 
@@ -116,7 +115,7 @@ public class PlayersView extends CharacterView {
             Weapon weaponInHands = playersController.controlGettingWeaponInHands();
 
             WeaponsController weaponsController = new WeaponsController(weaponInHands);
-            String attackTypeOfWeaponInHands = weaponsController.controlGettingWeaponAttackType();
+            String attackTypeOfWeaponInHands = weaponsController.controlGettingAttackType();
 
             if (attackTypeOfWeaponInHands.equals("punch")) {
                 meleeAttack();
@@ -131,7 +130,7 @@ public class PlayersView extends CharacterView {
         Weapon weaponInHands = playersController.controlGettingWeaponInHands();
 
         WeaponsController weaponsController = new WeaponsController(weaponInHands);
-        String typeOfWeaponInHands = weaponsController.controlGettingWeaponType();
+        String typeOfWeaponInHands = weaponsController.controlGettingType();
 
         updateAnimation("student_use_" + typeOfWeaponInHands);
 
@@ -148,7 +147,7 @@ public class PlayersView extends CharacterView {
             public void run() {
                 Iterator<BotsView> botsViewIterator = botsViewList.iterator();
 
-                while(botsViewIterator.hasNext()) {
+                while (botsViewIterator.hasNext()) {
                     BotsView botsView = botsViewIterator.next();
 
                     boolean boundsIntersect = botsView.getCharacterPane().getBoundsInParent().intersects(
@@ -160,9 +159,10 @@ public class PlayersView extends CharacterView {
                         int receivedDamage = playersController.controlMelee();
 
                         Bot bot = botsView.getBot();
-                        BotsController botsController = new BotsController(bot);
 
-                        boolean botIsDead = botsController.controlStatusReducing(receivedDamage);
+                        BotsController botsController = new BotsController(bot);
+                        botsController.controlStatusReducing(receivedDamage);
+                        boolean botIsDead = botsController.controlIsDead();
 
                         if (botIsDead) {
                             botsView.getCharacterPane().setVisible(false);
@@ -185,7 +185,7 @@ public class PlayersView extends CharacterView {
             Weapon weaponInHands = playersController.controlGettingWeaponInHands();
 
             WeaponsController weaponsController = new WeaponsController(weaponInHands);
-            String typeOfWeaponInHands = weaponsController.controlGettingWeaponType();
+            String typeOfWeaponInHands = weaponsController.controlGettingType();
 
             updateAnimation("student_use_" + typeOfWeaponInHands);
 
@@ -203,14 +203,15 @@ public class PlayersView extends CharacterView {
         Weapon weaponInHands = playersController.controlGettingWeaponInHands();
 
         WeaponsController weaponsController = new WeaponsController(weaponInHands);
-        String attackTypeOfWeaponInHands = weaponsController.controlGettingWeaponAttackType();
-        String typeOfWeaponInHands = weaponsController.controlGettingWeaponType();
+        String attackTypeOfWeaponInHands = weaponsController.controlGettingAttackType();
+        String typeOfWeaponInHands = weaponsController.controlGettingType();
 
-        boolean weaponHasEnoughHolders = playersController.controlReloading(),
+        boolean weaponHasEnoughHolders = weaponsController.controlHasEnoughHolders(),
                 attackTypeIsNotPunch = !attackTypeOfWeaponInHands.equals("punch"),
                 animationIsNotLock = !currentAnimation.isLock();
 
         if (animationIsNotLock && attackTypeIsNotPunch && weaponHasEnoughHolders) {
+            weaponsController.controlReloading();
             updateAnimation("student_reload_" + typeOfWeaponInHands);
 
             currentAnimation.lock();

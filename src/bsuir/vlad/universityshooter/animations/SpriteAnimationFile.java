@@ -54,7 +54,7 @@ public class SpriteAnimationFile {
                 int firstIndex = 0, lastIndex = 1;
                 String firstSymbol = completeString.substring(firstIndex, lastIndex);
 
-                if(!firstSymbol.equals("\n")) {
+                if (!firstSymbol.equals("\n")) {
                     switch (tagName) {
                         case "animationName":
                             animationName = completeString;
@@ -78,7 +78,7 @@ public class SpriteAnimationFile {
             }
 
             @Override
-            public void endElement(String uri, String localName, String qName) throws SAXException {
+            public void endElement(String uri, String localName, String qName) {
                 if (qName.equals("animation")) {
                     Image playersImage = new Image(getClass().getResourceAsStream(
                             "../resources/animations/" + characterName + "/" + animationName + ".png"

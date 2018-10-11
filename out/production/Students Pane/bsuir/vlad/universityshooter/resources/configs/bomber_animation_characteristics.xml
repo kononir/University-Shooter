@@ -16,7 +16,7 @@
     </animation>
     <animation>
         <animationName>bomber_attack</animationName>
-        <cycleDuration>800</cycleDuration>
+        <cycleDuration>600</cycleDuration>
         <countOfAnimationFrames>13</countOfAnimationFrames>
         <animationFrameHeight>98</animationFrameHeight>
         <animationFrameWidth>101</animationFrameWidth>

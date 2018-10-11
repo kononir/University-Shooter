@@ -46,26 +46,20 @@ public class Weapon {
     }
 
     public void reduceDamage() {
-        int difficultyCoefficient = 1; //находим в файле необходимые данные по типу оружия
+        int difficultyCoefficient = 1;
     }
 
     public void reduceHoldersAmmo() {
         --holdersAmmo;
     }
 
-    public boolean reload() {
-        boolean isEnoughHolders;
+    public boolean hasEnoughHolders() {
+        return (holdersNumber != 0);
+    }
 
-        if (holdersNumber != 0) {
-            holdersAmmo = maxHoldersAmmo;
-            --holdersNumber;
-
-            isEnoughHolders = true;
-        } else {
-            isEnoughHolders = false;
-        }
-
-        return isEnoughHolders;
+    public void reload() {
+        holdersAmmo = maxHoldersAmmo;
+        --holdersNumber;
     }
 
     public void increaseHoldersNumber() {

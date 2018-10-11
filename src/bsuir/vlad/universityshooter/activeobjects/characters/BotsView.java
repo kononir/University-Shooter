@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.util.TimerTask;
 import java.util.concurrent.*;
 
-import static java.lang.Thread.sleep;
-
 public class BotsView extends CharacterView {
     private Bot bot;
     private PlayersView playersView;
@@ -36,7 +34,7 @@ public class BotsView extends CharacterView {
         Weapon weaponInHands = botsController.controlGettingWeaponInHands();
 
         WeaponsController weaponsController = new WeaponsController(weaponInHands);
-        String attackType = weaponsController.controlGettingWeaponAttackType();
+        String attackType = weaponsController.controlGettingAttackType();
 
         if (!currentAnimation.isLock()) {
             switch (attackType) {
@@ -55,9 +53,9 @@ public class BotsView extends CharacterView {
         if (!currentAnimation.isLock()) {
             if (!movable) {
                 idle();
-            } else if (movable && !gunslinger) {
+            } else if (!gunslinger) {
                 moveToPlayer();
-            } else if (movable && gunslinger) {
+            } else {
                 moveToFireLine();
             }
         }
@@ -93,9 +91,10 @@ public class BotsView extends CharacterView {
                         int receivedDamage = botsController.controlMelee();
 
                         Player player = playersView.getPlayer();
-                        PlayersController playersController = new PlayersController(player);
 
-                        boolean playerIsDead = playersController.controlStatusReducing(receivedDamage);
+                        PlayersController playersController = new PlayersController(player);
+                        playersController.controlStatusReducing(receivedDamage);
+                        boolean playerIsDead = playersController.controlIsDead();
 
                         if (playerIsDead) {
                             playersView.getCharacterPane().setVisible(false);
@@ -139,7 +138,7 @@ public class BotsView extends CharacterView {
         double playerPainYBorder = playerPainY + playerPainHeight;
 
         boolean botStandsHorizontal
-                = (botsPainYMiddle >=  playerPainY) && (botsPainYMiddle <= playerPainYBorder);
+                = (botsPainYMiddle >= playerPainY) && (botsPainYMiddle <= playerPainYBorder);
         boolean botStandsVertical
                 = (botsPainXMiddle >= playerPainX) && (botsPainXMiddle <= playerPainXBorder);
 
@@ -244,7 +243,7 @@ public class BotsView extends CharacterView {
         double playerPainYBorder = playerPainY + playerPainHeight;
 
         boolean botStandsHorizontal
-                = (botsPainYMiddle >=  playerPainY) && (botsPainYMiddle <= playerPainYBorder);
+                = (botsPainYMiddle >= playerPainY) && (botsPainYMiddle <= playerPainYBorder);
         boolean botStandsVertical
                 = (botsPainXMiddle >= playerPainX) && (botsPainXMiddle <= playerPainXBorder);
 

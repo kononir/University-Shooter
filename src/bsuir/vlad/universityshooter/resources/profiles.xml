@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<profiles>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><profiles>
     <profile>
         <name>Joker</name>
         <difficulty>hard</difficulty>
@@ -10,4 +9,4 @@
         <difficulty>medium</difficulty>
         <score>200</score>
     </profile>
-</profiles>
+<profile><name>Player</name><difficulty>medium</difficulty><score>240</score></profile><profile><name>Player</name><difficulty>medium</difficulty><score>120</score></profile></profiles>

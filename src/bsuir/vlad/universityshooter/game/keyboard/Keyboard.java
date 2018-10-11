@@ -1,6 +1,5 @@
 package bsuir.vlad.universityshooter.game.keyboard;
 
-import bsuir.vlad.universityshooter.activeobjects.characters.BotsGenerator;
 import bsuir.vlad.universityshooter.activeobjects.characters.PlayersView;
 import bsuir.vlad.universityshooter.game.GameSpace;
 import bsuir.vlad.universityshooter.game.Level;

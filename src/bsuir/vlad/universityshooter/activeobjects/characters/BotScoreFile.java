@@ -48,7 +48,7 @@ public class BotScoreFile {
                 int firstIndex = 0, lastIndex = 1;
                 String firstSymbol = completeString.substring(firstIndex, lastIndex);
 
-                if(!firstSymbol.equals("\n")) {
+                if (!firstSymbol.equals("\n")) {
                     switch (tagName) {
                         case "type":
                             type = completeString;

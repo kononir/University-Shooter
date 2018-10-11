@@ -1,6 +1,7 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
 import bsuir.vlad.universityshooter.game.Level;
+import bsuir.vlad.universityshooter.game.Profile;
 
 import java.util.Random;
 import java.util.TimerTask;
@@ -28,7 +29,10 @@ public class BotsGenerator {
                 int botY = generateBotY();
                 boolean movable = generateAbilityToMove();
 
-                level.addBot(botType, botX, botY, movable);
+                Profile profile = level.getProfile();
+                int coefficient = profile.createCoefficient();
+
+                level.addBot(botType, botX, botY, movable, coefficient);
             }
         }, startingAt, generationSpeed, timeUnit);
     }
@@ -71,7 +75,7 @@ public class BotsGenerator {
         int paneWidth = (int) level.getGameSpace().getPane().getPrefWidth();
         int indent = 100;
 
-        int min = indent, max = paneWidth - indent;
+        int min = 0, max = paneWidth - indent;
 
         return min + random.nextInt(max - min + 1);
     }
@@ -82,7 +86,7 @@ public class BotsGenerator {
         int paneHeight = (int) level.getGameSpace().getPane().getPrefHeight();
         int indent = 150;
 
-        int min = indent, max = paneHeight - indent;
+        int min = 0, max = paneHeight - indent;
 
         return min + random.nextInt(max - min + 1);
     }

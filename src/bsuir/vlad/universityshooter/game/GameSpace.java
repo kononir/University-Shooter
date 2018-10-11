@@ -43,10 +43,6 @@ public class GameSpace {
         return playersView;
     }
 
-    public List<BotsView> getBotsViewList() {
-        return botsViewList;
-    }
-
     public GameSpace(Menu menu) {
         this.menu = menu;
 

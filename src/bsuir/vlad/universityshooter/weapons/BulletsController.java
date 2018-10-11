@@ -1,7 +1,7 @@
 package bsuir.vlad.universityshooter.weapons;
 
 public class BulletsController {
-    Bullet bullet;
+    private Bullet bullet;
 
     public BulletsController(Bullet bullet) {
         this.bullet = bullet;
@@ -15,7 +15,7 @@ public class BulletsController {
         bullet.reduceDistance(movementX, movementY);
     }
 
-    public final String controlGunslinger() {
+    public final Gunslinger controlGunslinger() {
         return bullet.getGunslingerName();
     }
 

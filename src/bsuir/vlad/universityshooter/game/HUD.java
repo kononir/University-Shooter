@@ -2,6 +2,8 @@ package bsuir.vlad.universityshooter.game;
 
 import bsuir.vlad.universityshooter.activeobjects.characters.Player;
 import bsuir.vlad.universityshooter.activeobjects.characters.PlayersController;
+import bsuir.vlad.universityshooter.weapons.Weapon;
+import bsuir.vlad.universityshooter.weapons.WeaponsController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -88,7 +90,7 @@ public class HUD {
         Rectangle healthBar = (Rectangle) statusBarsVBox.getChildren().get(0);
         int displayedHealth = (int) healthBar.getWidth();
 
-        if(health != displayedHealth) {
+        if (health != displayedHealth) {
             healthBar.setWidth(health);
         }
 
@@ -97,7 +99,7 @@ public class HUD {
         Rectangle defenceBar = (Rectangle) statusBarsVBox.getChildren().get(1);
         int displayedDefence = (int) defenceBar.getWidth();
 
-        if(defence != displayedDefence) {
+        if (defence != displayedDefence) {
             defenceBar.setWidth(defence);
         }
     }
@@ -117,10 +119,12 @@ public class HUD {
     private void updateAmmoLabel() {
         ammoLabel.toFront();
 
-        PlayersController controller = new PlayersController(player);
+        PlayersController playersController = new PlayersController(player);
+        Weapon weaponInHands = playersController.controlGettingWeaponInHands();
 
-        int holdersNumber = controller.controlGettingWeaponInHandsHoldersNumber();
-        int holdersAmmo = controller.controlGettingWeaponInHandsHoldersAmmo();
+        WeaponsController weaponsController = new WeaponsController(weaponInHands);
+        int holdersNumber = weaponsController.controlGettingHoldersNumber();
+        int holdersAmmo = weaponsController.controlGettingHoldersAmmo();
 
         ammoLabel.setText(holdersAmmo + "/" + holdersNumber);
     }

@@ -4,7 +4,7 @@ import bsuir.vlad.universityshooter.weapons.Bullet;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 
 public class BotsController {
-    Bot bot;
+    private Bot bot;
 
     public BotsController(Bot bot) {
         this.bot = bot;
@@ -22,8 +22,12 @@ public class BotsController {
         return bot.shootFromWeapon();
     }
 
-    public final boolean controlStatusReducing(int receivedDamage) {
-        return bot.reduceStatus(receivedDamage);
+    public final void controlStatusReducing(int receivedDamage) {
+        bot.reduceStatus(receivedDamage);
+    }
+
+    public final boolean controlIsDead() {
+        return bot.isDead();
     }
 
     public final boolean controlGettingMovable() {

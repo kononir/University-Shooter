@@ -48,7 +48,7 @@ public class ProfileFile {
             profileNode.appendChild(name);
 
             Element difficulty = doc.createElement("difficulty");
-            difficulty.setTextContent(profile.getDifficulty());
+            difficulty.setTextContent(String.valueOf(profile.getDifficulty()));
             profileNode.appendChild(difficulty);
 
             Element score = doc.createElement("score");
@@ -72,7 +72,7 @@ public class ProfileFile {
             String tagName;
 
             String name;
-            String difficulty;
+            Difficulty difficulty;
             long score;
 
             @Override
@@ -104,7 +104,7 @@ public class ProfileFile {
                             name = completeString;
                             break;
                         case "difficulty":
-                            difficulty = completeString;
+                            difficulty = Difficulty.valueOf(completeString);
                             break;
                         case "score":
                             score = new Integer(completeString);

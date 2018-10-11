@@ -22,6 +22,10 @@ public class Level {
     private static List<Bullet> bulletList;
     private static GameSpace gameSpace;
 
+    public Profile getProfile() {
+        return profile;
+    }
+
     public GameSpace getGameSpace() {
         return gameSpace;
     }
@@ -64,11 +68,6 @@ public class Level {
 
         botsGenerator = new BotsGenerator(this);
         botsGenerator.start(generationSpeed, TimeUnit.SECONDS);
-
-        //addBot("zombie_teacher", 300, 200, true);
-        //addBot("zombie_teacher", 400, 100, true);
-        //addBot("bomber", 500, 300, true);
-        //addBot("soldier", 300, 300, true);
     }
 
     private void addPlayerWithHUD(double playerX, double playerY) {
@@ -78,11 +77,11 @@ public class Level {
         gameSpace.addHUD(player);
     }
 
-    public final void addBot(String type, double botX, double botY, boolean movable) {
+    public final void addBot(String type, double botX, double botY, boolean movable, int difficultyCoefficient) {
         Weapon weaponInHands = findMatchWeapon(type);
         int score = findMatchScore(type);
 
-        Bot bot = new Bot(type, weaponInHands, score, movable);
+        Bot bot = new Bot(type, weaponInHands, score, movable, difficultyCoefficient);
 
         gameSpace.addBotsView(bot, botX, botY);
     }
