@@ -1,9 +1,10 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
+import bsuir.vlad.universityshooter.game.*;
 import bsuir.vlad.universityshooter.weapons.Bullet;
-import bsuir.vlad.universityshooter.game.Level;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 import bsuir.vlad.universityshooter.weapons.WeaponsController;
+import javafx.animation.AnimationTimer;
 
 import java.util.Iterator;
 import java.util.List;

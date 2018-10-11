@@ -74,7 +74,7 @@ public class SpriteAnimation extends Transition {
         });
     }
 
-    public final void unlock() {
+    private void unlock() {
         this.lockFlag = false;
     }
 

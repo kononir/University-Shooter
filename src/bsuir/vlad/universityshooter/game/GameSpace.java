@@ -13,13 +13,15 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GameSpace {
-    private Pane pane;
+    private final Pane pane;
     private Scene scene;
     private Keyboard keyboard;
     private HUD hud;
+    private Menu menu;
     private PlayersView playersView;
     private List<BulletsView> bulletsViewList;
-    private List<BotsView> botsViewList;
+    private final List<BotsView> botsViewList;
+    private AnimationTimer updatingTimer;
 
     public Scene getScene() {
         return scene;
@@ -29,7 +31,25 @@ public class GameSpace {
         return pane;
     }
 
-    public GameSpace() {
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public AnimationTimer getUpdatingTimer() {
+        return updatingTimer;
+    }
+
+    public PlayersView getPlayersView() {
+        return playersView;
+    }
+
+    public List<BotsView> getBotsViewList() {
+        return botsViewList;
+    }
+
+    public GameSpace(Menu menu) {
+        this.menu = menu;
+
         pane = new Pane();
         int PaneWidth = 600;
         int PaneHeight = 400;
@@ -40,13 +60,13 @@ public class GameSpace {
         bulletsViewList = new ArrayList<>();
         botsViewList = new ArrayList<>();
 
-        AnimationTimer animTimer = new AnimationTimer() {
+        updatingTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 updateScene();
             }
         };
-        animTimer.start();
+        updatingTimer.start();
     }
 
     public void addHUD(Player player) {
@@ -54,7 +74,7 @@ public class GameSpace {
     }
 
     public void addKeyboard() {
-        keyboard = new Keyboard(scene, playersView);
+        keyboard = new Keyboard(this);
     }
 
     public void addPlayersView(Player player, double playerX, double playerY) {
@@ -79,24 +99,13 @@ public class GameSpace {
         String botType = controller.controlGettingBotType();
 
         BotsView botsView = new BotsView(bot, botX, botY, botType, playersView);
-        botsViewList.add(botsView);
 
-        Pane botsPane = botsView.getCharacterPane();
-        pane.getChildren().add(botsPane);
-
-        double paneWidth = pane.getPrefWidth();
-        double paneHeight = pane.getPrefHeight();
-
-        double x = paneWidth / 2;
-        double y = paneHeight / 2;
-
-        botsPane.setTranslateX(botX);
-        botsPane.setTranslateY(botY);
+        synchronized (botsViewList) {
+            botsViewList.add(botsView);
+        }
     }
 
     private void updateScene() {
-        hud.updateHUD();
-
         keyboard.updateKeyboard();
 
         Iterator<BulletsView> bulletsViewIterator = bulletsViewList.iterator();
@@ -111,16 +120,36 @@ public class GameSpace {
             }
         }
 
-        Iterator<BotsView> botsViewIterator = botsViewList.iterator();
+        synchronized (botsViewList) {
+            Iterator<BotsView> botsViewIterator = botsViewList.iterator();
 
-        while (botsViewIterator.hasNext()) {
-            BotsView botsView = botsViewIterator.next();
+            while (botsViewIterator.hasNext()) {
+                BotsView botsView = botsViewIterator.next();
 
-            if (!botsView.getCharacterPane().isVisible()) {
-                botsViewIterator.remove();
-            } else {
-                botsView.updateBotsView();
+                Pane botsPane = botsView.getCharacterPane();
+
+                if (!botsPane.isVisible()) {
+                    botsViewIterator.remove();
+                } else {
+                    pane.getChildren().remove(botsPane);
+                    pane.getChildren().add(botsPane);
+
+                    botsView.updateBotsView();
+                }
             }
         }
+
+        if (!playersView.getCharacterPane().isVisible()) {
+            updatingTimer.stop();
+            Level.getBotsGenerator().shutdown();
+
+            Player player = playersView.getPlayer();
+            PlayersController playersController = new PlayersController(player);
+            Profile profile = playersController.controlGettingProfile();
+
+            menu.createGameOverScene(profile);
+        }
+
+        hud.updateHUD();
     }
 }

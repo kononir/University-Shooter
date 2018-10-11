@@ -4,22 +4,23 @@ import bsuir.vlad.universityshooter.game.Level;
 
 import java.util.Random;
 import java.util.TimerTask;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class BotsGenerator {
     private Level level;
-    private ScheduledThreadPoolExecutor executor;
+    private ScheduledExecutorService executor;
 
     public BotsGenerator(Level level) {
         this.level = level;
     }
 
     public void start(long generationSpeed, TimeUnit timeUnit) {
-        int corePoolSize = 1;
+        long startingAt = 0;
 
-        executor = new ScheduledThreadPoolExecutor(corePoolSize);
-        executor.schedule(new TimerTask() {
+        executor = Executors.newSingleThreadScheduledExecutor();
+        executor.scheduleWithFixedDelay(new TimerTask() {
             @Override
             public void run() {
                 String botType = generateBotType();
@@ -29,7 +30,7 @@ public class BotsGenerator {
 
                 level.addBot(botType, botX, botY, movable);
             }
-        }, generationSpeed, timeUnit);
+        }, startingAt, generationSpeed, timeUnit);
     }
 
     public void shutdown() {
@@ -79,7 +80,7 @@ public class BotsGenerator {
         Random random = new Random(System.currentTimeMillis());
 
         int paneHeight = (int) level.getGameSpace().getPane().getPrefHeight();
-        int indent = 100;
+        int indent = 150;
 
         int min = indent, max = paneHeight - indent;
 

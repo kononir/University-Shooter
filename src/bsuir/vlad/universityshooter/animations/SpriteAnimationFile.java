@@ -101,11 +101,9 @@ public class SpriteAnimationFile {
             }
         };
 
-        SAXParserFactory parserFactory = SAXParserFactory.newInstance();
-        SAXParser parser = null;
-
         try {
-            parser = parserFactory.newSAXParser();
+            SAXParserFactory parserFactory = SAXParserFactory.newInstance();
+            SAXParser parser = parserFactory.newSAXParser();
             parser.parse(filePath, handler);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();

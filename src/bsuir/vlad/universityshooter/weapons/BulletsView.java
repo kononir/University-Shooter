@@ -2,8 +2,11 @@ package bsuir.vlad.universityshooter.weapons;
 
 import bsuir.vlad.universityshooter.activeobjects.Movable;
 import bsuir.vlad.universityshooter.activeobjects.characters.*;
+import bsuir.vlad.universityshooter.game.GameSpace;
+import bsuir.vlad.universityshooter.game.Menu;
 import bsuir.vlad.universityshooter.game.Profile;
 import bsuir.vlad.universityshooter.game.ProfileController;
+import javafx.animation.AnimationTimer;
 import javafx.animation.RotateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,6 +36,7 @@ public class BulletsView implements Movable {
         this.bullet = bullet;
         this.playersView = playersView;
         this.botsViewList = botsViewList;
+
 
         BulletsController controller = new BulletsController(bullet);
         String bulletsType = controller.controlGettingType();
@@ -124,7 +128,7 @@ public class BulletsView implements Movable {
                 boolean playerIsDead = playersController.controlStatusReducing(bulletsDamage);
 
                 if (playerIsDead) {
-
+                    playersView.getCharacterPane().setVisible(false);
                 }
 
                 bulletsPane.setVisible(false);

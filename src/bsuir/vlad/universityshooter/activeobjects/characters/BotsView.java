@@ -53,12 +53,12 @@ public class BotsView extends CharacterView {
         boolean gunslinger = attackType.equals("shoot");
 
         if (!currentAnimation.isLock()) {
-            if (movable && !gunslinger) {
+            if (!movable) {
+                idle();
+            } else if (movable && !gunslinger) {
                 moveToPlayer();
             } else if (movable && gunslinger) {
                 moveToFireLine();
-            } else if (!movable) {
-                idle();
             }
         }
     }
@@ -81,6 +81,12 @@ public class BotsView extends CharacterView {
             executor.schedule(new TimerTask() {
                 @Override
                 public void run() {
+                    boolean botExploded = attackType.equals("explode");
+
+                    if (botExploded) {
+                        characterPane.setVisible(false);
+                    }
+
                     if (isBoundsIntersect()) {
                         BotsController botsController = new BotsController(bot);
 
@@ -89,13 +95,11 @@ public class BotsView extends CharacterView {
                         Player player = playersView.getPlayer();
                         PlayersController playersController = new PlayersController(player);
 
-                        playersController.controlStatusReducing(receivedDamage);
-                    }
+                        boolean playerIsDead = playersController.controlStatusReducing(receivedDamage);
 
-                    boolean botExploded = attackType.equals("explode");
-
-                    if (botExploded) {
-                        characterPane.setVisible(false);
+                        if (playerIsDead) {
+                            playersView.getCharacterPane().setVisible(false);
+                        }
                     }
 
                     executor.shutdown();

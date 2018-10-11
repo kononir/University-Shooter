@@ -1,24 +1,33 @@
 package bsuir.vlad.universityshooter.game.keyboard;
 
+import bsuir.vlad.universityshooter.activeobjects.characters.BotsGenerator;
 import bsuir.vlad.universityshooter.activeobjects.characters.PlayersView;
+import bsuir.vlad.universityshooter.game.GameSpace;
+import bsuir.vlad.universityshooter.game.Level;
+import bsuir.vlad.universityshooter.game.Menu;
+import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
 public class Keyboard {
     private KeysMap keysMap;
     private Scene scene;
-    PlayersView playersView;
+    private AnimationTimer updatingTimer;
+    private Menu menu;
+    private PlayersView playersView;
 
-    public Keyboard(Scene scene, PlayersView playersView) {
-        this.scene = scene;
-        this.playersView = playersView;
+    public Keyboard(GameSpace gameSpace) {
+        scene = gameSpace.getScene();
+        updatingTimer = gameSpace.getUpdatingTimer();
+        menu = gameSpace.getMenu();
+        playersView = gameSpace.getPlayersView();
 
         keysMap = new KeysMap();
 
         setOnKey();
     }
 
-    public final void setOnKey() {
+    private void setOnKey() {
         scene.setOnKeyPressed(key -> {
             KeyCode keyCode = key.getCode();
             keysMap.putTrue(keyCode);
@@ -31,6 +40,12 @@ public class Keyboard {
     }
 
     public final void updateKeyboard() {
+        if (keysMap.isPressed(KeyCode.ESCAPE)) {
+            updatingTimer.stop();
+            Level.getBotsGenerator().shutdown();
+            menu.createMainMenu();
+        }
+
         if (keysMap.isPressed(KeyCode.DIGIT1)) {
             String weaponType = "knife";
             playersView.updateCurrentWeaponView(weaponType);

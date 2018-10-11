@@ -50,10 +50,10 @@ public class HUD {
         scoreLabel.setPadding(new Insets(insetSize));
         scoreLabel.setTextFill(textColor);
 
-        int labelMaxHeight = 20;
+        int labelMaxHeight = 25;
         ammoLabel = new Label();
         ammoLabel.setOpacity(hudOpacity);
-        ammoLabel.setMaxHeight(labelMaxWidth);
+        ammoLabel.setMaxHeight(labelMaxHeight);
         ammoLabel.setFont(Font.font(fontSize));
         ammoLabel.setPadding(new Insets(insetSize));
         ammoLabel.setTextFill(textColor);

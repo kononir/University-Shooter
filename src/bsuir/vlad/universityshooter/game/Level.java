@@ -12,10 +12,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class Level {
-    private String name;
     private Player player;
     private Profile profile;
     private List<Bot> botList;
+    private static BotsGenerator botsGenerator;
     private HashMap<String, Integer> scoreMap;
     private static List<Weapon> playerWeaponList;
     private List<Weapon> botWeaponList;
@@ -26,12 +26,15 @@ public class Level {
         return gameSpace;
     }
 
+    public static BotsGenerator getBotsGenerator() {
+        return botsGenerator;
+    }
+
     public static List<Weapon> getPlayerWeaponList() {
         return playerWeaponList;
     }
 
-    public Level(String name, Profile profile) {
-        this.name = name;
+    public Level(Menu menu, Profile profile) {
         this.profile = profile;
 
         String playerWeaponsFilePath = "src/bsuir/vlad/universityshooter/resources/configs/player_weapon_characteristics.xml";
@@ -46,7 +49,7 @@ public class Level {
         botList = new ArrayList<>();
         bulletList = new ArrayList<>();
 
-        gameSpace = new GameSpace();
+        gameSpace = new GameSpace(menu);
 
         initialize();
     }
@@ -59,10 +62,10 @@ public class Level {
 
         long generationSpeed = 5;
 
-        BotsGenerator botsGenerator = new BotsGenerator(this);
+        botsGenerator = new BotsGenerator(this);
         botsGenerator.start(generationSpeed, TimeUnit.SECONDS);
 
-        addBot("zombie_teacher", 300, 200, true);
+        //addBot("zombie_teacher", 300, 200, true);
         //addBot("zombie_teacher", 400, 100, true);
         //addBot("bomber", 500, 300, true);
         //addBot("soldier", 300, 300, true);
