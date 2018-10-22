@@ -70,7 +70,7 @@ public class GameSpace {
     }
 
     public void addKeyboard() {
-        keyboard = new Keyboard(this);
+        keyboard = new Keyboard(scene, playersView);
     }
 
     public void addPlayersView(Player player, double playerX, double playerY) {

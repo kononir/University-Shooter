@@ -185,7 +185,7 @@ public class Menu {
 
         Button saveButton = new Button("Save Score");
         saveButton.setOnAction(backToMainMenuEvent -> {
-            String filePath = "src/bsuir/vlad/universityshooter/resources/profiles.xml";
+            String filePath = "./src/resources/profiles.xml";
             ProfileFile profileFile = new ProfileFile(filePath);
             profileFile.modify(profile);
 
@@ -245,7 +245,7 @@ public class Menu {
         difficulty.setCellValueFactory(new PropertyValueFactory<>("difficulty"));
         score.setCellValueFactory(new PropertyValueFactory<>("score"));
 
-        String filePath = "src/bsuir/vlad/universityshooter/resources/profiles.xml";
+        String filePath = "./src/resources/profiles.xml";
         ProfileFile profileFile = new ProfileFile(filePath);
 
         List<Profile> profileList = profileFile.load();

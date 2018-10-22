@@ -36,7 +36,7 @@ public abstract class CharacterView implements Movable, Rotatable, Animated {
 
         characterPaneAngle = 0;
 
-        String animationsFilePath = "src/bsuir/vlad/universityshooter/resources/configs/"
+        String animationsFilePath = "./src/resources/configs/"
                 + characterName + "_animation_characteristics.xml";
 
         loadAnimation(animationsFilePath);

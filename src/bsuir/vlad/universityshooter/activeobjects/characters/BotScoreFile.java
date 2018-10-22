@@ -8,14 +8,15 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 public class BotScoreFile {
-    private String filePath;
+    private InputStream fileStream;
     private HashMap<String, Integer> scoreMap;
 
-    public BotScoreFile(String filePath) {
-        this.filePath = filePath;
+    public BotScoreFile(InputStream fileStream) {
+        this.fileStream = fileStream;
     }
 
     public final HashMap<String, Integer> loadBotsScore() {
@@ -78,7 +79,7 @@ public class BotScoreFile {
         try {
             SAXParserFactory parserFactory = SAXParserFactory.newInstance();
             SAXParser parser = parserFactory.newSAXParser();
-            parser.parse(filePath, handler);
+            parser.parse(fileStream, handler);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }

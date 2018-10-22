@@ -8,15 +8,16 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WeaponsFile {
-    private String filePath;
+    private InputStream fileStream;
     private List<Weapon> weaponsList;
 
-    public WeaponsFile(String filePath) {
-        this.filePath = filePath;
+    public WeaponsFile(InputStream fileStream) {
+        this.fileStream = fileStream;
     }
 
     public final List<Weapon> loadWeapons() {
@@ -96,7 +97,7 @@ public class WeaponsFile {
         try {
             SAXParserFactory parserFactory = SAXParserFactory.newInstance();
             SAXParser parser = parserFactory.newSAXParser();
-            parser.parse(filePath, handler);
+            parser.parse(fileStream, handler);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }

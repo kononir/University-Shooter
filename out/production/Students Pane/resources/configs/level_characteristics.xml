@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<levels>
+    <level>
+        <number>1</number>
+        <name>classroom</name>
+        <bots>
+            <number>10</number>
+            <types>
+                <type>zombie_teacher</type>
+            </types>
+        </bots>
+    </level>
+    <level>
+        <number>2</number>
+        <name>lecture_theatre</name>
+        <bots>
+            <number>15</number>
+            <types>
+                <type>zombie_teacher</type>
+            </types>
+        </bots>
+    </level>
+    <level>
+        <number>3</number>
+        <name>sports_hall</name>
+        <bots>
+            <number>20</number>
+            <types>
+                <type>zombie_teacher</type>
+            </types>
+        </bots>
+    </level>
+</levels>

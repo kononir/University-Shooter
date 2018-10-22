@@ -167,6 +167,13 @@ public class PlayersView extends CharacterView {
                         if (botIsDead) {
                             botsView.getCharacterPane().setVisible(false);
                             botsViewIterator.remove();
+
+                            Profile profile = playersController.controlGettingProfile();
+
+                            int newScore = botsController.controlGettingScore();
+
+                            ProfileController profileController = new ProfileController(profile);
+                            profileController.controlIncreasingScore(newScore);
                         }
                     }
                 }

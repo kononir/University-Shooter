@@ -11,15 +11,11 @@ import javafx.scene.input.KeyCode;
 public class Keyboard {
     private KeysMap keysMap;
     private Scene scene;
-    private AnimationTimer updatingTimer;
-    private Menu menu;
     private PlayersView playersView;
 
-    public Keyboard(GameSpace gameSpace) {
-        scene = gameSpace.getScene();
-        updatingTimer = gameSpace.getUpdatingTimer();
-        menu = gameSpace.getMenu();
-        playersView = gameSpace.getPlayersView();
+    public Keyboard(Scene scene, PlayersView playersView) {
+        this.scene = scene;
+        this.playersView = playersView;
 
         keysMap = new KeysMap();
 
@@ -40,9 +36,7 @@ public class Keyboard {
 
     public final void updateKeyboard() {
         if (keysMap.isPressed(KeyCode.ESCAPE)) {
-            updatingTimer.stop();
-            Level.getBotsGenerator().shutdown();
-            menu.createMainMenu();
+            playersView.getCharacterPane().setVisible(false);
         }
 
         if (keysMap.isPressed(KeyCode.DIGIT1)) {

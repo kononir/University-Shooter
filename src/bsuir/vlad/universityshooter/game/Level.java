@@ -41,14 +41,20 @@ public class Level {
     public Level(Menu menu, Profile profile) {
         this.profile = profile;
 
-        String playerWeaponsFilePath = "src/bsuir/vlad/universityshooter/resources/configs/player_weapon_characteristics.xml";
-        playerWeaponList = new WeaponsFile(playerWeaponsFilePath).loadWeapons();
+        String playerWeaponsFilePath = "../resources/configs/player_weapon_characteristics.xml";
+        playerWeaponList = new WeaponsFile(
+                getClass().getResourceAsStream(playerWeaponsFilePath)
+        ).loadWeapons();
 
-        String botWeaponsFilePath = "src/bsuir/vlad/universityshooter/resources/configs/bot_weapon_characteristics.xml";
-        botWeaponList = new WeaponsFile(botWeaponsFilePath).loadWeapons();
+        String botWeaponsFilePath = "../resources/configs/bot_weapon_characteristics.xml";
+        botWeaponList = new WeaponsFile(
+                getClass().getResourceAsStream(botWeaponsFilePath)
+        ).loadWeapons();
 
-        String botScoreFilePath = "src/bsuir/vlad/universityshooter/resources/configs/bot_score.xml";
-        scoreMap = new BotScoreFile(botScoreFilePath).loadBotsScore();
+        String botScoreFilePath = "../resources/configs/bot_score.xml";
+        scoreMap = new BotScoreFile(
+                getClass().getResourceAsStream(botScoreFilePath)
+        ).loadBotsScore();
 
         botList = new ArrayList<>();
         bulletList = new ArrayList<>();
