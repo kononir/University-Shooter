@@ -26,7 +26,7 @@ public class BulletsView implements Movable {
 
     public BulletsView(
             Bullet bullet,
-            CharacterView gunslingerView,
+            CharacterView gunslingersView,
             PlayersView playersView,
             List<BotsView> botsViewList
     ) {
@@ -46,8 +46,8 @@ public class BulletsView implements Movable {
         bulletsPane = new Pane();
         bulletsPane.getChildren().add(bulletsImageView);
 
-        setRelativeLocation(gunslingerView);
-        setRelativeAngle(gunslingerView);
+        setRelativeLocation(gunslingersView);
+        setRelativeAngle(gunslingersView);
     }
 
     private void setRelativeLocation(CharacterView gunslingerView) {

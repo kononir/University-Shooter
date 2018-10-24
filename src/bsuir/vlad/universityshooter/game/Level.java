@@ -59,7 +59,8 @@ public class Level {
         botList = new ArrayList<>();
         bulletList = new ArrayList<>();
 
-        gameSpace = new GameSpace(menu);
+        LevelsController levelsController = new LevelsController(menu);
+        gameSpace = levelsController.controlGettingGameSpace();
 
         initialize();
     }
@@ -68,7 +69,7 @@ public class Level {
         double playerX = 0;
         double playerY = 0;
 
-        addPlayerWithHUD(playerX, playerY);
+        addPlayer(playerX, playerY);
 
         long generationSpeed = 5;
 
@@ -76,11 +77,11 @@ public class Level {
         botsGenerator.start(generationSpeed, TimeUnit.SECONDS);
     }
 
-    private void addPlayerWithHUD(double playerX, double playerY) {
+    private void addPlayer(double playerX, double playerY) {
         player = new Player(profile);
 
-        gameSpace.addPlayersView(player, playerX, playerY);
-        gameSpace.addHUD(player);
+        LevelsController levelsController = new LevelsController(gameSpace);
+        levelsController.controlAddingPlayersView(player, playerX, playerY);
     }
 
     public final void addBot(String type, double botX, double botY, boolean movable, int difficultyCoefficient) {
@@ -89,12 +90,16 @@ public class Level {
 
         Bot bot = new Bot(type, weaponInHands, score, movable, difficultyCoefficient);
 
-        gameSpace.addBotsView(bot, botX, botY);
+        LevelsController levelsController = new LevelsController(gameSpace);
+        levelsController.controlAddingBotsView(bot, botX, botY);
     }
 
-    public static void addBullet(Bullet bullet, CharacterView gunslingerView) {
+    public static void addBullet(Bullet bullet, CharacterView gunslingersView) {
         bulletList.add(bullet);
-        gameSpace.addBulletsView(bullet, gunslingerView);
+
+        LevelsController levelsController = new LevelsController(gameSpace);
+
+        levelsController.controlAddingBulletsView(bullet, gunslingersView);
     }
 
     private Weapon findMatchWeapon(String type) {

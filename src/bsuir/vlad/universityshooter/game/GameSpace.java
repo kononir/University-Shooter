@@ -77,13 +77,14 @@ public class GameSpace {
         playersView = new PlayersView(player, playerX, playerY, botsViewList);
 
         addKeyboard();
+        addHUD(player);
 
         Pane playersPane = playersView.getCharacterPane();
         pane.getChildren().add(playersPane);
     }
 
-    public void addBulletsView(Bullet bullet, CharacterView gunslingerView) {
-        BulletsView bulletsView = new BulletsView(bullet, gunslingerView, playersView, botsViewList);
+    public void addBulletsView(Bullet bullet, CharacterView gunslingersView) {
+        BulletsView bulletsView = new BulletsView(bullet, gunslingersView, playersView, botsViewList);
         bulletsViewList.add(bulletsView);
 
         Pane bulletsPane = bulletsView.getBulletsPane();

@@ -46,8 +46,8 @@ public class Menu {
 
         AnchorPane mainMenu = new AnchorPane(mainMenuButtons);
 
-        int mainMenuWidth = 280;
-        int mainMenuHeight = 200;
+        int mainMenuWidth = 290;
+        int mainMenuHeight = 230;
         mainMenu.setPrefSize(mainMenuWidth, mainMenuHeight);
 
         double buttonsLeft = 30;
