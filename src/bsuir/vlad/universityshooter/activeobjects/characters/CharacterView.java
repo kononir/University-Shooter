@@ -1,10 +1,10 @@
 package bsuir.vlad.universityshooter.activeobjects.characters;
 
-import bsuir.vlad.universityshooter.animations.Animated;
+import bsuir.vlad.universityshooter.activeobjects.animations.Animated;
 import bsuir.vlad.universityshooter.activeobjects.Movable;
 import bsuir.vlad.universityshooter.activeobjects.Rotatable;
-import bsuir.vlad.universityshooter.animations.SpriteAnimation;
-import bsuir.vlad.universityshooter.animations.SpriteAnimationFile;
+import bsuir.vlad.universityshooter.activeobjects.animations.SpriteAnimation;
+import bsuir.vlad.universityshooter.activeobjects.animations.SpriteAnimationFile;
 import javafx.animation.RotateTransition;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -36,15 +36,16 @@ public abstract class CharacterView implements Movable, Rotatable, Animated {
 
         characterPaneAngle = 0;
 
-        String animationsFilePath = "./src/resources/configs/"
-                + characterName + "_animation_characteristics.xml";
+        String animationsFilePath = "resources/configs/" + characterName + "_animation_characteristics.xml";
 
         loadAnimation(animationsFilePath);
     }
 
     @Override
     public void loadAnimation(String animationsFilePath) {
-        allAnimationsMap = new SpriteAnimationFile(animationsFilePath).loadAnimations(characterName);
+        allAnimationsMap = new SpriteAnimationFile(
+                animationsFilePath
+        ).loadAnimations(characterName);
     }
 
     @Override

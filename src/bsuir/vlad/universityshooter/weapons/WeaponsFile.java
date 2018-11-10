@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeaponsFile {
-    private InputStream fileStream;
+    private String filePath;
     private List<Weapon> weaponsList;
 
-    public WeaponsFile(InputStream fileStream) {
-        this.fileStream = fileStream;
+    public WeaponsFile(String filePath) {
+        this.filePath = filePath;
     }
 
     public final List<Weapon> loadWeapons() {
@@ -97,7 +97,7 @@ public class WeaponsFile {
         try {
             SAXParserFactory parserFactory = SAXParserFactory.newInstance();
             SAXParser parser = parserFactory.newSAXParser();
-            parser.parse(fileStream, handler);
+            parser.parse(filePath, handler);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }

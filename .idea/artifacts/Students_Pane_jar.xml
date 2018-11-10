@@ -3,6 +3,10 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Students_Pane_jar</output-path>
     <root id="archive" name="Students Pane.jar">
       <element id="module-output" name="Students Pane" />
+      <element id="dir-copy" path="$PROJECT_DIR$/resources/animations" />
+      <element id="dir-copy" path="$PROJECT_DIR$/resources/configs" />
+      <element id="dir-copy" path="$PROJECT_DIR$/resources/css" />
+      <element id="dir-copy" path="$PROJECT_DIR$/resources/textures" />
     </root>
   </artifact>
 </component>

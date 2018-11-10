@@ -1,10 +1,6 @@
 package bsuir.vlad.universityshooter.game.keyboard;
 
-import bsuir.vlad.universityshooter.activeobjects.characters.PlayersView;
-import bsuir.vlad.universityshooter.game.GameSpace;
-import bsuir.vlad.universityshooter.game.Level;
-import bsuir.vlad.universityshooter.game.Menu;
-import javafx.animation.AnimationTimer;
+import bsuir.vlad.universityshooter.activeobjects.characters.player.PlayersView;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 

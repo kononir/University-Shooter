@@ -1,7 +1,9 @@
 package bsuir.vlad.universityshooter.game;
 
-import bsuir.vlad.universityshooter.activeobjects.characters.Player;
-import bsuir.vlad.universityshooter.activeobjects.characters.PlayersController;
+import bsuir.vlad.universityshooter.activeobjects.characters.player.Player;
+import bsuir.vlad.universityshooter.activeobjects.characters.player.PlayersController;
+import bsuir.vlad.universityshooter.game.profile.Profile;
+import bsuir.vlad.universityshooter.game.profile.ProfileController;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 import bsuir.vlad.universityshooter.weapons.WeaponsController;
 import javafx.geometry.Insets;
