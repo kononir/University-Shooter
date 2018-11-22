@@ -11,16 +11,8 @@ public class PlayersController {
         this.player = player;
     }
 
-    public final boolean controlChangingWeapon(String weaponType) {
-        return player.changeWeapon(weaponType);
-    }
-
     public final Weapon controlGettingWeaponInHands() {
         return player.getWeaponInHands();
-    }
-
-    public final Bullet controlShooting() {
-        return player.shootFromWeapon();
     }
 
     public final int controlGettingHealthLevel() {
@@ -39,11 +31,19 @@ public class PlayersController {
         return player.isDead();
     }
 
-    public final int controlMelee() {
-        return player.getWeaponInHands().getDamage();
+    public final void controlSetDead(boolean dead) {
+        player.setDead(dead);
     }
 
     public final Profile controlGettingProfile() {
         return player.getProfile();
+    }
+
+    final void controlChangingWeapon(String weaponType) {
+        player.changeWeapon(weaponType);
+    }
+
+    final Bullet controlShooting() {
+        return player.shootFromWeapon();
     }
 }

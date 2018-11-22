@@ -7,6 +7,15 @@ public class Bullet {
     private final Gunslinger gunslingerName;
     private final int damage;
     private int distance;
+    private boolean disappeared;
+
+    public boolean isDisappeared() {
+        return disappeared;
+    }
+
+    public void setDisappeared(boolean disappeared) {
+        this.disappeared = disappeared;
+    }
 
     public String getType() {
         return type;

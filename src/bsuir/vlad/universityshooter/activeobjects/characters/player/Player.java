@@ -7,12 +7,10 @@ import bsuir.vlad.universityshooter.weapons.Gunslinger;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 import bsuir.vlad.universityshooter.weapons.WeaponsFile;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Player extends Character {
-    private List<Weapon> currentWeaponsList;
     private List<Weapon> allWeaponsList;
     private Profile profile;
 
@@ -31,43 +29,17 @@ public class Player extends Character {
                 playerWeaponsFilePath
         ).loadWeapons();
 
-        currentWeaponsList = new ArrayList<>();
-        addNewWeapon("knife");
-        addNewWeapon("handgun");
-        addNewWeapon("rifle");
-        addNewWeapon("shotgun");
+        changeWeapon("knife");
     }
 
-    final boolean changeWeapon(String weaponsType) {
-        boolean weaponsExisting;
-
-        Weapon findingWeapon = findWeapon(weaponsType, currentWeaponsList);
-
-        if (findingWeapon != null) {
-            weaponInHands = findingWeapon;
-            weaponsExisting = true;
-        } else {
-            weaponsExisting = false;
-        }
-
-        return weaponsExisting;
-    }
-
-    private Weapon findWeapon(String weaponsType, List<Weapon> weaponsList) {
+    final void changeWeapon(String weaponsType) {
         int first = 0;
 
         List<Weapon> findingWeaponsList
-                = weaponsList.stream().filter(weapon -> weapon.getType().equals(weaponsType))
+                = allWeaponsList.stream().filter(weapon -> weapon.getType().equals(weaponsType))
                 .collect(Collectors.toList());
 
-        return findingWeaponsList.get(first);
-    }
-
-    private void addNewWeapon(String weaponsType) {
-        Weapon newWeapon = findWeapon(weaponsType, allWeaponsList);
-        weaponInHands = newWeapon;
-
-        currentWeaponsList.add(newWeapon);
+        weaponInHands = findingWeaponsList.get(first);
     }
 
     final Bullet shootFromWeapon() {

@@ -36,11 +36,9 @@ public class PlayersView extends CharacterView {
 
     public final void updateCurrentWeaponView(String weaponType) {
         PlayersController playersController = new PlayersController(player);
-        boolean weaponExisting = playersController.controlChangingWeapon(weaponType);
+        playersController.controlChangingWeapon(weaponType);
 
-        if (weaponExisting) {
-            updateAnimation("student_idle_" + weaponType);
-        }
+        updateAnimation("student_idle_" + weaponType);
     }
 
     public final void move(double currentMovementAngle) {
@@ -162,7 +160,10 @@ public class PlayersView extends CharacterView {
 
                     if (boundsIntersect) {
                         PlayersController playersController = new PlayersController(player);
-                        int receivedDamage = playersController.controlMelee();
+                        Weapon weaponInHands = playersController.controlGettingWeaponInHands();
+
+                        WeaponsController weaponsController = new WeaponsController(weaponInHands);
+                        int receivedDamage = weaponsController.controlGettingDamage();
 
                         Bot bot = botsView.getBot();
 

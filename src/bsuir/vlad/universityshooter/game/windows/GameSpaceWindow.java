@@ -8,7 +8,6 @@ import bsuir.vlad.universityshooter.activeobjects.characters.player.PlayersView;
 import bsuir.vlad.universityshooter.game.Difficulty;
 import bsuir.vlad.universityshooter.game.HUD;
 import bsuir.vlad.universityshooter.game.profile.Profile;
-import bsuir.vlad.universityshooter.game.profile.ProfileController;
 import bsuir.vlad.universityshooter.game.keyboard.Keyboard;
 import bsuir.vlad.universityshooter.weapons.bullet.Bullet;
 import bsuir.vlad.universityshooter.weapons.bullet.BulletsView;
@@ -34,8 +33,8 @@ public class GameSpaceWindow {
 
     GameSpaceWindow(Stage stage, String difficultyString, String profileName) {
         Difficulty difficulty = Difficulty.valueOf(difficultyString.toUpperCase());
-        ProfileController profileController = new ProfileController(profileName, difficulty);
-        Profile profile = profileController.controlGettingProfile();
+        Profile profile = new Profile(profileName, difficulty);
+        Player player = new Player(profile);
 
         pane = new Pane();
         int PaneWidth = 600;
@@ -48,13 +47,15 @@ public class GameSpaceWindow {
         stage.setScene(scene);
         stage.show();
 
+        stage.setOnCloseRequest(closeEvent -> {
+            Pane playersPane = playersView.getCharacterPane();
+            playersPane.setVisible(false);
+        });
+
         bulletsViewList = new ArrayList<>();
         botsViewList = new ArrayList<>();
 
-        double playerX = 0;
-        double playerY = 0;
-
-        Player player = addPlayersView(profile, playerX, playerY);
+        addPlayersView(player);
         addKeyboard();
         addHUD(player);
 
@@ -67,11 +68,6 @@ public class GameSpaceWindow {
             }
         };
         updatingTimer.start();
-
-        stage.setOnCloseRequest(closeEvent -> {
-            Pane playersPane = playersView.getCharacterPane();
-            playersPane.setVisible(false);
-        });
     }
 
     private void initializeBotsGenerator(Difficulty difficulty) {
@@ -89,15 +85,14 @@ public class GameSpaceWindow {
         keyboard = new Keyboard(stage.getScene(), playersView);
     }
 
-    private Player addPlayersView(Profile profile, double playerX, double playerY) {
-        Player player = new Player(profile);
+    private void addPlayersView(Player player) {
+        double playerX = 0;
+        double playerY = 0;
 
         playersView = new PlayersView(player, playerX, playerY, botsViewList);
 
         Pane playersPane = playersView.getCharacterPane();
         pane.getChildren().add(playersPane);
-
-        return player;
     }
 
     public static void addBulletsView(Bullet bullet, CharacterView gunslingersView) {

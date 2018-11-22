@@ -9,6 +9,14 @@ public class BulletsController {
         this.bullet = bullet;
     }
 
+    public final boolean controlIsDisappeared() {
+        return bullet.isDisappeared();
+    }
+
+    public final void controlSetDisappeared(boolean disappeared) {
+        bullet.setDisappeared(disappeared);
+    }
+
     public final boolean controlDistancePassing() {
         return bullet.isDistancePassed();
     }

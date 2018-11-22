@@ -34,4 +34,8 @@ public abstract class Character {
 
         dead = (health <= 0);
     }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
 }

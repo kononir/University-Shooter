@@ -15,6 +15,10 @@ public class WeaponsController {
         return weapon.getAttackType();
     }
 
+    public final int controlGettingDamage() {
+        return weapon.getDamage();
+    }
+
     public final int controlGettingHoldersNumber() {
         return weapon.getHoldersNumber();
     }

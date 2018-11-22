@@ -7,11 +7,11 @@ public class Profile {
     private final Difficulty difficulty;
     private long score;
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public Difficulty getDifficulty() {
+    Difficulty getDifficulty() {
         return difficulty;
     }
 
@@ -31,7 +31,7 @@ public class Profile {
         this.score = score;
     }
 
-    public void increaseScore(int newScore) {
+    void increaseScore(int newScore) {
         score += newScore;
     }
 }
