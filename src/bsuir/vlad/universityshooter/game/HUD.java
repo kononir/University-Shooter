@@ -27,10 +27,10 @@ public class HUD {
         int rectWidth = 100, rectHeight = 10;
 
         Color healthRectColor = Color.RED;
-        Rectangle healthBar = createStatusBars(rectWidth, rectHeight, healthRectColor);
+        Rectangle healthBar = createStatusBar(rectWidth, rectHeight, healthRectColor);
 
         Color defenceRectColor = Color.GREY;
-        Rectangle defenceBar = createStatusBars(rectWidth, rectHeight, defenceRectColor);
+        Rectangle defenceBar = createStatusBar(rectWidth, rectHeight, defenceRectColor);
 
         statusBarsVBox = new VBox(healthBar, defenceBar);
 
@@ -68,7 +68,7 @@ public class HUD {
         ammoLabel.setLayoutY(pane.getPrefHeight() - labelMaxHeight);
     }
 
-    private Rectangle createStatusBars(int rectWidth, int rectHeight, Color rectColor) {
+    private Rectangle createStatusBar(int rectWidth, int rectHeight, Color rectColor) {
         Rectangle statusBar = new Rectangle(rectWidth, rectHeight);
         statusBar.setStroke(Color.BLACK);
         statusBar.setFill(rectColor);

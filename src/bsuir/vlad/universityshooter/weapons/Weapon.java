@@ -45,10 +45,6 @@ public class Weapon {
         this.holdersAmmo = maxHoldersAmmo;
     }
 
-    public void reduceDamage() {
-        int difficultyCoefficient = 1;
-    }
-
     public void reduceHoldersAmmo() {
         --holdersAmmo;
     }
@@ -62,8 +58,8 @@ public class Weapon {
         --holdersNumber;
     }
 
-    public void increaseHoldersNumber() {
-        ++holdersNumber;
+    public void increaseHoldersNumber(int addingNumber) {
+        holdersNumber += addingNumber;
     }
 
     public final boolean isHolderEmpty() {

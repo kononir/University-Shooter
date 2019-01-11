@@ -16,7 +16,7 @@ public class SpriteAnimation extends Transition {
     private int offsetY;
     private boolean lockFlag;
 
-    public SpriteAnimation(
+    SpriteAnimation(
             ImageView spriteImageView,
             Duration cycleDuration,
             int countOfAnimationFrames,

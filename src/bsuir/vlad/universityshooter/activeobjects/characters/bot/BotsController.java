@@ -1,6 +1,6 @@
 package bsuir.vlad.universityshooter.activeobjects.characters.bot;
 
-import bsuir.vlad.universityshooter.weapons.bullet.Bullet;
+import bsuir.vlad.universityshooter.activeobjects.bullet.Bullet;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 
 public class BotsController {

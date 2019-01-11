@@ -7,18 +7,6 @@ public class Profile {
     private final Difficulty difficulty;
     private long score;
 
-    String getName() {
-        return name;
-    }
-
-    Difficulty getDifficulty() {
-        return difficulty;
-    }
-
-    public long getScore() {
-        return score;
-    }
-
     public Profile(String name, Difficulty difficulty) {
         this.name = name;
         this.difficulty = difficulty;
@@ -29,6 +17,18 @@ public class Profile {
         this.name = name;
         this.difficulty = difficulty;
         this.score = score;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public long getScore() {
+        return score;
     }
 
     void increaseScore(int newScore) {

@@ -5,7 +5,7 @@ import bsuir.vlad.universityshooter.activeobjects.characters.player.Player;
 import bsuir.vlad.universityshooter.activeobjects.characters.player.PlayersController;
 import bsuir.vlad.universityshooter.activeobjects.characters.player.PlayersView;
 import bsuir.vlad.universityshooter.game.windows.GameSpaceWindow;
-import bsuir.vlad.universityshooter.weapons.bullet.Bullet;
+import bsuir.vlad.universityshooter.activeobjects.bullet.Bullet;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 import bsuir.vlad.universityshooter.weapons.WeaponsController;
 import javafx.scene.layout.Pane;

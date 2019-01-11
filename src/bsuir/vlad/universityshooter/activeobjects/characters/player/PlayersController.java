@@ -1,7 +1,7 @@
 package bsuir.vlad.universityshooter.activeobjects.characters.player;
 
 import bsuir.vlad.universityshooter.game.profile.Profile;
-import bsuir.vlad.universityshooter.weapons.bullet.Bullet;
+import bsuir.vlad.universityshooter.activeobjects.bullet.Bullet;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 
 public class PlayersController {
@@ -29,10 +29,6 @@ public class PlayersController {
 
     public final boolean controlIsDead() {
         return player.isDead();
-    }
-
-    public final void controlSetDead(boolean dead) {
-        player.setDead(dead);
     }
 
     public final Profile controlGettingProfile() {

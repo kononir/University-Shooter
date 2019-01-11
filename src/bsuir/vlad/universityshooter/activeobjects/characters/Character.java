@@ -6,14 +6,13 @@ public abstract class Character {
     protected int health;
     protected int defence;
     protected Weapon weaponInHands;
-    protected boolean dead;
 
     public Weapon getWeaponInHands() {
         return weaponInHands;
     }
 
     public boolean isDead() {
-        return dead;
+        return (health <= 0);
     }
 
     public int getHealth() {
@@ -31,11 +30,5 @@ public abstract class Character {
         } else {
             defence -= receivedDamage;
         }
-
-        dead = (health <= 0);
-    }
-
-    public void setDead(boolean dead) {
-        this.dead = dead;
     }
 }

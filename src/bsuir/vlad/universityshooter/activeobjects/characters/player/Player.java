@@ -2,7 +2,7 @@ package bsuir.vlad.universityshooter.activeobjects.characters.player;
 
 import bsuir.vlad.universityshooter.activeobjects.characters.Character;
 import bsuir.vlad.universityshooter.game.profile.Profile;
-import bsuir.vlad.universityshooter.weapons.bullet.Bullet;
+import bsuir.vlad.universityshooter.activeobjects.bullet.Bullet;
 import bsuir.vlad.universityshooter.weapons.Gunslinger;
 import bsuir.vlad.universityshooter.weapons.Weapon;
 import bsuir.vlad.universityshooter.weapons.WeaponsFile;

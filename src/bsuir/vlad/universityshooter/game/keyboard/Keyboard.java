@@ -6,19 +6,13 @@ import javafx.scene.input.KeyCode;
 
 public class Keyboard {
     private KeysMap keysMap;
-    private Scene scene;
     private PlayersView playersView;
 
     public Keyboard(Scene scene, PlayersView playersView) {
-        this.scene = scene;
         this.playersView = playersView;
 
         keysMap = new KeysMap();
 
-        setOnKey();
-    }
-
-    private void setOnKey() {
         scene.setOnKeyPressed(key -> {
             KeyCode keyCode = key.getCode();
             keysMap.putTrue(keyCode);
@@ -31,6 +25,9 @@ public class Keyboard {
     }
 
     public final void updateKeyboard() {
+        int movementX = 3;
+        int movementY = 3;
+
         if (keysMap.isPressed(KeyCode.ESCAPE)) {
             playersView.getCharacterPane().setVisible(false);
         }
@@ -51,28 +48,72 @@ public class Keyboard {
 
         if (keysMap.isPressed(KeyCode.UP) && keysMap.isPressed(KeyCode.LEFT)) {
             double currentMovementAngle = 225;
-            playersView.move(currentMovementAngle);
+
+            playersView.rotate(currentMovementAngle);
+
+            playersView.updateMovementAnimation();
+
+            playersView.moveUp(movementY);
+            playersView.moveLeft(movementX);
         } else if (keysMap.isPressed(KeyCode.UP) && keysMap.isPressed(KeyCode.RIGHT)) {
             double currentMovementAngle = 315;
-            playersView.move(currentMovementAngle);
+
+            playersView.rotate(currentMovementAngle);
+
+            playersView.updateMovementAnimation();
+
+            playersView.moveUp(movementY);
+            playersView.moveRight(movementX);
         } else if (keysMap.isPressed(KeyCode.DOWN) && keysMap.isPressed(KeyCode.LEFT)) {
             double currentMovementAngle = 135;
-            playersView.move(currentMovementAngle);
+
+            playersView.rotate(currentMovementAngle);
+
+            playersView.updateMovementAnimation();
+
+            playersView.moveDown(movementY);
+            playersView.moveLeft(movementX);
         } else if (keysMap.isPressed(KeyCode.DOWN) && keysMap.isPressed(KeyCode.RIGHT)) {
             double currentMovementAngle = 45;
-            playersView.move(currentMovementAngle);
+
+            playersView.rotate(currentMovementAngle);
+
+            playersView.updateMovementAnimation();
+
+            playersView.moveDown(movementY);
+            playersView.moveRight(movementX);
         } else if (keysMap.isPressed(KeyCode.UP)) {
             double currentMovementAngle = 270;
-            playersView.move(currentMovementAngle);
+
+            playersView.rotate(currentMovementAngle);
+
+            playersView.updateMovementAnimation();
+
+            playersView.moveUp(movementY);
         } else if (keysMap.isPressed(KeyCode.DOWN)) {
             double currentMovementAngle = 90;
-            playersView.move(currentMovementAngle);
+
+            playersView.rotate(currentMovementAngle);
+
+            playersView.updateMovementAnimation();
+
+            playersView.moveDown(movementY);
         } else if (keysMap.isPressed(KeyCode.LEFT)) {
             double currentMovementAngle = 180;
-            playersView.move(currentMovementAngle);
+
+            playersView.rotate(currentMovementAngle);
+
+            playersView.updateMovementAnimation();
+
+            playersView.moveLeft(movementX);
         } else if (keysMap.isPressed(KeyCode.RIGHT)) {
             double currentMovementAngle = 0;
-            playersView.move(currentMovementAngle);
+
+            playersView.rotate(currentMovementAngle);
+
+            playersView.updateMovementAnimation();
+
+            playersView.moveRight(movementX);
         } else {
             playersView.idle();
         }

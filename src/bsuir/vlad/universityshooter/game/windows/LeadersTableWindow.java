@@ -37,9 +37,8 @@ class LeadersTableWindow {
         score.setCellValueFactory(new PropertyValueFactory<>("score"));
 
         String filePath = "resources/profiles.xml";
-        ProfileFile profileFile = new ProfileFile(filePath);
 
-        List<Profile> profileList = profileFile.load();
+        List<Profile> profileList = new ProfileFile(filePath).load();
         ObservableList<Profile> profileObservableList = FXCollections.observableList(profileList);
 
         scoreTable.setItems(profileObservableList);

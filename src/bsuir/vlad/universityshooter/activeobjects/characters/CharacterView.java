@@ -15,9 +15,9 @@ import java.util.HashMap;
 public abstract class CharacterView implements Movable, Rotatable, Animated {
     protected String characterName;
     protected Pane characterPane;
-    protected double characterPaneAngle;
     protected SpriteAnimation currentAnimation;
-    protected HashMap<String, SpriteAnimation> allAnimationsMap;
+    private double characterPaneAngle;
+    private HashMap<String, SpriteAnimation> allAnimationsMap;
 
     public Pane getCharacterPane() {
         return characterPane;
@@ -38,11 +38,6 @@ public abstract class CharacterView implements Movable, Rotatable, Animated {
 
         String animationsFilePath = "resources/configs/" + characterName + "_animation_characteristics.xml";
 
-        loadAnimation(animationsFilePath);
-    }
-
-    @Override
-    public void loadAnimation(String animationsFilePath) {
         allAnimationsMap = new SpriteAnimationFile(
                 animationsFilePath
         ).loadAnimations(characterName);

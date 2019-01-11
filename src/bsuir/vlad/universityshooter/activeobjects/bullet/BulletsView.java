@@ -1,4 +1,4 @@
-package bsuir.vlad.universityshooter.weapons.bullet;
+package bsuir.vlad.universityshooter.activeobjects.bullet;
 
 import bsuir.vlad.universityshooter.activeobjects.Movable;
 import bsuir.vlad.universityshooter.activeobjects.characters.*;

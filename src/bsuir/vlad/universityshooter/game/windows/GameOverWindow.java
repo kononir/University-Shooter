@@ -12,12 +12,6 @@ import javafx.stage.Stage;
 class GameOverWindow {
     GameOverWindow(Stage stage, Profile profile) {
         Stage gameOverStage = new Stage();
-        gameOverStage.setOnCloseRequest(closeEvent -> {
-            gameOverStage.close();
-
-            stage.close();
-            new MainMenuWindow(stage);
-        });
 
         Label gameOverLabel = new Label("Game Over!");
         gameOverLabel.setId("gameOverLabelText");

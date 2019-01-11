@@ -9,8 +9,8 @@ import bsuir.vlad.universityshooter.game.Difficulty;
 import bsuir.vlad.universityshooter.game.HUD;
 import bsuir.vlad.universityshooter.game.profile.Profile;
 import bsuir.vlad.universityshooter.game.keyboard.Keyboard;
-import bsuir.vlad.universityshooter.weapons.bullet.Bullet;
-import bsuir.vlad.universityshooter.weapons.bullet.BulletsView;
+import bsuir.vlad.universityshooter.activeobjects.bullet.Bullet;
+import bsuir.vlad.universityshooter.activeobjects.bullet.BulletsView;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -31,9 +31,9 @@ public class GameSpaceWindow {
     private static List<BotsView> botsViewList;
     private AnimationTimer updatingTimer;
 
-    GameSpaceWindow(Stage stage, String difficultyString, String profileName) {
-        Difficulty difficulty = Difficulty.valueOf(difficultyString.toUpperCase());
-        Profile profile = new Profile(profileName, difficulty);
+    GameSpaceWindow(Stage stage, String inputDifficulty, String inputName) {
+        Difficulty difficulty = Difficulty.valueOf(inputDifficulty.toUpperCase());
+        Profile profile = new Profile(inputName, difficulty);
         Player player = new Player(profile);
 
         pane = new Pane();
@@ -55,11 +55,22 @@ public class GameSpaceWindow {
         bulletsViewList = new ArrayList<>();
         botsViewList = new ArrayList<>();
 
-        addPlayersView(player);
-        addKeyboard();
-        addHUD(player);
+        double playerX = 0;
+        double playerY = 0;
 
-        initializeBotsGenerator(difficulty);
+        playersView = new PlayersView(player, playerX, playerY, botsViewList);
+
+        Pane playersPane = playersView.getCharacterPane();
+        pane.getChildren().add(playersPane);
+
+        keyboard = new Keyboard(stage.getScene(), playersView);
+
+        hud = new HUD(player, pane);
+
+        botsGenerator = new BotsGenerator(pane, difficulty);
+
+        BotsGeneratorController controller = new BotsGeneratorController(botsGenerator);
+        controller.controlStartingBotsGeneration();
 
         updatingTimer = new AnimationTimer() {
             @Override
@@ -68,31 +79,6 @@ public class GameSpaceWindow {
             }
         };
         updatingTimer.start();
-    }
-
-    private void initializeBotsGenerator(Difficulty difficulty) {
-        botsGenerator = new BotsGenerator(pane, difficulty);
-
-        BotsGeneratorController controller = new BotsGeneratorController(botsGenerator);
-        controller.controlStartingBotsGeneration();
-    }
-
-    private void addHUD(Player player) {
-        hud = new HUD(player, pane);
-    }
-
-    private void addKeyboard() {
-        keyboard = new Keyboard(stage.getScene(), playersView);
-    }
-
-    private void addPlayersView(Player player) {
-        double playerX = 0;
-        double playerY = 0;
-
-        playersView = new PlayersView(player, playerX, playerY, botsViewList);
-
-        Pane playersPane = playersView.getCharacterPane();
-        pane.getChildren().add(playersPane);
     }
 
     public static void addBulletsView(Bullet bullet, CharacterView gunslingersView) {
@@ -109,7 +95,9 @@ public class GameSpaceWindow {
 
         BotsView botsView = new BotsView(bot, botX, botY, botType, playersView);
 
-        botsViewList.add(botsView);
+        synchronized (botsViewList) {
+            botsViewList.add(botsView);
+        }
     }
 
     private void updateScene() {
@@ -127,20 +115,21 @@ public class GameSpaceWindow {
             }
         }
 
-        Iterator<BotsView> botsViewIterator = botsViewList.iterator();
+        synchronized (botsViewList) {
+            Iterator<BotsView> botsViewIterator = botsViewList.iterator();
+            while (botsViewIterator.hasNext()) {
+                BotsView botsView = botsViewIterator.next();
 
-        while (botsViewIterator.hasNext()) {
-            BotsView botsView = botsViewIterator.next();
+                Pane botsPane = botsView.getCharacterPane();
 
-            Pane botsPane = botsView.getCharacterPane();
+                if (!botsPane.isVisible()) {
+                    botsViewIterator.remove();
+                } else {
+                    pane.getChildren().remove(botsPane);
+                    pane.getChildren().add(botsPane);
 
-            if (!botsPane.isVisible()) {
-                botsViewIterator.remove();
-            } else {
-                pane.getChildren().remove(botsPane);
-                pane.getChildren().add(botsPane);
-
-                botsView.updateBotsView();
+                    botsView.updateBotsView();
+                }
             }
         }
 
