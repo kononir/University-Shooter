@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 import java.util.TimerTask;
 import java.util.concurrent.*;
+import static java.lang.Math.*;
 
 public class BotsView extends CharacterView {
     private Bot bot;
@@ -40,13 +41,13 @@ public class BotsView extends CharacterView {
         WeaponsController weaponsController = new WeaponsController(weaponInHands);
         String attackType = weaponsController.controlGettingAttackType();
 
-        if (!currentAnimation.isLock()) {
+        if (!currentAnimation.isLock()) {   // переделать под Factory method (дописать условие выполнения для конкретного бота)
             switch (attackType) {
-                case "punch":
-                case "explode":
+                case "punch":               // if (isBoundsIntersect())
+                case "explode":             // -|-|-
                     meleeAttack(attackType);
                     break;
-                case "shoot":
+                case "shoot":               // if (isStandOnFireLine())
                     shoot();
                     break;
             }
@@ -119,42 +120,55 @@ public class BotsView extends CharacterView {
         );
     }
 
-    private boolean isStandOfFireLine() {
-        double botsPainX = characterPane.getTranslateX();
+    private boolean isStandOnFireLine() {
+        return isStandHorizontal() || isStandVertical() || isStandDiagonal();
+    }
+
+    private boolean isStandHorizontal() {
         double botsPainY = characterPane.getTranslateY();
-
-        double botsPainWidth = characterPane.getWidth();
         double botsPainHeight = characterPane.getHeight();
-
-        double botsPainXMiddle = botsPainX + botsPainWidth / 2;
         double botsPainYMiddle = botsPainY + botsPainHeight / 2;
 
         Pane playersPane = playersView.getCharacterPane();
+        double playerPainY = playersPane.getTranslateY();
+        double playerPainHeight = playersPane.getHeight();
+        double playerPainYBorder = playerPainY + playerPainHeight;
 
+        return (botsPainYMiddle >= playerPainY) && (botsPainYMiddle <= playerPainYBorder);
+    }
+
+    private boolean isStandVertical() {
+        double botsPainX = characterPane.getTranslateX();
+        double botsPainWidth = characterPane.getWidth();
+        double botsPainXMiddle = botsPainX + botsPainWidth / 2;
+
+        Pane playersPane = playersView.getCharacterPane();
+        double playerPainX = playersPane.getTranslateX();
+        double playerPainWidth = playersPane.getWidth();
+        double playerPainXBorder = playerPainX + playerPainWidth;
+
+        return (botsPainXMiddle >= playerPainX) && (botsPainXMiddle <= playerPainXBorder);
+    }
+
+    private boolean isStandDiagonal() {
+        double botsPainX = characterPane.getTranslateX();
+        double botsPainY = characterPane.getTranslateY();
+
+        Pane playersPane = playersView.getCharacterPane();
         double playerPainX = playersPane.getTranslateX();
         double playerPainY = playersPane.getTranslateY();
 
         double playerPainWidth = playersPane.getWidth();
         double playerPainHeight = playersPane.getHeight();
-        double playerPainDiagonal = Math.sqrt(Math.pow(playerPainWidth, 2) + Math.pow(playerPainHeight, 2));
+        double playerPainDiagonal = sqrt(pow(playerPainWidth, 2) + pow(playerPainHeight, 2));
 
-        double playerPainXBorder = playerPainX + playerPainWidth;
-        double playerPainYBorder = playerPainY + playerPainHeight;
-
-        boolean botStandsHorizontal
-                = (botsPainYMiddle >= playerPainY) && (botsPainYMiddle <= playerPainYBorder);
-        boolean botStandsVertical
-                = (botsPainXMiddle >= playerPainX) && (botsPainXMiddle <= playerPainXBorder);
-
-        double squareYSide = Math.abs(botsPainY - playerPainY);
-        double squareXSide = Math.abs(botsPainX - playerPainX);
-        boolean botStandsDiagonal = (Math.abs(squareXSide - squareYSide)) > 0 && (Math.abs(squareXSide - squareYSide)) < playerPainDiagonal;
-
-        return botStandsHorizontal || botStandsVertical || botStandsDiagonal;
+        double squareYSide = abs(botsPainY - playerPainY);
+        double squareXSide = abs(botsPainX - playerPainX);
+        return (abs(squareXSide - squareYSide)) > 0 && (abs(squareXSide - squareYSide)) < playerPainDiagonal;
     }
 
     private void shoot() {
-        if (isStandOfFireLine()) {
+        if (isStandOnFireLine()) {
 
             BotsController controller = new BotsController(bot);
 
@@ -177,7 +191,7 @@ public class BotsView extends CharacterView {
     }
 
     private void moveToFireLine() {
-        if (!isStandOfFireLine()) {
+        if (!isStandOnFireLine()) {
             move();
         }
     }
@@ -229,27 +243,9 @@ public class BotsView extends CharacterView {
         double botsPainX = characterPane.getTranslateX();
         double botsPainY = characterPane.getTranslateY();
 
-        double botsPainWidth = characterPane.getWidth();
-        double botsPainHeight = characterPane.getHeight();
-
-        double botsPainXMiddle = botsPainX + botsPainWidth / 2;
-        double botsPainYMiddle = botsPainY + botsPainHeight / 2;
-
         Pane playersPane = playersView.getCharacterPane();
-
         double playerPainX = playersPane.getTranslateX();
         double playerPainY = playersPane.getTranslateY();
-
-        double playerPainWidth = playersPane.getWidth();
-        double playerPainHeight = playersPane.getHeight();
-
-        double playerPainXBorder = playerPainX + playerPainWidth;
-        double playerPainYBorder = playerPainY + playerPainHeight;
-
-        boolean botStandsHorizontal
-                = (botsPainYMiddle >= playerPainY) && (botsPainYMiddle <= playerPainYBorder);
-        boolean botStandsVertical
-                = (botsPainXMiddle >= playerPainX) && (botsPainXMiddle <= playerPainXBorder);
 
         boolean botStandsBelow = (botsPainY - playerPainY) > 0;
         boolean botStandsRight = (botsPainX - playerPainX) > 0;
@@ -258,13 +254,13 @@ public class BotsView extends CharacterView {
 
         double rotationAngle;
 
-        if (botStandsHorizontal && botStandsLeft) {
+        if (isStandHorizontal() && botStandsLeft) {
             rotationAngle = 0;
-        } else if (botStandsHorizontal && botStandsRight) {
+        } else if (isStandHorizontal() && botStandsRight) {
             rotationAngle = 180;
-        } else if (botStandsVertical && botStandsBelow) {
+        } else if (isStandVertical() && botStandsBelow) {
             rotationAngle = 270;
-        } else if (botStandsVertical && botStandsAbove) {
+        } else if (isStandVertical() && botStandsAbove) {
             rotationAngle = 90;
         } else if (botStandsBelow && botStandsRight) {
             rotationAngle = 225;
